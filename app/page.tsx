@@ -167,6 +167,69 @@ export default function EchevenskoB2BLanding() {
         </div>
       </section>
 
+      {/* RR.HH. – DEMO + FOTOGRAFÍAS DESTACADAS */}
+      <section id="rrhh" className="bg-white border-y">
+        <div className="mx-auto max-w-6xl px-4 py-16">
+          <div className="grid lg:grid-cols-2 gap-10 items-start">
+            {/* Bloque video para gerencias de RR.HH. */}
+            <div>
+              <Badge className="mb-3">Un recurso innovador para potenciar equipos en tu empresa</Badge>
+              <h2 className="text-3xl font-bold">La Magia de la Imaginación | Charla corporativa para equipos.</h2>
+              <p className="mt-2 text-neutral-700">Conoce cómo esta experiencia única puede integrarse a tus iniciativas de bienestar, liderazgo y cultura organizacional, generando un impacto positivo y duradero en tu compañía.</p>
+              <div className="mt-6 rounded-2xl overflow-hidden border">
+                <div className="aspect-video">
+                  <iframe
+                    className="w-full h-full"
+                    src="https://www.youtube.com/embed/_K00lO5cwzA?rel=0&modestbranding=1"
+                    title="La Magia de la Imaginación | Charlas corporativas para equipos"
+                    frameBorder="0"
+                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                    allowFullScreen
+                  />
+                </div>
+              </div>
+              <div className="mt-4 text-sm text-neutral-600">
+                <p></p>
+              </div>
+            </div>
+
+            {/* Fotografías destacadas */}
+            <div>
+              <h3 className="text-xl font-semibold">Momentos que importan</h3>
+              <p className="mt-2 text-neutral-700">Escenas reales que reflejan participación, foco y energía en contextos corporativos.</p>
+              <div className="mt-6 grid grid-cols-1 sm:grid-cols-2 gap-4">
+                <Card className="rounded-2xl overflow-hidden">
+                  <CardContent className="p-0">
+                    <img
+                      src="/images/echevensko_foto3.jpg"
+                      alt="Auditorio atento durante la charla"
+                      className="w-full h-56 object-cover"
+                    />
+                  </CardContent>
+                </Card>
+                <Card className="rounded-2xl overflow-hidden">
+                  <CardContent className="p-0">
+                    <img
+                      src="/images/echevensko_foto4.jpg"
+                      alt="Dinámica participativa con equipos"
+                      className="w-full h-56 object-cover"
+                    />
+                  </CardContent>
+                </Card>
+              </div>
+              <ul className="mt-4 space-y-2 text-sm text-neutral-700">
+                <li className="flex gap-2"><Check className="h-4 w-4 mt-0.5"/> Enfoque en clima, engagement y liderazgo.</li>
+                <li className="flex gap-2"><Check className="h-4 w-4 mt-0.5"/> Operamos con contrato, factura y métricas post-evento (opcional).</li>
+                <li className="flex gap-2"><Check className="h-4 w-4 mt-0.5"/> Cobertura nacional y Latam, presencial u online.</li>
+              </ul>
+              <div className="mt-6">
+                <Button asChild className="rounded-2xl"><a href="#contacto">Solicitar propuesta para RR.HH.</a></Button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
       {/* ¿A QUIÉN VA DIRIGIDO? */}
       <section id="dirigido" className="bg-white border-y">
         <div className="mx-auto max-w-6xl px-4 py-16">
