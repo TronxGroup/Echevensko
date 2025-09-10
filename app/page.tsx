@@ -349,44 +349,6 @@ export default function EchevenskoB2BLanding() {
             </div>
           </div>
 
-          {/* Videos pequeños de testimonio */}
-          <div className="mt-8 grid md:grid-cols-2 gap-4">
-            <Card className="rounded-2xl overflow-hidden">
-              <CardHeader className="pb-2"><CardTitle className="text-base">Testimonio · Cafetería Quererte</CardTitle></CardHeader>
-              <CardContent className="pt-0">
-                <div className="aspect-video">
-                  <iframe
-                    className="w-full h-full"
-                    src={YT_QUERERTE_SRC}
-                    title="Testimonio Cafetería Quererte"
-                    frameBorder="0"
-                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-                    allowFullScreen
-                    referrerPolicy="strict-origin-when-cross-origin"
-                    data-testid="iframe-quererte"
-                  />
-                </div>
-              </CardContent>
-            </Card>
-
-            <Card className="rounded-2xl overflow-hidden">
-              <CardHeader className="pb-2"><CardTitle className="text-base">Testimonio · Abogados Supreme</CardTitle></CardHeader>
-              <CardContent className="pt-0">
-                <div className="aspect-video">
-                  <iframe
-                    className="w-full h-full"
-                    src={YT_SUPREME_SRC}
-                    title="Testimonio Abogados Supreme"
-                    frameBorder="0"
-                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-                    allowFullScreen
-                    referrerPolicy="strict-origin-when-cross-origin"
-                    data-testid="iframe-supreme"
-                  />
-                </div>
-              </CardContent>
-            </Card>
-          </div>
 
           {/* Quotes cortos */}
           <div className="mt-8 grid md:grid-cols-3 gap-4">
