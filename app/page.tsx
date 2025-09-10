@@ -1,5 +1,6 @@
 // app/page.tsx
 import React from "react";
+import Script from "next/script";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
@@ -41,38 +42,37 @@ export const metadata = {
   twitter: { card: "summary_large_image" },
 };
 
-// === Simple runtime "tests" (solo en dev) para iframes ===
-function runIframeSrcTests() {
-  if (typeof window === "undefined" || process.env.NODE_ENV === "production") return true;
-  const urls = [
-    `https://www.youtube.com/embed/${"VIDEO_ID_QUERERTE"}?rel=0&modestbranding=1`,
-    `https://www.youtube.com/embed/${"VIDEO_ID_SUPREME"}?rel=0&modestbranding=1`,
-  ];
-  try {
-    urls.forEach((u) => {
-      const parsed = new URL(u);
-      console.assert(parsed.protocol === "https:", "Iframe src must be https:");
-      console.assert(u.includes("/embed/"), "Iframe src should use /embed/ path");
-      console.assert(u.includes("modestbranding=1"), "Iframe src should include modestbranding=1");
-    });
-    console.debug("[SelfCheck] Iframe src tests passed");
-    return true;
-  } catch (e) {
-    console.error("[SelfCheck] Iframe src test failed", e);
-    return false;
-  }
-}
-
 export default function EchevenskoB2BLanding() {
-  const VIDEO_ID_QUERERTE = "VIDEO_ID_QUERERTE"; // ⬅️ Reemplaza por el ID real
-  const VIDEO_ID_SUPREME = "VIDEO_ID_SUPREME";   // ⬅️ Reemplaza por el ID real
-  const YT_QUERERTE_SRC = `https://www.youtube.com/embed/${VIDEO_ID_QUERERTE}?rel=0&modestbranding=1`;
-  const YT_SUPREME_SRC = `https://www.youtube.com/embed/${VIDEO_ID_SUPREME}?rel=0&modestbranding=1`;
-
-  runIframeSrcTests();
+  // (Opcional) si quieres construir los SRC dinámicamente en el server para usarlos en el <Script>, deja
+  // los IDs como constantes aquí:
+  const VIDEO_ID_QUERERTE = "VIDEO_ID_QUERERTE"; // ⬅️ reemplaza por ID real
+  const VIDEO_ID_SUPREME = "VIDEO_ID_SUPREME";   // ⬅️ reemplaza por ID real
 
   return (
     <div className="min-h-screen bg-neutral-50 text-neutral-900">
+      {/* Self-check para iframes: corre en el cliente post-hidratación */}
+      <Script id="iframe-selfcheck" strategy="afterInteractive">
+        {`
+          (function(){
+            try {
+              var urls = [
+                "https://www.youtube.com/embed/${VIDEO_ID_QUERERTE}?rel=0&modestbranding=1",
+                "https://www.youtube.com/embed/${VIDEO_ID_SUPREME}?rel=0&modestbranding=1"
+              ];
+              urls.forEach(function(u){
+                var parsed = new URL(u);
+                console.assert(parsed.protocol === "https:", "Iframe src must be https:");
+                console.assert(u.includes("/embed/"), "Iframe src should use /embed/ path");
+                console.assert(u.includes("modestbranding=1"), "Iframe src should include modestbranding=1");
+              });
+              console.debug("[SelfCheck] Iframe src tests passed");
+            } catch(e) {
+              console.error("[SelfCheck] Iframe src test failed", e);
+            }
+          })();
+        `}
+      </Script>
+
       {/* NAVBAR */}
       <header className="sticky top-0 z-50 backdrop-blur bg-white/70 border-b">
         <div className="mx-auto max-w-6xl px-4 py-3 flex items-center justify-between">
@@ -429,133 +429,136 @@ export default function EchevenskoB2BLanding() {
       </section>
 
       {/* CONTACTO */}
-<section id="contacto" className="mx-auto max-w-6xl px-4 py-16">
-  <div className="grid md:grid-cols-5 gap-8">
-    <div className="md:col-span-3">
-      <h2 className="text-3xl font-bold">Solicita tu propuesta</h2>
-      <p className="mt-2 text-neutral-700">
-        Cuéntanos fecha tentativa, modalidad y tamaño de audiencia. <strong>Valor único: UF 32</strong>.
-      </p>
+      <section id="contacto" className="mx-auto max-w-6xl px-4 py-16">
+        <div className="grid md:grid-cols-5 gap-8">
+          <div className="md:col-span-3">
+            <h2 className="text-3xl font-bold">Solicita tu propuesta</h2>
+            <p className="mt-2 text-neutral-700">
+              Cuéntanos fecha tentativa, modalidad y tamaño de audiencia. <strong>Valor único: UF 32</strong>.
+            </p>
 
-      <form
-        className="mt-6 grid grid-cols-1 gap-3"
-        action="https://crm.zoho.com/crm/WebToLeadForm"
-        method="POST"
-        acceptCharset="UTF-8"
-      >
-        {/* ===== Requeridos por Zoho ===== */}
-        <input type="hidden" name="xnQsjsdp" value="95184e6afdb3fbc1a0bf77aa448a14760d2ab73c285054cfb0f847a2a628ed3e" />
-        <input type="hidden" name="zc_gad" id="zc_gad" value="" />
-        <input type="hidden" name="xmIwtLD" value="4741e82d00c619964f2daca8567274a71ee55b7161ab5576c38764bd21b8863ac79cdb74656004b22bb56f6062f48077" />
-        <input type="hidden" name="actionType" value="TGVhZHM=" />
-        <input type="hidden" name="returnURL" value="https://empresas.echevensko.com/gracias" />
-        <input type="hidden" name="LEADCF5" value="Echevensko" />
-        <input type="hidden" name="aG9uZXlwb3Q" value="" />
-
-        {/* ===== Campos visibles ===== */}
-        <div className="grid sm:grid-cols-2 gap-3">
-          <Input name="First Name" placeholder="Nombre" />
-          <Input name="Last Name" placeholder="Apellido" required />
-        </div>
-
-        <div className="grid sm:grid-cols-2 gap-3">
-          <Input name="Email" placeholder="Email corporativo" type="email" />
-          <Input name="Company" placeholder="Organización/Empresa" required />
-        </div>
-
-        <div className="grid sm:grid-cols-2 gap-3">
-          <Input name="LEADCF2" placeholder="Cargo" />
-          <Input name="City" placeholder="Ciudad/País" />
-        </div>
-
-        <div className="grid sm:grid-cols-3 gap-3">
-          <Input name="LEADCF116" placeholder="Fecha tentativa (DD-MM-YYYY)" />
-          <Input name="LEADCF51" placeholder="Nº asistentes" />
-          <select
-            name="LEADCF6"
-            className="h-10 rounded-md border border-input bg-background px-3 py-2 text-sm"
-            defaultValue="Presencial"
-          >
-            <option value="-None-">-None-</option>
-            <option value="Presencial">Presencial</option>
-            <option value="Online">Online</option>
-          </select>
-        </div>
-
-        <Textarea
-          name="LEADCF3"
-          placeholder="Cuéntanos el objetivo de la actividad (kickoff, bienestar, liderazgo, colegios, fundaciones, etc.)"
-          className="min-h-[120px]"
-        />
-
-        {/* Consentimiento y política */}
-        <label className="flex items-start gap-2 text-sm text-neutral-700">
-          <input type="checkbox" required />
-          <span>
-            He leído y acepto la <a href="/privacidad" className="underline">Política de Privacidad</a>.
-          </span>
-        </label>
-
-        <div className="flex flex-wrap gap-3">
-          <Button className="rounded-2xl" type="submit">Enviar consulta</Button>
-          <Button asChild variant="outline" className="rounded-2xl">
-            <a href="mailto:info@echevensko.com?subject=Cotizaci%C3%B3n%20charla%20corporativa">O escríbenos por email</a>
-          </Button>
-          <Button asChild variant="outline" className="rounded-2xl">
-            <a
-              href="https://wa.me/56920080031?text=Hola%20quiero%20cotizar%20la%20charla%20corporativa%20de%20Echevensko"
-              rel="noopener"
+            <form
+              className="mt-6 grid grid-cols-1 gap-3"
+              action="https://crm.zoho.com/crm/WebToLeadForm"
+              method="POST"
+              acceptCharset="UTF-8"
             >
-              WhatsApp
-            </a>
-          </Button>
-        </div>
+              {/* ===== Requeridos por Zoho ===== */}
+              <input type="hidden" name="xnQsjsdp" value="95184e6afdb3fbc1a0bf77aa448a14760d2ab73c285054cfb0f847a2a628ed3e" />
+              <input type="hidden" name="zc_gad" id="zc_gad" value="" />
+              <input type="hidden" name="xmIwtLD" value="4741e82d00c619964f2daca8567274a71ee55b7161ab5576c38764bd21b8863ac79cdb74656004b22bb56f6062f48077" />
+              <input type="hidden" name="actionType" value="TGVhZHM=" />
+              <input type="hidden" name="returnURL" value="https://empresas.echevensko.com/gracias" />
+              <input type="hidden" name="LEADCF5" value="Echevensko" />
+              <input type="hidden" name="aG9uZXlwb3Q" value="" />
 
-        <p className="text-xs text-neutral-500 mt-2">
-          *Al enviar, aceptas ser contactado(a) con fines comerciales.
-        </p>
-      </form>
-    </div>
+              {/* ===== Campos visibles ===== */}
+              <div className="grid sm:grid-cols-2 gap-3">
+                <Input name="First Name" placeholder="Nombre" />
+                <Input name="Last Name" placeholder="Apellido" required />
+              </div>
 
-    <div className="md:col-span-2">
-      <Card className="rounded-2xl md:sticky md:top-24">
-        <CardHeader>
-          <CardTitle>Datos de contacto</CardTitle>
-        </CardHeader>
-        <CardContent className="text-sm text-neutral-700 space-y-3">
-          <p className="flex items-center gap-2"><Mail className="h-4 w-4" aria-hidden /> info@echevensko.com</p>
-          <p className="flex items-center gap-2"><Phone className="h-4 w-4" aria-hidden /> +56 9 2008 0031</p>
-          <p className="flex items-center gap-2"><MapPin className="h-4 w-4" aria-hidden /> Santiago, Chile</p>
-          <p className="flex items-center gap-2"><CalendarDays className="h-4 w-4" aria-hidden /> Respuesta en 24h hábiles</p>
-          <div className="pt-3 border-t">
-            <p className="font-medium">Incluye</p>
-            <ul className="mt-2 space-y-1">
-              <li className="flex gap-2"><Check className="h-4 w-4 mt-0.5" aria-hidden /> Factura electrónica (afecta a IVA o exenta)</li>
-              <li className="flex gap-2"><Check className="h-4 w-4 mt-0.5" aria-hidden /> Contrato de servicios</li>
-              <li className="flex gap-2"><Check className="h-4 w-4 mt-0.5" aria-hidden /> Prueba técnica previa</li>
-            </ul>
+              <div className="grid sm:grid-cols-2 gap-3">
+                <Input name="Email" placeholder="Email corporativo" type="email" />
+                <Input name="Company" placeholder="Organización/Empresa" required />
+              </div>
+
+              <div className="grid sm:grid-cols-2 gap-3">
+                <Input name="LEADCF2" placeholder="Cargo" />
+                <Input name="City" placeholder="Ciudad/País" />
+              </div>
+
+              <div className="grid sm:grid-cols-3 gap-3">
+                <Input name="LEADCF116" placeholder="Fecha tentativa (DD-MM-YYYY)" />
+                <Input name="LEADCF51" placeholder="Nº asistentes" />
+                <select
+                  name="LEADCF6"
+                  className="h-10 rounded-md border border-input bg-background px-3 py-2 text-sm"
+                  defaultValue="Presencial"
+                >
+                  <option value="-None-">-None-</option>
+                  <option value="Presencial">Presencial</option>
+                  <option value="Online">Online</option>
+                </select>
+              </div>
+
+              <Textarea
+                name="LEADCF3"
+                placeholder="Cuéntanos el objetivo de la actividad (kickoff, bienestar, liderazgo, colegios, fundaciones, etc.)"
+                className="min-h-[120px]"
+              />
+
+              {/* Consentimiento y política */}
+              <label className="flex items-start gap-2 text-sm text-neutral-700">
+                <input type="checkbox" required />
+                <span>
+                  He leído y acepto la <a href="/privacidad" className="underline">Política de Privacidad</a>.
+                </span>
+              </label>
+
+              <div className="flex flex-wrap gap-3">
+                <Button className="rounded-2xl" type="submit">Enviar consulta</Button>
+                <Button asChild variant="outline" className="rounded-2xl">
+                  <a href="mailto:info@echevensko.com?subject=Cotizaci%C3%B3n%20charla%20corporativa">O escríbenos por email</a>
+                </Button>
+                <Button asChild variant="outline" className="rounded-2xl">
+                  <a
+                    href="https://wa.me/56920080031?text=Hola%20quiero%20cotizar%20la%20charla%20corporativa%20de%20Echevensko"
+                    rel="noopener"
+                  >
+                    WhatsApp
+                  </a>
+                </Button>
+              </div>
+
+              <p className="text-xs text-neutral-500 mt-2">
+                *Al enviar, aceptas ser contactado(a) con fines comerciales.
+              </p>
+            </form>
           </div>
-        </CardContent>
-      </Card>
-    </div>
-  </div>
-</section>
 
-{/* FOOTER */}
-<footer className="border-t">
-  <div className="mx-auto max-w-6xl px-4 py-10 text-sm text-neutral-600 flex flex-col md:flex-row items-center justify-between gap-3">
-    <p>© {new Date().getFullYear()} Echevensko. Todos los derechos reservados.</p>
-    <div className="flex items-center gap-4">
-      <a href="/privacidad" className="hover:text-neutral-800">Privacidad</a>
-      <a href="/terminos" className="hover:text-neutral-800">Términos</a>
-      <a
-        href="https://instagram.com/cristobalechevensko"
-        target="_blank"
-        rel="noopener noreferrer"
-        className="hover:text-neutral-800 inline-flex items-center gap-2"
-      >
-        <Instagram className="h-4 w-4" aria-hidden /> @cristobalechevensko
-      </a>
+          <div className="md:col-span-2">
+            <Card className="rounded-2xl md:sticky md:top-24">
+              <CardHeader>
+                <CardTitle>Datos de contacto</CardTitle>
+              </CardHeader>
+              <CardContent className="text-sm text-neutral-700 space-y-3">
+                <p className="flex items-center gap-2"><Mail className="h-4 w-4" aria-hidden /> info@echevensko.com</p>
+                <p className="flex items-center gap-2"><Phone className="h-4 w-4" aria-hidden /> +56 9 2008 0031</p>
+                <p className="flex items-center gap-2"><MapPin className="h-4 w-4" aria-hidden /> Santiago, Chile</p>
+                <p className="flex items-center gap-2"><CalendarDays className="h-4 w-4" aria-hidden /> Respuesta en 24h hábiles</p>
+                <div className="pt-3 border-t">
+                  <p className="font-medium">Incluye</p>
+                  <ul className="mt-2 space-y-1">
+                    <li className="flex gap-2"><Check className="h-4 w-4 mt-0.5" aria-hidden /> Factura electrónica (afecta a IVA o exenta)</li>
+                    <li className="flex gap-2"><Check className="h-4 w-4 mt-0.5" aria-hidden /> Contrato de servicios</li>
+                    <li className="flex gap-2"><Check className="h-4 w-4 mt-0.5" aria-hidden /> Prueba técnica previa</li>
+                  </ul>
+                </div>
+              </CardContent>
+            </Card>
+          </div>
+        </div>
+      </section>
+
+      {/* FOOTER */}
+      <footer className="border-t">
+        <div className="mx-auto max-w-6xl px-4 py-10 text-sm text-neutral-600 flex flex-col md:flex-row items-center justify-between gap-3">
+          <p>© {new Date().getFullYear()} Echevensko. Todos los derechos reservados.</p>
+          <div className="flex items-center gap-4">
+            <a href="/privacidad" className="hover:text-neutral-800">Privacidad</a>
+            <a href="/terminos" className="hover:text-neutral-800">Términos</a>
+            <a
+              href="https://instagram.com/cristobalechevensko"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="hover:text-neutral-800 inline-flex items-center gap-2"
+            >
+              <Instagram className="h-4 w-4" aria-hidden /> @cristobalechevensko
+            </a>
+          </div>
+        </div>
+      </footer>
     </div>
-  </div>
-</footer>
+  );
+}
