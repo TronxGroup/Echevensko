@@ -453,28 +453,74 @@ export default function EchevenskoB2BLanding() {
           <div className="md:col-span-3">
             <h2 className="text-3xl font-bold">Solicita tu propuesta</h2>
             <p className="mt-2 text-neutral-700">Cuéntanos fecha tentativa, modalidad y tamaño de audiencia. <strong>Valor único: UF 32</strong>. Te responderemos con disponibilidad y logística.</p>
-            <form className="mt-6 grid grid-cols-1 gap-3" action="https://formspree.io/f/xjkeodav" method="POST">
-              <div className="grid sm:grid-cols-2 gap-3">
-                <Input name="name" placeholder="Nombre y apellido" required />
-                <Input name="email" placeholder="Email corporativo" type="email" required />
-              </div>
-              <div className="grid sm:grid-cols-2 gap-3">
-                <Input name="company" placeholder="Organización/Empresa" required />
-                <Input name="role" placeholder="Cargo" />
-              </div>
-              <div className="grid sm:grid-cols-3 gap-3">
-                <Input name="location" placeholder="Ciudad/País" />
-                <Input name="date" placeholder="Fecha tentativa (dd/mm/aaaa)" />
-                <Input name="attendees" placeholder="Nº asistentes" />
-              </div>
-              <Textarea name="message" placeholder="Cuéntanos el objetivo de la actividad (kickoff, bienestar, liderazgo, colegios, fundaciones, etc.)" className="min-h-[120px]" />
-              <div className="flex flex-wrap gap-3">
-                <Button className="rounded-2xl" type="submit">Enviar consulta</Button>
-                <Button asChild variant="outline" className="rounded-2xl"><a href="mailto:empresas@echevensko.com?subject=Cotizaci%C3%B3n%20charla%20corporativa">O escríbenos por email</a></Button>
-                <Button asChild variant="outline" className="rounded-2xl"><a href="https://wa.me/56920080031?text=Hola%20quiero%20cotizar%20la%20charla%20corporativa%20de%20Echevensko">WhatsApp</a></Button>
-              </div>
-              <p className="text-xs text-neutral-500 mt-2">*Al enviar, aceptas ser contactado(a) por nuestro equipo con fines comerciales.</p>
-            </form>
+            <form
+  className="mt-6 grid grid-cols-1 gap-3"
+  action="https://crm.zoho.com/crm/WebToLeadForm"
+  method="POST"
+>
+  {/* ===== HIDDEN REQUERIDOS POR ZOHO (NO CAMBIAR) ===== */}
+  <input type="hidden" name="xnQsjsdp" value="9456695e1d532117ccbb8a90b5075c2fd238bb9d6b2a1a8b39abe6383cd8953b" />
+  <input type="hidden" name="zc_gad" id="zc_gad" value="" />
+  <input type="hidden" name="xmIwtLD" value="d6d6e91b160a8d43c566e7fc2e24d3d9dac635af23693c92a52a1aa53d4d08d2af9bc7f2180071992688e8a8815b4596" />
+  <input type="hidden" name="actionType" value="TGVhZHM=" />
+  <input type="hidden" name="returnURL" value="https://empresas.echevensko.com/gracias" />
+  {/* Marca fija (campo picklist) */}
+  <input type="hidden" name="LEADCF5" value="Echevensko" />
+  {/* Honeypot anti-spam (tal cual venía) */}
+  <input type="hidden" name="aG9uZXlwb3Q" value="" />
+
+  {/* ===== CAMPOS VISIBLES (mantenemos tu diseño) ===== */}
+  <div className="grid sm:grid-cols-2 gap-3">
+    {/* Nombre */}
+    <Input name="First Name" placeholder="Nombre" />
+    {/* Apellido (OBLIGATORIO en Zoho) */}
+    <Input name="Last Name" placeholder="Apellido" required />
+  </div>
+
+  <div className="grid sm:grid-cols-2 gap-3">
+    {/* Email */}
+    <Input name="Email" placeholder="Email corporativo" type="email" />
+    {/* Empresa (OBLIGATORIO) */}
+    <Input name="Company" placeholder="Organización/Empresa" required />
+  </div>
+
+  <div className="grid sm:grid-cols-2 gap-3">
+    {/* Cargo (custom) */}
+    <Input name="LEADCF2" placeholder="Cargo" />
+    {/* Ciudad (usa aquí el API name real si es distinto) */}
+    <Input name="Ciudad" placeholder="Ciudad/País" />
+  </div>
+
+  <div className="grid sm:grid-cols-3 gap-3">
+    {/* Fecha tentativa (custom) */}
+    <Input name="LEADCF116" placeholder="Fecha tentativa (DD-MM-YYYY)" />
+    {/* Nº asistentes (custom) */}
+    <Input name="LEADCF51" placeholder="Nº asistentes" />
+    {/* Campo opcional */}
+    <Input name="Modalidad" placeholder="Modalidad (presencial/online)" />
+  </div>
+
+  {/* Objetivo de la actividad (custom) */}
+  <Textarea
+    name="LEADCF3"
+    placeholder="Cuéntanos el objetivo de la actividad (kickoff, bienestar, liderazgo, colegios, fundaciones, etc.)"
+    className="min-h-[120px]"
+  />
+
+  <div className="flex flex-wrap gap-3">
+    <Button className="rounded-2xl" type="submit">Enviar consulta</Button>
+    <Button asChild variant="outline" className="rounded-2xl">
+      <a href="mailto:empresas@echevensko.com?subject=Cotizaci%C3%B3n%20charla%20corporativa">O escríbenos por email</a>
+    </Button>
+    <Button asChild variant="outline" className="rounded-2xl">
+      <a href="https://wa.me/56920080031?text=Hola%20quiero%20cotizar%20la%20charla%20corporativa%20de%20Echevensko">WhatsApp</a>
+    </Button>
+  </div>
+
+  <p className="text-xs text-neutral-500 mt-2">
+    *Al enviar, aceptas ser contactado(a) por nuestro equipo con fines comerciales.
+  </p>
+</form>
           </div>
           <div className="md:col-span-2">
             <Card className="rounded-2xl sticky top-24">
