@@ -491,7 +491,7 @@ export default function EchevenskoB2BLanding() {
                 <CardTitle>Datos de contacto</CardTitle>
               </CardHeader>
               <CardContent className="text-sm text-neutral-700 space-y-3">
-                <p className="flex items-center gap-2"><Mail className="h-4 w-4"/> empresas@echevensko.com</p>
+                <p className="flex items-center gap-2"><Mail className="h-4 w-4"/> info@echevensko.com</p>
                 <p className="flex items-center gap-2"><Phone className="h-4 w-4"/> +56 9 2008 0031</p>
                 <p className="flex items-center gap-2"><MapPin className="h-4 w-4"/> Santiago, Chile</p>
                 <p className="flex items-center gap-2"><CalendarDays className="h-4 w-4"/> Respuesta en 24h hábiles</p>
