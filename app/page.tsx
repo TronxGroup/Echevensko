@@ -1,6 +1,5 @@
 // app/page.tsx
 import React from "react";
-import Script from "next/script";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
@@ -43,36 +42,8 @@ export const metadata = {
 };
 
 export default function EchevenskoB2BLanding() {
-  // (Opcional) si quieres construir los SRC dinámicamente en el server para usarlos en el <Script>, deja
-  // los IDs como constantes aquí:
-  const VIDEO_ID_QUERERTE = "VIDEO_ID_QUERERTE"; // ⬅️ reemplaza por ID real
-  const VIDEO_ID_SUPREME = "VIDEO_ID_SUPREME";   // ⬅️ reemplaza por ID real
-
   return (
     <div className="min-h-screen bg-neutral-50 text-neutral-900">
-      {/* Self-check para iframes: corre en el cliente post-hidratación */}
-      <Script id="iframe-selfcheck" strategy="afterInteractive">
-        {`
-          (function(){
-            try {
-              var urls = [
-                "https://www.youtube.com/embed/${VIDEO_ID_QUERERTE}?rel=0&modestbranding=1",
-                "https://www.youtube.com/embed/${VIDEO_ID_SUPREME}?rel=0&modestbranding=1"
-              ];
-              urls.forEach(function(u){
-                var parsed = new URL(u);
-                console.assert(parsed.protocol === "https:", "Iframe src must be https:");
-                console.assert(u.includes("/embed/"), "Iframe src should use /embed/ path");
-                console.assert(u.includes("modestbranding=1"), "Iframe src should include modestbranding=1");
-              });
-              console.debug("[SelfCheck] Iframe src tests passed");
-            } catch(e) {
-              console.error("[SelfCheck] Iframe src test failed", e);
-            }
-          })();
-        `}
-      </Script>
-
       {/* NAVBAR */}
       <header className="sticky top-0 z-50 backdrop-blur bg-white/70 border-b">
         <div className="mx-auto max-w-6xl px-4 py-3 flex items-center justify-between">
@@ -134,7 +105,6 @@ export default function EchevenskoB2BLanding() {
                 <div className="flex items-center gap-1"><Users className="h-4 w-4" aria-hidden /> Miles de asistentes</div>
                 <div className="flex items-center gap-1"><Trophy className="h-4 w-4" aria-hidden /> Recomendado por empresas</div>
               </div>
-              {/* Si quieres volver a poner “9.8/10 en Atrápalo”, agrega un enlace a la fuente pública */}
             </div>
 
             <div className="hidden md:block">
@@ -315,7 +285,7 @@ export default function EchevenskoB2BLanding() {
             <h2 className="text-3xl font-bold">Valor y alcance</h2>
             <p className="mt-2 text-neutral-700">Un solo plan claro para simplificar la decisión. *Viáticos o traslados pueden aplicar.</p>
           </div>
-          <Badge variant="secondary">ES/EN · Presencial u Online</Badge>
+        <Badge variant="secondary">ES/EN · Presencial u Online</Badge>
         </div>
 
         <div className="mt-8 grid md:grid-cols-2 gap-6">
