@@ -22,6 +22,17 @@ export default function PrivacidadPage() {
   return (
     <main className="min-h-screen bg-white text-neutral-900">
       <section className="mx-auto max-w-3xl px-4 py-12">
+        {/* Enlace para volver al home */}
+        <div className="mb-4">
+          <a
+            href="https://empresas.echevensko.com/"
+            className="inline-flex items-center gap-2 rounded-2xl border border-neutral-200 px-4 py-2 text-sm hover:bg-neutral-50"
+            aria-label="Volver a Echevensko Empresas"
+          >
+            <span aria-hidden>←</span> Volver a Echevensko Empresas
+          </a>
+        </div>
+
         <h1 className="text-3xl font-extrabold tracking-tight">Política de Privacidad</h1>
         <p className="mt-2 text-sm text-neutral-600">Última actualización: {fecha}</p>
 
@@ -108,26 +119,3 @@ export default function PrivacidadPage() {
           El sitio puede incluir enlaces a páginas de terceros (p. ej., YouTube, redes sociales, Zoho). No somos
           responsables por sus prácticas de privacidad. Te recomendamos revisar sus políticas de privacidad.
         </p>
-
-        <h2 className="mt-8 text-2xl font-bold">12. Cambios a esta política</h2>
-        <p className="mt-2 text-neutral-700 leading-relaxed">
-          Podemos actualizar esta Política para reflejar cambios normativos o del servicio. Publicaremos la versión
-          vigente en esta misma URL indicando la fecha de actualización.
-        </p>
-
-        <h2 className="mt-8 text-2xl font-bold">13. Contacto</h2>
-        <p className="mt-2 text-neutral-700 leading-relaxed">
-          Si tienes preguntas sobre esta Política o sobre el tratamiento de tus datos, contáctanos en{" "}
-          <a href="mailto:info@echevensko.com" className="underline">info@echevensko.com</a>.
-        </p>
-
-        <div className="mt-10 border-t pt-6 text-sm text-neutral-600">
-          <p>
-            Echevensko · Santiago, Chile ·{" "}
-            <a href="mailto:info@echevensko.com" className="underline">info@echevensko.com</a>
-          </p>
-        </div>
-      </section>
-    </main>
-  );
-}
