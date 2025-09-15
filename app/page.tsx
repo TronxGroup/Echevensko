@@ -23,7 +23,7 @@ import {
   Target,
   Instagram,
 } from "lucide-react";
-import ZohoFormEmbed from "../components/ZohoFormEmbed";
+import ZohoFormEmbed from "./components/ZohoFormEmbed";
 
 // ====== SEO (Next.js App Router) ======
 export const metadata = {
