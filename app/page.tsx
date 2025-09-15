@@ -533,23 +533,21 @@ export default function EchevenskoB2BLanding() {
       </section>
 
       {/* FOOTER */}
-      <footer className="border-t">
-        <div className="mx-auto max-w-6xl px-4 py-10 text-sm text-neutral-600 flex flex-col md:flex-row items-center justify-between gap-3">
-          <p>© {new Date().getFullYear()} Echevensko. Todos los derechos reservados.</p>
-          <div className="flex items-center gap-4">
-            <a href="/privacidad-condiciones" className="hover:text-neutral-800">Privacidad</a>
-            <a href="/terminos" className="hover:text-neutral-800">Términos</a>
-            <a
-              href="https://instagram.com/cristobalechevensko"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="hover:text-neutral-800 inline-flex items-center gap-2"
-            >
-              <Instagram className="h-4 w-4" aria-hidden /> @cristobalechevensko
-            </a>
-          </div>
-        </div>
-      </footer>
+<footer className="border-t">
+  <div className="mx-auto max-w-6xl px-4 py-10 text-sm text-neutral-600 flex flex-col md:flex-row items-center justify-between gap-3">
+    <p>© {new Date().getFullYear()} Echevensko. Todos los derechos reservados.</p>
+    <div className="flex items-center gap-4">
+      <a href="/privacidad-condiciones" className="hover:text-neutral-800">
+        Privacidad y Condiciones
+      </a>
+      <a
+        href="https://instagram.com/cristobalechevensko"
+        target="_blank"
+        rel="noopener noreferrer"
+        className="hover:text-neutral-800 inline-flex items-center gap-2"
+      >
+        <Instagram className="h-4 w-4" aria-hidden /> @cristobalechevensko
+      </a>
     </div>
-  );
-}
+  </div>
+</footer>
