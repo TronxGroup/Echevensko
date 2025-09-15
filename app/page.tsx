@@ -475,7 +475,7 @@ export default function EchevenskoB2BLanding() {
               <div className="mt-2">
                 <div
                   className="g-recaptcha"
-                  data-sitekey="6LcQmsorAAAAAAnBae9SUftq39yZcCVo8YeQn"
+                  data-sitekey="6LcQmsorAAAAAAnBae9SUftq39yZcCVo8YeQn-To"
                   data-theme="light"
                 />
               </div>
