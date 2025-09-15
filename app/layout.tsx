@@ -1,4 +1,4 @@
-// app/layout.tsx
+// app/layout.tsx (igual que tu versión, SOLO sin enterprise.js)
 import "./globals.css";
 import type { ReactNode } from "react";
 import type { Metadata } from "next";
@@ -18,7 +18,6 @@ export default function RootLayout({ children }: { children: ReactNode }) {
   return (
     <html lang="es">
       <head />
-
       <body>
         {/* Consent Mode v2 */}
         <Script id="consent-mode" strategy="afterInteractive">
@@ -38,7 +37,7 @@ export default function RootLayout({ children }: { children: ReactNode }) {
           `}
         </Script>
 
-        {/* Google Tag Manager */}
+        {/* GTM */}
         <Script id="gtm" strategy="afterInteractive">
           {`
             (function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
@@ -48,7 +47,6 @@ export default function RootLayout({ children }: { children: ReactNode }) {
             })(window,document,'script','dataLayer','GTM-MPC5JP6K');
           `}
         </Script>
-
         <noscript>
           <iframe
             src="https://www.googletagmanager.com/ns.html?id=GTM-MPC5JP6K"
@@ -57,12 +55,6 @@ export default function RootLayout({ children }: { children: ReactNode }) {
             style={{ display: "none", visibility: "hidden" }}
           />
         </noscript>
-
-        {/* Google reCAPTCHA Enterprise */}
-        <Script
-          src="https://www.google.com/recaptcha/enterprise.js?render=6LcQmsorAAAAAAnBae9SUftq39yZcCVo8YeQn-To"
-          strategy="afterInteractive"
-        />
 
         {children}
       </body>
