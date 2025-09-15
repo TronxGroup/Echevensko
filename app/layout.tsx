@@ -18,14 +18,13 @@ export default function RootLayout({ children }: { children: ReactNode }) {
   return (
     <html lang="es">
       <head />
+
       <body>
-        {/* Consent Mode v2 (default: denegar en EEA/UK hasta que tu banner actualice) */}
+        {/* Consent Mode v2 */}
         <Script id="consent-mode" strategy="afterInteractive">
           {`
             window.dataLayer = window.dataLayer || [];
             function gtag(){dataLayer.push(arguments);}
-
-            // Default para regiones EEA/UK (ajustable)
             gtag('consent', 'default', {
               'ad_storage': 'denied',
               'analytics_storage': 'denied',
@@ -34,8 +33,6 @@ export default function RootLayout({ children }: { children: ReactNode }) {
               'region': ['AT','BE','BG','HR','CY','CZ','DK','EE','FI','FR','DE','GR','HU','IE','IT','LV','LT','LU','MT','NL','PL','PT','RO','SK','SI','ES','SE','IS','LI','NO','GB'],
               'wait_for_update': 500
             });
-
-            // Recomendado
             gtag('set', 'ads_data_redaction', true);
             gtag('set', 'url_passthrough', true);
           `}
@@ -51,9 +48,7 @@ export default function RootLayout({ children }: { children: ReactNode }) {
             })(window,document,'script','dataLayer','GTM-MPC5JP6K');
           `}
         </Script>
-        {/* End Google Tag Manager */}
 
-        {/* Google Tag Manager (noscript) — debe ir lo más arriba posible del body */}
         <noscript>
           <iframe
             src="https://www.googletagmanager.com/ns.html?id=GTM-MPC5JP6K"
@@ -62,7 +57,12 @@ export default function RootLayout({ children }: { children: ReactNode }) {
             style={{ display: "none", visibility: "hidden" }}
           />
         </noscript>
-        {/* End Google Tag Manager (noscript) */}
+
+        {/* Google reCAPTCHA Enterprise */}
+        <Script
+          src="https://www.google.com/recaptcha/enterprise.js?render=6LcQmsorAAAAAAnBae9SUftq39yZcCVo8YeQn-To"
+          strategy="afterInteractive"
+        />
 
         {children}
       </body>
