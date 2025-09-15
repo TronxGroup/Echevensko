@@ -46,7 +46,7 @@ export default function EchevenskoB2BLanding() {
   return (
     <div className="min-h-screen bg-neutral-50 text-neutral-900">
       {/* reCAPTCHA v2 (checkbox) */}
-      <Script src="https://www.google.com/recaptcha/enterprise.js" strategy="afterInteractive" />
+      <Script src="https://www.google.com/recaptcha/api.js" strategy="afterInteractive" />
 
       {/* NAVBAR */}
       <header className="sticky top-0 z-50 backdrop-blur bg-white/70 border-b">
@@ -475,7 +475,7 @@ export default function EchevenskoB2BLanding() {
               <div className="mt-2">
                 <div
                   className="g-recaptcha"
-                  data-sitekey="6LcQmsorAAAAAAnBae9SUftq39yZcCVo8YeQn-To"
+                  data-sitekey="6Lf-3sorAAAAAMc0q9KTVSs1-EcHbNnLH8lRpBqw"
                   data-theme="light"
                 />
               </div>
