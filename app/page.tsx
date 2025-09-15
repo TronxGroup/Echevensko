@@ -45,7 +45,7 @@ export const metadata = {
 export default function EchevenskoB2BLanding() {
   return (
     <div className="min-h-screen bg-neutral-50 text-neutral-900">
-      {/* Carga del script de reCAPTCHA (necesario para que aparezca el widget) */}
+      {/* reCAPTCHA v2 (checkbox) */}
       <Script src="https://www.google.com/recaptcha/api.js" strategy="afterInteractive" />
 
       {/* NAVBAR */}
