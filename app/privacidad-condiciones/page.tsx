@@ -1,26 +1,25 @@
 // app/privacidad-condiciones/page.tsx
-"use client";
-
-import { useEffect } from "react";
+import Script from "next/script";
 import { ShieldCheck, Instagram, ArrowLeft } from "lucide-react";
 
 export const metadata = {
   title: "Privacidad y Condiciones | Echevensko",
-  description: "Política de Privacidad y Condiciones de uso del sitio empresas.echevensko.com",
+  description:
+    "Política de Privacidad y Condiciones de uso del sitio empresas.echevensko.com",
   robots: { index: true, follow: true },
 };
 
 export default function PrivacidadCondicionesPage() {
-  useEffect(() => {
-    // Evento en GTM para marcar visita a la página legal
-    window.dataLayer = window.dataLayer || [];
-    window.dataLayer.push({
-      event: "view_privacidad_condiciones",
-    });
-  }, []);
-
   return (
     <div className="min-h-screen flex flex-col bg-neutral-50 text-neutral-900">
+      {/* Enviar evento a GTM al cargar esta página */}
+      <Script id="view-privacidad-condiciones" strategy="afterInteractive">
+        {`
+          window.dataLayer = window.dataLayer || [];
+          window.dataLayer.push({ event: "view_privacidad_condiciones" });
+        `}
+      </Script>
+
       {/* HERO */}
       <header className="border-b bg-white">
         <div className="mx-auto max-w-4xl px-4 py-12 text-center">
@@ -113,15 +112,9 @@ export default function PrivacidadCondicionesPage() {
       {/* FOOTER */}
       <footer className="border-t">
         <div className="mx-auto max-w-6xl px-4 py-10 text-sm text-neutral-600 flex flex-col md:flex-row items-center justify-between gap-3">
-          <p>
-            © {new Date().getFullYear()} Echevensko. Todos los derechos
-            reservados.
-          </p>
+          <p>© {new Date().getFullYear()} Echevensko. Todos los derechos reservados.</p>
           <div className="flex items-center gap-4">
-            <a
-              href="/privacidad-condiciones"
-              className="hover:text-neutral-800"
-            >
+            <a href="/privacidad-condiciones" className="hover:text-neutral-800">
               Privacidad y Condiciones
             </a>
             <a
