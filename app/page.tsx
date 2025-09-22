@@ -737,13 +737,15 @@ export default function EchevenskoB2BLanding() {
                 </ul>
                 <div className="mt-6 flex flex-wrap gap-3">
                   <Button asChild className="rounded-2xl">
-                    <a href="#contacto">Reservar (UF 32)</a>
+                    <a href="#contacto">Reservar </a>
                   </Button>
                   <Button asChild variant="outline" className="rounded-2xl">
                     <a href="#faq">Ver condiciones</a>
                   </Button>
                 </div>
                 <p className="text-xs text-neutral-500 mt-4">
+                  *Opciones ajustables y económicas según presupuesto y necesidades de tu organización
+                  y necesidades de tu organización.
                   *Factura electrónica y contrato de servicios. Precio no incluye
                   eventuales viáticos.
                 </p>
