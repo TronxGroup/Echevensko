@@ -161,13 +161,10 @@ export default function EchevenskoB2BLanding() {
               if(e){ e.preventDefault(); }
               return false;
             }
-            // Deshabilitar botón submit tras envío para evitar dobles envíos
             var submitBtn = document.querySelector('.crmWebToEntityForm .formsubmit, button[type="submit"]');
             if(submitBtn){ submitBtn.setAttribute('disabled', 'true'); }
             return true;
           }
-
-          // Adjuntar handler al form en runtime (porque en React onSubmit necesita función, no string)
           window.addEventListener('DOMContentLoaded', function(){
             var f = document.getElementById('webform6988454000000575779');
             if(f){
@@ -232,7 +229,7 @@ export default function EchevenskoB2BLanding() {
           serviceType: "Corporate Motivational Talk",
           offers: {
             "@type": "Offer",
-            priceCurrency: "CLF", // UF en ISO 4217
+            priceCurrency: "CLF",
             price: "32",
             availability: "https://schema.org/InStock",
             url: "https://empresas.echevensko.com/#valor",
@@ -735,17 +732,22 @@ export default function EchevenskoB2BLanding() {
                     </li>
                   ))}
                 </ul>
+
+                {/* Nota de flexibilidad de precio */}
+                <div className="mt-4 rounded-xl border border-amber-200 bg-amber-50 px-4 py-3 text-sm text-amber-900">
+                  💡 Dependiendo de la magnitud del evento y las necesidades específicas,
+                  podemos evaluar adaptaciones o versiones más acotadas del plan con un valor menor.
+                </div>
+
                 <div className="mt-6 flex flex-wrap gap-3">
                   <Button asChild className="rounded-2xl">
-                    <a href="#contacto">Reservar </a>
+                    <a href="#contacto">Reservar (UF 32)</a>
                   </Button>
                   <Button asChild variant="outline" className="rounded-2xl">
                     <a href="#faq">Ver condiciones</a>
                   </Button>
                 </div>
                 <p className="text-xs text-neutral-500 mt-4">
-                  *Opciones ajustables y económicas según presupuesto y necesidades de tu organización
-                  y necesidades de tu organización.
                   *Factura electrónica y contrato de servicios. Precio no incluye
                   eventuales viáticos.
                 </p>
@@ -921,7 +923,7 @@ export default function EchevenskoB2BLanding() {
               <h2 className="text-3xl font-bold">Solicita tu propuesta</h2>
               <p className="mt-2 text-neutral-700">
                 Cuéntanos fecha tentativa, modalidad y tamaño de audiencia.{" "}
-                <strong>Valor único: UF 32</strong>.
+                <strong>Valor de referencia: UF 32</strong> (adaptaciones a evaluar según alcance y requerimientos).
               </p>
 
               <form
@@ -1066,7 +1068,8 @@ export default function EchevenskoB2BLanding() {
                 </div>
 
                 <p className="text-xs text-neutral-500 mt-2">
-                  *Al enviar, aceptas ser contactado(a) con fines comerciales.
+                  *Al enviar, aceptas ser contactado(a) con fines comerciales. <br />
+                  💡 El valor de referencia es <strong>UF 32</strong>, pero podemos ajustar el alcance y condiciones según la magnitud de tu evento.
                 </p>
               </form>
             </div>
