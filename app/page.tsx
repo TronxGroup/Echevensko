@@ -384,7 +384,7 @@ export default function EchevenskoB2BLanding() {
                 </p>
                 <div className="mt-6 flex flex-col sm:flex-row gap-3">
                   <Button size="lg" className="rounded-2xl" asChild>
-                    <a href="#contacto">Reservar charla (UF 32)</a>
+                    <a href="#contacto">Reservar charla</a>
                   </Button>
                   <Button
                     size="lg"
@@ -741,7 +741,7 @@ export default function EchevenskoB2BLanding() {
 
                 <div className="mt-6 flex flex-wrap gap-3">
                   <Button asChild className="rounded-2xl">
-                    <a href="#contacto">Reservar (UF 32)</a>
+                    <a href="#contacto">Reservar</a>
                   </Button>
                   <Button asChild variant="outline" className="rounded-2xl">
                     <a href="#faq">Ver condiciones</a>
