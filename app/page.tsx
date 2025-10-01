@@ -993,21 +993,23 @@ export default function EchevenskoB2BLanding() {
                   <Input name="City" placeholder="Ciudad/País" required />
                 </div>
 
-                <div className="grid sm:grid-cols-3 gap-3">
-                  <Input name="LEADCF116" placeholder="Fecha tentativa (DD-MM-YYYY)" />
-                  <Input name="LEADCF51" placeholder="Nº asistentes" />
-                  <select
-                    name="LEADCF6"
-                    className="h-10 rounded-md border border-input bg-background px-3 py-2 text-sm"
-                    defaultValue="Presencial"
-                  >
-                    <option value="-None-">-None-</option>
-                    <option value="Presencial">Presencial</option>
-                    <option value="Online">Online</option>
-                  </select>
-                </div>
+                {/* Campos ocultos de fecha y asistentes (no visibles) */}
+<input type="hidden" name="LEADCF116" value="" />
+<input type="hidden" name="LEADCF51" value="" />
 
-                <Textarea
+<div className="grid sm:grid-cols-1 gap-3">
+  <select
+    name="LEADCF6"
+    className="h-10 rounded-md border border-input bg-background px-3 py-2 text-sm"
+    defaultValue="Presencial"
+  >
+    <option value="-None-">-None-</option>
+    <option value="Presencial">Presencial</option>
+    <option value="Online">Online</option>
+  </select>
+</div>
+
+<Textarea
                   name="LEADCF3"
                   placeholder="Cuéntanos el objetivo de la actividad (kickoff, bienestar, liderazgo, colegios, fundaciones, etc.)"
                   className="min-h-[120px]"
