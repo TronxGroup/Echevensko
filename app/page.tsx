@@ -1,4 +1,3 @@
-// app/page.tsx
 import React from "react";
 import Script from "next/script";
 import Image from "next/image";
@@ -87,14 +86,14 @@ export default function EchevenskoB2BLanding() {
         strategy="afterInteractive"
       />
 
-      {/* ====== (Opcional) WebForm Analytics de Zoho ====== */}
+      {/* ====== (Opcional) WebForm Analytics de Zoho (actualizado) ====== */}
       <Script
         id="zoho-wf-analytics"
-        src="https://crm.zohopublic.com/crm/WebFormAnalyticsServeServlet?rid=d75b731a3cb846be6df2e7167dfacff1bc8a95cb37016a7a433d7fda3b159299c2b290961127834ae559ec222d5f8d73gidde78750e7504e45e7b38c491d3a31175762a7b4d109450ad426d5928193c1d17gid7e0c77a66b4456def42c95c3f89a82c086f3c4c38e31fa02efa39d88ba909620gid7588c17a854b1f80d4dc2623ad00163ed49678fa05e2e466bc57b9fa67876aa5&tw=30002d10f9c599eddac703e3edfd3bb4d659a78b2abef099a14a9fc8f80a5b4d"
+        src="https://crm.zohopublic.com/crm/WebFormAnalyticsServeServlet?rid=02111d4a3666e6929c16208b662af41951077f79358c5bfe7acbf8384363e322b7ad972c1980a73536cce2ff8d2b988fgid3ccade645407b412d5ff238ec6a119cc38aaffb363487624596109ef0485958dgidc72a240a436ef8c4ccc8fee2ce16f8f99c37c511644c9374e83dc0be4df68b55gida119030c370ca0b6c5ac70b4f92d16409f781a258c70169ce81ed46c656f66f7&tw=23dfafea92a43b810e1aec0ea22df3c04509c9aefd90d2fdc4e797a6c3be358c"
         strategy="afterInteractive"
       />
 
-      {/* ====== Validaciones Zoho (adaptadas) ====== */}
+      {/* ====== Validaciones Zoho (adaptadas, mantenemos diseño) ====== */}
       <Script id="zoho-validators" strategy="afterInteractive">
         {`
           function rccallback6988454000000575779(){
@@ -934,19 +933,19 @@ export default function EchevenskoB2BLanding() {
                 method="POST"
                 acceptCharset="UTF-8"
               >
-                {/* ====== Hidden obligatorios Zoho ====== */}
+                {/* ====== Hidden obligatorios Zoho (actualizados) ====== */}
                 <input
                   type="text"
                   style={{ display: "none" }}
                   name="xnQsjsdp"
-                  value="45d9b797d479f84068f90d42b00a56219ce832c39eec6842269a4802278cacf1"
+                  value="1477c32fe7be905a3705b42ca53aaf692fd62e1c32454b8f8a31199af55c860a"
                 />
                 <input type="hidden" name="zc_gad" id="zc_gad" value="" />
                 <input
                   type="text"
                   style={{ display: "none" }}
                   name="xmIwtLD"
-                  value="b43dad152065720fc561bb796faf679d9b41423112ae8cc52a6f4ac121fc64ed79d4c6fd1e1e5bad4f6986047f9d8f98"
+                  value="fcdb56fd9e04c74fec8dd4b2e7c11768ed1de383c691db556f026548fbc740274393a2b6df1b13c7032e2b33a537b104"
                 />
                 <input
                   type="text"
@@ -969,7 +968,7 @@ export default function EchevenskoB2BLanding() {
                 />
                 <input type="hidden" name="aG9uZXlwb3Q" value="" />
 
-                {/* ====== Campos visibles (manteniendo diseño) ====== */}
+                {/* ====== Campos visibles (mismo diseño) ====== */}
                 <div className="grid sm:grid-cols-2 gap-3">
                   <Input name="First Name" placeholder="Nombre" required />
                   <Input name="Last Name" placeholder="Apellido" required />
@@ -1118,42 +1117,41 @@ export default function EchevenskoB2BLanding() {
       </main>
 
       {/* FOOTER */}
-<footer className="border-t">
-  <div className="mx-auto max-w-6xl px-4 py-10 text-sm text-neutral-600 flex flex-col md:flex-row items-center justify-between gap-3">
-    <p>© {new Date().getFullYear()} Echevensko. Todos los derechos reservados.</p>
-    <div className="flex items-center gap-4">
-      <a href="/privacidad-condiciones" className="hover:text-neutral-800">
-        Privacidad y Condiciones
-      </a>
-      <a
-        href="https://instagram.com/cristobalechevensko"
-        target="_blank"
-        rel="noopener noreferrer"
-        className="hover:text-neutral-800 inline-flex items-center gap-2"
-      >
-        <Instagram className="h-4 w-4" aria-hidden /> @cristobalechevensko
-      </a>
-      <a
-        href="https://www.linkedin.com/company/la-magia-de-la-imaginacion/"
-        target="_blank"
-        rel="noopener noreferrer"
-        className="hover:text-neutral-800 inline-flex items-center gap-2"
-      >
-        <svg
-          xmlns="http://www.w3.org/2000/svg"
-          viewBox="0 0 24 24"
-          fill="currentColor"
-          className="h-4 w-4"
-          aria-hidden
-        >
-          <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.447-2.136 2.942v5.664H9.352V9h3.414v1.561h.048c.476-.9 1.637-1.852 3.372-1.852 3.604 0 4.268 2.372 4.268 5.455v6.288zM5.337 7.433a2.062 2.062 0 11.001-4.124 2.062 2.062 0 01-.001 4.124zM6.993 20.452H3.681V9h3.312v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.225 0z"/>
-        </svg>
-        LinkedIn
-      </a>
+      <footer className="border-t">
+        <div className="mx-auto max-w-6xl px-4 py-10 text-sm text-neutral-600 flex flex-col md:flex-row items-center justify-between gap-3">
+          <p>© {new Date().getFullYear()} Echevensko. Todos los derechos reservados.</p>
+          <div className="flex items-center gap-4">
+            <a href="/privacidad-condiciones" className="hover:text-neutral-800">
+              Privacidad y Condiciones
+            </a>
+            <a
+              href="https://instagram.com/cristobalechevensko"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="hover:text-neutral-800 inline-flex items-center gap-2"
+            >
+              <Instagram className="h-4 w-4" aria-hidden /> @cristobalechevensko
+            </a>
+            <a
+              href="https://www.linkedin.com/company/la-magia-de-la-imaginacion/"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="hover:text-neutral-800 inline-flex items-center gap-2"
+            >
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                viewBox="0 0 24 24"
+                fill="currentColor"
+                className="h-4 w-4"
+                aria-hidden
+              >
+                <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.447-2.136 2.942v5.664H9.352V9h3.414v1.561h.048c.476-.9 1.637-1.852 3.372-1.852 3.604 0 4.268 2.372 4.268 5.455v6.288zM5.337 7.433a2.062 2.062 0 11.001-4.124 2.062 2.062 0 01-.001 4.124zM6.993 20.452H3.681V9h3.312v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.225 0z"/>
+              </svg>
+              LinkedIn
+            </a>
+          </div>
+        </div>
+      </footer>
     </div>
-  </div>
-</footer>
-</div>
-);
+  );
 }
-
