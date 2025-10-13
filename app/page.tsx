@@ -1,3 +1,4 @@
+// app/page.tsx  (Landing principal para magiaimaginacion.cl)
 import React from "react";
 import Script from "next/script";
 import Image from "next/image";
@@ -26,7 +27,7 @@ import {
 
 // ====== SEO (Next.js App Router) ======
 export const metadata = {
-  title: "Charlas corporativas | Echevensko",
+  title: "Charlas corporativas | La Magia de la Imaginación",
   description:
     "Charla-espectáculo para empresas: bienestar, foco y creatividad. Presencial/online. Cotiza tu fecha.",
   keywords: [
@@ -47,14 +48,14 @@ export const metadata = {
     "max-video-preview": -1,
   },
   alternates: {
-    canonical: "https://empresas.echevensko.com/",
-    languages: { "es-CL": "https://empresas.echevensko.com/" },
+    canonical: "https://magiaimaginacion.cl/",
+    languages: { "es-CL": "https://magiaimaginacion.cl/" },
   },
   openGraph: {
     type: "website",
-    url: "https://empresas.echevensko.com/",
-    title: "Charlas corporativas | Echevensko",
-    siteName: "Echevensko Empresas",
+    url: "https://magiaimaginacion.cl/",
+    title: "Charlas corporativas | La Magia de la Imaginación",
+    siteName: "La Magia de la Imaginación",
     description:
       "Experiencia validada por miles de asistentes. Presencial/online. Ideal para RR.HH., cultura y liderazgo.",
     images: [
@@ -71,13 +72,13 @@ export const metadata = {
     card: "summary_large_image",
     site: "@cristobalechevensko",
     creator: "@cristobalechevensko",
-    title: "Charlas corporativas | Echevensko",
+    title: "Charlas corporativas | La Magia de la Imaginación",
     description: "Bienestar, foco y creatividad para equipos. Presencial/online.",
     images: ["/og-cover.jpg"],
   },
 };
 
-export default function EchevenskoB2BLanding() {
+export default function MagiaImaginacionLanding() {
   return (
     <div className="min-h-screen bg-neutral-50 text-neutral-900">
       {/* reCAPTCHA v2 (checkbox) */}
@@ -86,14 +87,14 @@ export default function EchevenskoB2BLanding() {
         strategy="afterInteractive"
       />
 
-      {/* ====== (Opcional) WebForm Analytics de Zoho (actualizado) ====== */}
+      {/* ====== Zoho WebForm Analytics (nuevo) ====== */}
       <Script
         id="zoho-wf-analytics"
-        src="https://crm.zohopublic.com/crm/WebFormAnalyticsServeServlet?rid=02111d4a3666e6929c16208b662af41951077f79358c5bfe7acbf8384363e322b7ad972c1980a73536cce2ff8d2b988fgid3ccade645407b412d5ff238ec6a119cc38aaffb363487624596109ef0485958dgidc72a240a436ef8c4ccc8fee2ce16f8f99c37c511644c9374e83dc0be4df68b55gida119030c370ca0b6c5ac70b4f92d16409f781a258c70169ce81ed46c656f66f7&tw=23dfafea92a43b810e1aec0ea22df3c04509c9aefd90d2fdc4e797a6c3be358c"
+        src="https://crm.zohopublic.com/crm/WebFormAnalyticsServeServlet?rid=f006b969b9c6cbbbe3969721beab6c3d89e0c5e48d40c0525a7a34265ca323e18eeae21df5d1c6ef245999914dd58c44gid6f3f1db35c40eff13bb84beb39cf749a6051bed7833ac7f134b5546d13da0e90gide27c6c0e33783fb81b1cf6b3871c958aa4c6fd6cb76e4ffc99aaa8de844b238dgid49c5889d55ad8c6be2f4d43d80c30a404bc25e2491335730f0c35e68fb019f72&tw=f3ee672cf8723ef1e80c6500554b89304f263dc5a9a7fbfaaeccc650174eacce"
         strategy="afterInteractive"
       />
 
-      {/* ====== Validaciones Zoho (adaptadas, mantenemos diseño) ====== */}
+      {/* ====== Validaciones Zoho (adaptadas al ID nuevo y a reCAPTCHA) ====== */}
       <Script id="zoho-validators" strategy="afterInteractive">
         {`
           function rccallback6988454000000575779(){
@@ -114,9 +115,9 @@ export default function EchevenskoB2BLanding() {
           function validateEmail6988454000000575779(){
             var form = document.forms['WebToLeads6988454000000575779'];
             if(!form) return true;
-            var emailFld = form.querySelectorAll('[name="Email"]');
+            var emailFld = form.querySelectorAll('[name="Email"],[ftype="email"]');
             for(var i=0; i<emailFld.length; i++){
-              var emailVal = emailFld[i].value.trim();
+              var emailVal = (emailFld[i].value || '').trim();
               if(emailVal.length){
                 var atpos = emailVal.indexOf('@');
                 var dotpos = emailVal.lastIndexOf('.');
@@ -164,6 +165,13 @@ export default function EchevenskoB2BLanding() {
             if(submitBtn){ submitBtn.setAttribute('disabled', 'true'); }
             return true;
           }
+          function addAriaSelected6988454000000575779(){
+            var optionElem = event?.target;
+            if(!optionElem) return;
+            var previous = optionElem.querySelector('[aria-selected=true]');
+            if(previous){ previous.removeAttribute('aria-selected'); }
+            optionElem.querySelectorAll('option')[optionElem.selectedIndex].ariaSelected = 'true';
+          }
           window.addEventListener('DOMContentLoaded', function(){
             var f = document.getElementById('webform6988454000000575779');
             if(f){
@@ -179,14 +187,14 @@ export default function EchevenskoB2BLanding() {
         `}
       </Script>
 
-      {/* ====== JSON-LD SEO (no afecta al diseño) ====== */}
+      {/* ====== JSON-LD SEO (actualizado a magiaimaginacion.cl) ====== */}
       <Script id="ld-json-org" type="application/ld+json" strategy="afterInteractive">
         {JSON.stringify({
           "@context": "https://schema.org",
           "@type": "Organization",
           name: "Echevensko",
-          url: "https://empresas.echevensko.com/",
-          logo: "https://empresas.echevensko.com/og-cover.jpg",
+          url: "https://magiaimaginacion.cl/",
+          logo: "https://magiaimaginacion.cl/og-cover.jpg",
           contactPoint: [
             {
               "@type": "ContactPoint",
@@ -204,11 +212,11 @@ export default function EchevenskoB2BLanding() {
         {JSON.stringify({
           "@context": "https://schema.org",
           "@type": "WebSite",
-          url: "https://empresas.echevensko.com/",
-          name: "Echevensko Empresas",
+          url: "https://magiaimaginacion.cl/",
+          name: "La Magia de la Imaginación",
           potentialAction: {
             "@type": "SearchAction",
-            target: "https://empresas.echevensko.com/?q={search_term_string}",
+            target: "https://magiaimaginacion.cl/?q={search_term_string}",
             "query-input": "required name=search_term_string",
           },
         })}
@@ -231,7 +239,7 @@ export default function EchevenskoB2BLanding() {
             priceCurrency: "CLF",
             price: "32",
             availability: "https://schema.org/InStock",
-            url: "https://empresas.echevensko.com/#valor",
+            url: "https://magiaimaginacion.cl/#valor",
           },
         })}
       </Script>
@@ -241,18 +249,8 @@ export default function EchevenskoB2BLanding() {
           "@context": "https://schema.org",
           "@type": "BreadcrumbList",
           itemListElement: [
-            {
-              "@type": "ListItem",
-              position: 1,
-              name: "Inicio",
-              item: "https://empresas.echevensko.com/",
-            },
-            {
-              "@type": "ListItem",
-              position: 2,
-              name: "Charlas corporativas",
-              item: "https://empresas.echevensko.com/#valor",
-            },
+            { "@type": "ListItem", position: 1, name: "Inicio", item: "https://magiaimaginacion.cl/" },
+            { "@type": "ListItem", position: 2, name: "Charlas corporativas", item: "https://magiaimaginacion.cl/#valor" },
           ],
         })}
       </Script>
@@ -262,54 +260,18 @@ export default function EchevenskoB2BLanding() {
           "@context": "https://schema.org",
           "@type": "FAQPage",
           mainEntity: [
-            {
-              "@type": "Question",
-              name: "¿Se puede personalizar para un área o industria?",
-              acceptedAnswer: {
-                "@type": "Answer",
-                text: "Sí. Hacemos un breve discovery y adaptamos ejemplos al negocio.",
-              },
-            },
-            {
-              "@type": "Question",
-              name: "¿Qué requerimientos técnicos hay?",
-              acceptedAnswer: {
-                "@type": "Answer",
-                text: "Presencial: proyector/LED y audio. Online: Zoom/Teams y prueba técnica 24 h antes.",
-              },
-            },
-            {
-              "@type": "Question",
-              name: "¿Ofrecen factura y contrato?",
-              acceptedAnswer: {
-                "@type": "Answer",
-                text: "Sí, factura electrónica y acuerdo de servicios.",
-              },
-            },
-            {
-              "@type": "Question",
-              name: "¿En qué ciudades trabajan?",
-              acceptedAnswer: {
-                "@type": "Answer",
-                text: "Base en Santiago; cobertura nacional y Latam. Viáticos según ciudad/país.",
-              },
-            },
-            {
-              "@type": "Question",
-              name: "¿Se puede medir el impacto?",
-              acceptedAnswer: {
-                "@type": "Answer",
-                text: "Encuesta post-evento y reporte de insights para RR.HH.",
-              },
-            },
-            {
-              "@type": "Question",
-              name: "¿Idiomas y formatos?",
-              acceptedAnswer: {
-                "@type": "Answer",
-                text: "Español, opción inglés. Presencial u online.",
-              },
-            },
+            { "@type": "Question", name: "¿Se puede personalizar para un área o industria?",
+              acceptedAnswer: { "@type": "Answer", text: "Sí. Hacemos un breve discovery y adaptamos ejemplos al negocio." } },
+            { "@type": "Question", name: "¿Qué requerimientos técnicos hay?",
+              acceptedAnswer: { "@type": "Answer", text: "Presencial: proyector/LED y audio. Online: Zoom/Teams y prueba técnica 24 h antes." } },
+            { "@type": "Question", name: "¿Ofrecen factura y contrato?",
+              acceptedAnswer: { "@type": "Answer", text: "Sí, factura electrónica y acuerdo de servicios." } },
+            { "@type": "Question", name: "¿En qué ciudades trabajan?",
+              acceptedAnswer: { "@type": "Answer", text: "Base en Santiago; cobertura nacional y Latam. Viáticos según ciudad/país." } },
+            { "@type": "Question", name: "¿Se puede medir el impacto?",
+              acceptedAnswer: { "@type": "Answer", text: "Encuesta post-evento y reporte de insights para RR.HH." } },
+            { "@type": "Question", name: "¿Idiomas y formatos?",
+              acceptedAnswer: { "@type": "Answer", text: "Español, opción inglés. Presencial u online." } },
           ],
         })}
       </Script>
@@ -327,24 +289,12 @@ export default function EchevenskoB2BLanding() {
             className="hidden md:flex items-center gap-6 text-sm"
             aria-label="Navegación principal"
           >
-            <a href="#por-que" className="hover:text-neutral-600">
-              Impacto
-            </a>
-            <a href="#dirigido" className="hover:text-neutral-600">
-              ¿A quién va?
-            </a>
-            <a href="#estructura" className="hover:text-neutral-600">
-              Contenido
-            </a>
-            <a href="#valor" className="hover:text-neutral-600">
-              Valor
-            </a>
-            <a href="#testimonios" className="hover:text-neutral-600">
-              Testimonios
-            </a>
-            <a href="#faq" className="hover:text-neutral-600">
-              FAQ
-            </a>
+            <a href="#por-que" className="hover:text-neutral-600">Impacto</a>
+            <a href="#dirigido" className="hover:text-neutral-600">¿A quién va?</a>
+            <a href="#estructura" className="hover:text-neutral-600">Contenido</a>
+            <a href="#valor" className="hover:text-neutral-600">Valor</a>
+            <a href="#testimonios" className="hover:text-neutral-600">Testimonios</a>
+            <a href="#faq" className="hover:text-neutral-600">FAQ</a>
           </nav>
           <div className="flex items-center gap-2">
             <Button asChild size="sm" className="rounded-2xl">
@@ -370,55 +320,40 @@ export default function EchevenskoB2BLanding() {
               <div>
                 <Badge className="mb-4">B2B · Cultura & Bienestar</Badge>
                 <h1 className="text-4xl md:text-5xl font-extrabold leading-tight tracking-tight">
-                  Eleva{" "}
-                  <span className="text-amber-600">la imaginación</span> y el
+                  Eleva <span className="text-amber-600">la imaginación</span> y el
                   rendimiento de tu equipo
                 </h1>
                 <p className="mt-4 text-lg text-neutral-700">
                   Charla-espectáculo corporativa presentada por{" "}
                   <strong>Cristóbal Echevensko</strong> para organizaciones que
                   buscan mejorar clima, engagement y creatividad. Entretenida,
-                  práctica y memorable, con aplicación inmediata en el día a
-                  día.
+                  práctica y memorable, con aplicación inmediata en el día a día.
                 </p>
                 <div className="mt-6 flex flex-col sm:flex-row gap-3">
                   <Button size="lg" className="rounded-2xl" asChild>
                     <a href="#contacto">Reservar charla</a>
                   </Button>
-                  <Button
-                    size="lg"
-                    variant="outline"
-                    className="rounded-2xl"
-                    asChild
-                  >
+                  <Button size="lg" variant="outline" className="rounded-2xl" asChild>
                     <a href="#valor">Ver valor y alcance</a>
                   </Button>
                 </div>
 
                 <div className="mt-6 flex flex-wrap items-center gap-4 text-sm text-neutral-600">
                   <div className="flex items-center gap-1">
-                    <Star
-                      className="h-4 w-4 fill-amber-500 stroke-amber-500"
-                      aria-hidden
-                    />{" "}
-                    Altas valoraciones
+                    <Star className="h-4 w-4 fill-amber-500 stroke-amber-500" aria-hidden /> Altas valoraciones
                   </div>
                   <div className="flex items-center gap-1">
                     <Users className="h-4 w-4" aria-hidden /> Miles de asistentes
                   </div>
                   <div className="flex items-center gap-1">
-                    <Trophy className="h-4 w-4" aria-hidden /> Recomendado por
-                    empresas
+                    <Trophy className="h-4 w-4" aria-hidden /> Recomendado por empresas
                   </div>
                 </div>
               </div>
 
               <div className="hidden md:block">
                 <div className="relative">
-                  <div
-                    className="absolute -inset-2 bg-amber-200/40 blur-2xl rounded-3xl"
-                    aria-hidden
-                  />
+                  <div className="absolute -inset-2 bg-amber-200/40 blur-2xl rounded-3xl" aria-hidden />
                   <Card className="relative rounded-3xl shadow-xl">
                     <CardContent className="p-0">
                       <Image
@@ -437,8 +372,7 @@ export default function EchevenskoB2BLanding() {
                     <Timer className="h-4 w-4" aria-hidden /> 60–75 min
                   </div>
                   <div className="flex items-center gap-2">
-                    <Building2 className="h-4 w-4" aria-hidden /> Presencial /
-                    Online
+                    <Building2 className="h-4 w-4" aria-hidden /> Presencial / Online
                   </div>
                   <div className="flex items-center gap-2">
                     <Globe2 className="h-4 w-4" aria-hidden /> ES / EN opcional
@@ -454,37 +388,18 @@ export default function EchevenskoB2BLanding() {
           <div className="grid md:grid-cols-12 gap-10 items-start">
             <div className="md:col-span-5">
               <h2 className="text-3xl font-bold leading-tight">
-                ¿Por qué llevar{" "}
-                <span className="text-amber-700">La Magia de la Imaginación</span>{" "}
-                a tu organización?
+                ¿Por qué llevar <span className="text-amber-700">La Magia de la Imaginación</span> a tu organización?
               </h2>
               <p className="mt-4 text-neutral-700">
-                Diseñado para RR.HH., People, Cultura y Liderazgo: impacto real
-                en clima, foco y productividad.
+                Diseñado para RR.HH., People, Cultura y Liderazgo: impacto real en clima, foco y productividad.
               </p>
             </div>
             <div className="md:col-span-7 grid sm:grid-cols-2 gap-4">
               {[
-                {
-                  title: "Bienestar emocional",
-                  desc:
-                    "Reduce estrés y ansiedad con una práctica simple y aplicable.",
-                },
-                {
-                  title: "Cohesión de equipos",
-                  desc:
-                    "Lenguaje común que mejora comunicación y confianza.",
-                },
-                {
-                  title: "Creatividad aplicada",
-                  desc:
-                    "Herramientas para resolver problemas y tomar mejores decisiones.",
-                },
-                {
-                  title: "Engagement y propósito",
-                  desc:
-                    "Reconecta a las personas con su potencial y el sentido del trabajo.",
-                },
+                { title: "Bienestar emocional", desc: "Reduce estrés y ansiedad con una práctica simple y aplicable." },
+                { title: "Cohesión de equipos", desc: "Lenguaje común que mejora comunicación y confianza." },
+                { title: "Creatividad aplicada", desc: "Herramientas para resolver problemas y tomar mejores decisiones." },
+                { title: "Engagement y propósito", desc: "Reconecta a las personas con su potencial y el sentido del trabajo." },
               ].map((b, i) => (
                 <Card key={i} className="rounded-2xl">
                   <CardHeader className="pb-2">
@@ -504,15 +419,12 @@ export default function EchevenskoB2BLanding() {
           <div className="mx-auto max-w-6xl px-4 py-16">
             <div className="grid lg:grid-cols-2 gap-10 items-start">
               <div>
-                <Badge className="mb-3">
-                  Un recurso innovador para potenciar equipos en tu empresa
-                </Badge>
+                <Badge className="mb-3">Un recurso innovador para potenciar equipos en tu empresa</Badge>
                 <h2 className="text-3xl font-bold">
                   La Magia de la Imaginación | Charla corporativa para equipos.
                 </h2>
                 <p className="mt-2 text-neutral-700">
-                  Conoce cómo esta experiencia puede integrarse a iniciativas de
-                  bienestar, liderazgo y cultura organizacional.
+                  Conoce cómo esta experiencia puede integrarse a iniciativas de bienestar, liderazgo y cultura organizacional.
                 </p>
                 <div className="mt-6 rounded-2xl overflow-hidden border">
                   <div className="aspect-video">
@@ -533,8 +445,7 @@ export default function EchevenskoB2BLanding() {
               <div>
                 <h3 className="text-xl font-semibold">Momentos que importan</h3>
                 <p className="mt-2 text-neutral-700">
-                  Escenas reales que reflejan participación, foco y energía en
-                  contextos corporativos.
+                  Escenas reales que reflejan participación, foco y energía en contextos corporativos.
                 </p>
                 <div className="mt-6 grid grid-cols-1 sm:grid-cols-2 gap-4">
                   <Card className="rounded-2xl overflow-hidden">
@@ -561,18 +472,9 @@ export default function EchevenskoB2BLanding() {
                   </Card>
                 </div>
                 <ul className="mt-4 space-y-2 text-sm text-neutral-700">
-                  <li className="flex gap-2">
-                    <Check className="h-4 w-4 mt-0.5" aria-hidden /> Enfoque en
-                    clima, engagement y liderazgo.
-                  </li>
-                  <li className="flex gap-2">
-                    <Check className="h-4 w-4 mt-0.5" aria-hidden /> Contrato,
-                    factura y métricas post-evento (opcional).
-                  </li>
-                  <li className="flex gap-2">
-                    <Check className="h-4 w-4 mt-0.5" aria-hidden /> Cobertura
-                    nacional y Latam, presencial u online.
-                  </li>
+                  <li className="flex gap-2"><Check className="h-4 w-4 mt-0.5" aria-hidden /> Enfoque en clima, engagement y liderazgo.</li>
+                  <li className="flex gap-2"><Check className="h-4 w-4 mt-0.5" aria-hidden /> Contrato, factura y métricas post-evento (opcional).</li>
+                  <li className="flex gap-2"><Check className="h-4 w-4 mt-0.5" aria-hidden /> Cobertura nacional y Latam, presencial u online.</li>
                 </ul>
                 <div className="mt-6">
                   <Button asChild className="rounded-2xl">
@@ -592,27 +494,12 @@ export default function EchevenskoB2BLanding() {
               <div>
                 <h2 className="text-3xl font-bold">¿A quién va dirigido?</h2>
                 <p className="mt-2 text-neutral-700 max-w-3xl">
-                  Ideal para <strong>colegios</strong>, <strong>fundaciones</strong>,{" "}
-                  <strong>empresas</strong>, <strong>universidades</strong>,{" "}
-                  <strong>municipalidades</strong>, áreas de <strong>salud</strong>,{" "}
-                  <strong>retail</strong> y <strong>tecnología</strong>. Adaptamos
-                  ejemplos al contexto del público.
+                  Ideal para <strong>colegios</strong>, <strong>fundaciones</strong>, <strong>empresas</strong>, <strong>universidades</strong>, <strong>municipalidades</strong>, áreas de <strong>salud</strong>, <strong>retail</strong> y <strong>tecnología</strong>. Adaptamos ejemplos al contexto del público.
                 </p>
               </div>
             </div>
             <div className="mt-6 flex flex-wrap gap-2" aria-label="Industrias">
-              {[
-                "Colegios",
-                "Fundaciones",
-                "Empresas",
-                "Corporaciones",
-                "Universidades",
-                "Municipalidades",
-                "Salud",
-                "Retail",
-                "Tecnología",
-                "Startups",
-              ].map((tag) => (
+              {["Colegios","Fundaciones","Empresas","Corporaciones","Universidades","Municipalidades","Salud","Retail","Tecnología","Startups"].map((tag) => (
                 <Badge key={tag} variant="secondary" className="rounded-full">
                   {tag}
                 </Badge>
@@ -626,40 +513,21 @@ export default function EchevenskoB2BLanding() {
           <div className="mx-auto max-w-6xl px-4 py-16">
             <h2 className="text-3xl font-bold">Contenido del espectáculo corporativo</h2>
             <p className="mt-3 text-neutral-700 max-w-3xl">
-              Una charla entretenida y útil en tres actos, con historias, humor y
-              ejercicios prácticos.
+              Una charla entretenida y útil en tres actos, con historias, humor y ejercicios prácticos.
             </p>
             <div className="mt-8 grid md:grid-cols-3 gap-4">
               {[
-                {
-                  title: "Acto I – Potencial interno",
-                  points: [
-                    "Autoimagen y autoestima práctica",
-                    "Cambiar actitud para cambiar realidad",
-                  ],
-                },
-                {
-                  title: "Acto II – El obstáculo",
-                  points: [
-                    "La causa del autosabotaje",
-                    "Cómo gestionarla en el día a día",
-                  ],
-                },
-                {
-                  title: "Acto III – La técnica",
-                  points: ["Práctica ancestral moderna", "Menos preocupación, más foco"],
-                },
+                { title: "Acto I – Potencial interno", points: ["Autoimagen y autoestima práctica","Cambiar actitud para cambiar realidad"] },
+                { title: "Acto II – El obstáculo", points: ["La causa del autosabotaje","Cómo gestionarla en el día a día"] },
+                { title: "Acto III – La técnica", points: ["Práctica ancestral moderna","Menos preocupación, más foco"] },
               ].map((col, i) => (
                 <Card key={i} className="rounded-2xl">
-                  <CardHeader>
-                    <CardTitle className="text-lg">{col.title}</CardTitle>
-                  </CardHeader>
+                  <CardHeader><CardTitle className="text-lg">{col.title}</CardTitle></CardHeader>
                   <CardContent className="text-sm text-neutral-700">
                     <ul className="space-y-2">
                       {col.points.map((p, j) => (
                         <li key={j} className="flex items-start gap-2">
-                          <Check className="h-4 w-4 mt-0.5" aria-hidden />
-                          {p}
+                          <Check className="h-4 w-4 mt-0.5" aria-hidden /> {p}
                         </li>
                       ))}
                     </ul>
@@ -671,23 +539,13 @@ export default function EchevenskoB2BLanding() {
             {/* LOGÍSTICA */}
             <div className="mt-10 grid md:grid-cols-3 gap-4">
               {[
-                {
-                  title: "Modalidad",
-                  desc: "Presencial (auditorio/sala) u online (Zoom/Teams).",
-                },
+                { title: "Modalidad", desc: "Presencial (auditorio/sala) u online (Zoom/Teams)." },
                 { title: "Duración", desc: "60–75 min + Q&A (opcional)." },
-                {
-                  title: "Audiencia",
-                  desc: "20 a 600 personas (consultar para más).",
-                },
+                { title: "Audiencia", desc: "20 a 600 personas (consultar para más)." },
               ].map((c, i) => (
                 <Card key={i} className="rounded-2xl border-dashed">
-                  <CardHeader className="pb-2">
-                    <CardTitle className="text-base">{c.title}</CardTitle>
-                  </CardHeader>
-                  <CardContent className="pt-0 text-sm text-neutral-700">
-                    {c.desc}
-                  </CardContent>
+                  <CardHeader className="pb-2"><CardTitle className="text-base">{c.title}</CardTitle></CardHeader>
+                  <CardContent className="pt-0 text-sm text-neutral-700">{c.desc}</CardContent>
                 </Card>
               ))}
             </div>
@@ -700,8 +558,7 @@ export default function EchevenskoB2BLanding() {
             <div>
               <h2 className="text-3xl font-bold">Valor y alcance</h2>
               <p className="mt-2 text-neutral-700">
-                Un solo plan claro para simplificar la decisión. *Viáticos o
-                traslados pueden aplicar.
+                Un solo plan claro para simplificar la decisión. *Viáticos o traslados pueden aplicar.
               </p>
             </div>
             <Badge variant="secondary">ES/EN · Presencial u Online</Badge>
@@ -732,7 +589,6 @@ export default function EchevenskoB2BLanding() {
                   ))}
                 </ul>
 
-                {/* Nota de flexibilidad de precio */}
                 <div className="mt-4 rounded-xl border border-amber-200 bg-amber-50 px-4 py-3 text-sm text-amber-900">
                   💡 Dependiendo de la magnitud del evento y las necesidades específicas,
                   podemos evaluar adaptaciones o versiones más acotadas del plan con un valor menor.
@@ -747,8 +603,7 @@ export default function EchevenskoB2BLanding() {
                   </Button>
                 </div>
                 <p className="text-xs text-neutral-500 mt-4">
-                  *Factura electrónica y contrato de servicios. Precio no incluye
-                  eventuales viáticos.
+                  *Factura electrónica y contrato de servicios. Precio no incluye eventuales viáticos.
                 </p>
               </CardContent>
             </Card>
@@ -757,22 +612,10 @@ export default function EchevenskoB2BLanding() {
               <CardContent className="p-6">
                 <h3 className="text-xl font-semibold">Resultados que buscamos</h3>
                 <ul className="mt-3 space-y-2 text-sm text-neutral-700">
-                  <li className="flex gap-2">
-                    <Check className="h-4 w-4 mt-0.5" aria-hidden /> Subir ánimo y
-                    foco del equipo
-                  </li>
-                  <li className="flex gap-2">
-                    <Check className="h-4 w-4 mt-0.5" aria-hidden /> Refuerzo de
-                    cultura y colaboración
-                  </li>
-                  <li className="flex gap-2">
-                    <Check className="h-4 w-4 mt-0.5" aria-hidden /> Lenguaje
-                    común para afrontar desafíos
-                  </li>
-                  <li className="flex gap-2">
-                    <Check className="h-4 w-4 mt-0.5" aria-hidden /> Técnicas
-                    simples con adopción inmediata
-                  </li>
+                  <li className="flex gap-2"><Check className="h-4 w-4 mt-0.5" aria-hidden /> Subir ánimo y foco del equipo</li>
+                  <li className="flex gap-2"><Check className="h-4 w-4 mt-0.5" aria-hidden /> Refuerzo de cultura y colaboración</li>
+                  <li className="flex gap-2"><Check className="h-4 w-4 mt-0.5" aria-hidden /> Lenguaje común para afrontar desafíos</li>
+                  <li className="flex gap-2"><Check className="h-4 w-4 mt-0.5" aria-hidden /> Técnicas simples con adopción inmediata</li>
                 </ul>
               </CardContent>
             </Card>
@@ -784,55 +627,30 @@ export default function EchevenskoB2BLanding() {
           <div className="mx-auto max-w-6xl px-4 py-16">
             <div className="flex items-end justify-between flex-wrap gap-4">
               <div>
-                <h2 className="text-3xl font-bold">
-                  Lo que dicen quienes ya vivieron la experiencia
-                </h2>
-                <p className="mt-2 text-neutral-700">
-                  Comentarios que hablan de un antes y un después.
-                </p>
+                <h2 className="text-3xl font-bold">Lo que dicen quienes ya vivieron la experiencia</h2>
+                <p className="mt-2 text-neutral-700">Comentarios que hablan de un antes y un después.</p>
               </div>
-              <div
-                className="flex items-center gap-1 text-amber-600"
-                aria-label="Valoraciones"
-              >
+              <div className="flex items-center gap-1 text-amber-600" aria-label="Valoraciones">
                 {[...Array(5)].map((_, i) => (
-                  <Star
-                    key={i}
-                    className="h-5 w-5 fill-amber-500 stroke-amber-500"
-                    aria-hidden
-                  />
+                  <Star key={i} className="h-5 w-5 fill-amber-500 stroke-amber-500" aria-hidden />
                 ))}
               </div>
             </div>
 
             <div className="mt-8 grid md:grid-cols-3 gap-4">
               {[
-                {
-                  name: "Ana María Cooper",
-                  role: "Líder de Personas",
-                  quote:
-                    "Interactividad, claridad y herramientas concretas. Al día siguiente mi equipo aplicó la técnica.",
-                },
-                {
-                  name: "Sergio Barriga",
-                  role: "Gerente Comercial",
-                  quote:
-                    "Dinámica y directa. 100% recomendable para kickoffs y ciclos comerciales.",
-                },
-                {
-                  name: "Francisca Sánchez",
-                  role: "People Partner",
-                  quote:
-                    "Llegamos con carga y salimos con foco y energía. Impacto real en el ánimo del equipo.",
-                },
+                { name: "Ana María Cooper", role: "Líder de Personas",
+                  quote: "Interactividad, claridad y herramientas concretas. Al día siguiente mi equipo aplicó la técnica." },
+                { name: "Sergio Barriga", role: "Gerente Comercial",
+                  quote: "Dinámica y directa. 100% recomendable para kickoffs y ciclos comerciales." },
+                { name: "Francisca Sánchez", role: "People Partner",
+                  quote: "Llegamos con carga y salimos con foco y energía. Impacto real en el ánimo del equipo." },
               ].map((t, i) => (
                 <Card key={i} className="rounded-2xl">
                   <CardContent className="pt-6">
                     <Quote className="h-6 w-6 opacity-50" aria-hidden />
                     <p className="mt-3 text-neutral-800">{t.quote}</p>
-                    <p className="mt-4 text-sm text-neutral-600">
-                      {t.name} · {t.role}
-                    </p>
+                    <p className="mt-4 text-sm text-neutral-600">{t.name} · {t.role}</p>
                   </CardContent>
                 </Card>
               ))}
@@ -849,24 +667,16 @@ export default function EchevenskoB2BLanding() {
           <Card className="rounded-3xl overflow-hidden">
             <CardContent className="p-8 md:p-10 grid md:grid-cols-2 gap-8 items-center">
               <div>
-                <h3 className="text-2xl font-bold">
-                  ¿Por qué elegir La Magia de la Imaginación?
-                </h3>
+                <h3 className="text-2xl font-bold">¿Por qué elegir La Magia de la Imaginación?</h3>
                 <p className="mt-2 text-neutral-700">
-                  Experiencia validada en Chile y Latam. Adaptada al lenguaje
-                  corporativo: entretenida, práctica y con aplicación inmediata.
+                  Experiencia validada en Chile y Latam. Adaptada al lenguaje corporativo: entretenida, práctica y con aplicación inmediata.
                 </p>
               </div>
               <div className="flex gap-3">
                 <Button asChild size="lg" className="rounded-2xl w-full md:w-auto">
                   <a href="#contacto">Quiero cotizar</a>
                 </Button>
-                <Button
-                  asChild
-                  size="lg"
-                  variant="outline"
-                  className="rounded-2xl w-full md:w-auto"
-                >
+                <Button asChild size="lg" variant="outline" className="rounded-2xl w-full md:w-auto">
                   <a href="#faq">Ver preguntas frecuentes</a>
                 </Button>
               </div>
@@ -880,49 +690,29 @@ export default function EchevenskoB2BLanding() {
             <h2 className="text-3xl font-bold">Preguntas frecuentes</h2>
             <div className="mt-8 grid md:grid-cols-2 gap-6">
               {[
-                {
-                  q: "¿Se puede personalizar para un área o industria?",
-                  a:
-                    "Sí. Hacemos un breve discovery y adaptamos ejemplos al negocio.",
-                },
-                {
-                  q: "¿Qué requerimientos técnicos hay?",
-                  a:
-                    "Presencial: proyector/LED y audio. Online: Zoom/Teams y prueba técnica 24 h antes.",
-                },
+                { q: "¿Se puede personalizar para un área o industria?", a: "Sí. Hacemos un breve discovery y adaptamos ejemplos al negocio." },
+                { q: "¿Qué requerimientos técnicos hay?", a: "Presencial: proyector/LED y audio. Online: Zoom/Teams y prueba técnica 24 h antes." },
                 { q: "¿Ofrecen factura y contrato?", a: "Sí, factura electrónica y acuerdo de servicios." },
-                {
-                  q: "¿En qué ciudades trabajan?",
-                  a: "Base en Santiago; cobertura nacional y Latam. Viáticos según ciudad/país.",
-                },
-                {
-                  q: "¿Se puede medir el impacto?",
-                  a:
-                    "Encuesta post-evento y reporte de insights para RR.HH.",
-                },
+                { q: "¿En qué ciudades trabajan?", a: "Base en Santiago; cobertura nacional y Latam. Viáticos según ciudad/país." },
+                { q: "¿Se puede medir el impacto?", a: "Encuesta post-evento y reporte de insights para RR.HH." },
                 { q: "¿Idiomas y formatos?", a: "Español, opción inglés. Presencial u online." },
               ].map((item, i) => (
                 <Card key={i} className="rounded-2xl">
-                  <CardHeader className="pb-2">
-                    <CardTitle className="text-base">{item.q}</CardTitle>
-                  </CardHeader>
-                  <CardContent className="pt-0 text-sm text-neutral-700">
-                    {item.a}
-                  </CardContent>
+                  <CardHeader className="pb-2"><CardTitle className="text-base">{item.q}</CardTitle></CardHeader>
+                  <CardContent className="pt-0 text-sm text-neutral-700">{item.a}</CardContent>
                 </Card>
               ))}
             </div>
           </div>
         </section>
 
-        {/* CONTACTO */}
+        {/* CONTACTO (Zoho actualizado) */}
         <section id="contacto" className="mx-auto max-w-6xl px-4 py-16">
           <div className="grid md:grid-cols-5 gap-8">
             <div className="md:col-span-3">
               <h2 className="text-3xl font-bold">Solicita tu propuesta</h2>
               <p className="mt-2 text-neutral-700">
-                Cuéntanos fecha tentativa, modalidad y tamaño de audiencia.{" "}
-                <strong>Valor de referencia: UF 32</strong> (adaptaciones a evaluar según alcance y requerimientos).
+                Cuéntanos fecha tentativa, modalidad y tamaño de audiencia. <strong>Valor de referencia: UF 32</strong> (adaptaciones a evaluar según alcance y requerimientos).
               </p>
 
               <form
@@ -933,40 +723,12 @@ export default function EchevenskoB2BLanding() {
                 method="POST"
                 acceptCharset="UTF-8"
               >
-                {/* ====== Hidden obligatorios Zoho (actualizados) ====== */}
-                <input
-                  type="text"
-                  style={{ display: "none" }}
-                  name="xnQsjsdp"
-                  value="1477c32fe7be905a3705b42ca53aaf692fd62e1c32454b8f8a31199af55c860a"
-                />
+                {/* ====== Hidden obligatorios Zoho (NUEVOS) ====== */}
+                <input type="text" style={{ display: "none" }} name="xnQsjsdp" value="d321a76473bf7648453467a2131c0a1d5768c33d84662f26ac77cb14438c74e8" />
                 <input type="hidden" name="zc_gad" id="zc_gad" value="" />
-                <input
-                  type="text"
-                  style={{ display: "none" }}
-                  name="xmIwtLD"
-                  value="fcdb56fd9e04c74fec8dd4b2e7c11768ed1de383c691db556f026548fbc740274393a2b6df1b13c7032e2b33a537b104"
-                />
-                <input
-                  type="text"
-                  style={{ display: "none" }}
-                  name="actionType"
-                  value="TGVhZHM="
-                />
-                <input
-                  type="text"
-                  style={{ display: "none" }}
-                  name="returnURL"
-                  value="https://empresas.echevensko.com/gracias"
-                />
-                {/* Campos de origen/brand como hidden para no alterar el diseño */}
-                <input type="hidden" name="LEADCF5" value="Echevensko" />
-                <input
-                  type="hidden"
-                  name="LEADCF9"
-                  value="empresas.echevensko.com"
-                />
-                <input type="hidden" name="aG9uZXlwb3Q" value="" />
+                <input type="text" style={{ display: "none" }} name="xmIwtLD" value="93151026649bfc5084c55d3fcd41373aa77416d23f7811637147f89e7f29f1d422cb33569091b8569a5a49a3708e46f0" />
+                <input type="text" style={{ display: "none" }} name="actionType" value="TGVhZHM=" />
+                <input type="text" style={{ display: "none" }} name="returnURL" value="https://magiaimaginacion.cl/gracias" />
 
                 {/* ====== Campos visibles (mismo diseño) ====== */}
                 <div className="grid sm:grid-cols-2 gap-3">
@@ -975,65 +737,94 @@ export default function EchevenskoB2BLanding() {
                 </div>
 
                 <div className="grid sm:grid-cols-2 gap-3">
-                  <Input
-                    name="Email"
-                    placeholder="Email corporativo"
-                    type="email"
-                    required
-                  />
-                  <Input
-                    name="Company"
-                    placeholder="Organización/Empresa"
-                    required
-                  />
+                  <Input name="Email" placeholder="Email corporativo" type="email" required />
+                  <Input name="Company" placeholder="Organización/Empresa" required />
                 </div>
 
                 <div className="grid sm:grid-cols-2 gap-3">
-                  <Input name="LEADCF2" placeholder="Cargo" />
                   <Input name="City" placeholder="Ciudad/País" required />
+                  <select
+                    name="LEADCF6"
+                    className="h-10 rounded-md border border-input bg-background px-3 py-2 text-sm"
+                    defaultValue="Presencial"
+                    aria-label="Modalidad"
+                  >
+                    <option value="-None-">-None-</option>
+                    <option value="Presencial">Presencial</option>
+                    <option value="Online">Online</option>
+                  </select>
                 </div>
 
-                {/* Campos ocultos de fecha y asistentes (no visibles) */}
-<input type="hidden" name="LEADCF116" value="" />
-<input type="hidden" name="LEADCF51" value="" />
-
-<div className="grid sm:grid-cols-1 gap-3">
-  <select
-    name="LEADCF6"
-    className="h-10 rounded-md border border-input bg-background px-3 py-2 text-sm"
-    defaultValue="Presencial"
-  >
-    <option value="-None-">-None-</option>
-    <option value="Presencial">Presencial</option>
-    <option value="Online">Online</option>
-  </select>
-</div>
-
-<Textarea
+                <Textarea
                   name="LEADCF3"
                   placeholder="Cuéntanos el objetivo de la actividad (kickoff, bienestar, liderazgo, colegios, fundaciones, etc.)"
                   className="min-h-[120px]"
                   required
                 />
 
+                {/* ====== Selects ocultos de origen (igual que snippet) ====== */}
+                <div className="wfrm_fld_dpNn" aria-hidden>
+                  <label className="sr-only" htmlFor="LEADCF5">Echevensko</label>
+                  <select
+                    id="LEADCF5"
+                    name="LEADCF5"
+                    className="hidden"
+                    defaultValue="Echevensko"
+                    onChange={() => { /* preservado por compatibilidad */ }}
+                    aria-label="LEADCF5"
+                  >
+                    <option value="-None-">-None-</option>
+                    <option value="Tronx-Group">Tronx-Group</option>
+                    <option value="Dekaelo">Dekaelo</option>
+                    <option value="Tronx-TV">Tronx-TV</option>
+                    <option value="Tonx-Strategy">Tonx-Strategy</option>
+                    <option value="Echevensko">Echevensko</option>
+                    <option value="APCC">APCC</option>
+                    <option value="HKLABA">HKLABA</option>
+                  </select>
+                </div>
+
+                <div className="wfrm_fld_dpNn" aria-hidden>
+                  <label className="sr-only" htmlFor="LEADCF9">Lead_Origen</label>
+                  <select
+                    id="LEADCF9"
+                    name="LEADCF9"
+                    className="hidden"
+                    defaultValue="magiaimaginacion.cl"
+                    onChange={() => { /* preservado por compatibilidad */ }}
+                    aria-label="LEADCF9"
+                  >
+                    <option value="-None-">-None-</option>
+                    <option value="plan.dekaelomedia.com">plan.dekaelomedia.com</option>
+                    <option value="tronxgroup.com/contacto">tronxgroup.com/contacto</option>
+                    <option value="tronxstrategic.com/contacto">tronxstrategic.com/contacto</option>
+                    <option value="dekaelomedia.com/contacto">dekaelomedia.com/contacto</option>
+                    <option value="magiaimaginacion.cl">magiaimaginacion.cl</option>
+                    <option value="asiapacific-chamber.com/contacto">asiapacific-chamber.com/contacto</option>
+                    <option value="asiapacific-chamber/join">asiapacific-chamber/join</option>
+                    <option value="hklaba.com/contacto">hklaba.com/contacto</option>
+                    <option value="asiapacific-chamber/eventos">asiapacific-chamber/eventos</option>
+                  </select>
+                </div>
+
+                {/* ====== Honeypot ====== */}
+                <input type="hidden" name="aG9uZXlwb3Q" value="" />
+
                 {/* Checkbox de privacidad/condiciones */}
                 <label className="flex items-start gap-2 text-sm text-neutral-700">
                   <input type="checkbox" required />
                   <span>
                     He leído y acepto la{" "}
-                    <a href="/privacidad-condiciones" className="underline">
-                      Política de Privacidad y Condiciones
-                    </a>
-                    .
+                    <a href="/privacidad-condiciones" className="underline">Política de Privacidad y Condiciones</a>.
                   </span>
                 </label>
 
-                {/* === reCAPTCHA (v2 Checkbox) === */}
+                {/* === reCAPTCHA (v2 Checkbox) — sitekey NUEVO === */}
                 <div className="mt-2">
                   <div
                     id="recap6988454000000575779"
                     className="g-recaptcha"
-                    data-sitekey="6Lf-3sorAAAAAKTLgYS7eN1k_eC0Ewx20D_7kALH"
+                    data-sitekey="6LccQukrAAAAAHZqUeL8cKl1rpmwpU5fyrLUocGn"
                     data-theme="light"
                     data-callback="rccallback6988454000000575779"
                     data-size="normal"
@@ -1044,8 +835,7 @@ export default function EchevenskoB2BLanding() {
                     id="recapErr6988454000000575779"
                     style={{ fontSize: 12, color: "red", visibility: "hidden" }}
                   >
-                    Error en validación de Captcha. Si no es un robot, inténtelo
-                    de nuevo.
+                    Error en validación de Captcha. Si no es un robot, inténtelo de nuevo.
                   </div>
                 </div>
 
@@ -1060,7 +850,7 @@ export default function EchevenskoB2BLanding() {
                   </Button>
                   <Button asChild variant="outline" className="rounded-2xl">
                     <a
-                      href="https://wa.me/56920080031?text=Hola%20quiero%20cotizar%20la%20charla%20corporativa%20de%20Echevensko"
+                      href="https://wa.me/56920080031?text=Hola%20quiero%20cotizar%20la%20charla%20corporativa%20La%20Magia%20de%20la%20Imaginaci%C3%B3n"
                       rel="noopener"
                     >
                       WhatsApp
@@ -1081,34 +871,16 @@ export default function EchevenskoB2BLanding() {
                   <CardTitle>Datos de contacto</CardTitle>
                 </CardHeader>
                 <CardContent className="text-sm text-neutral-700 space-y-3">
-                  <p className="flex items-center gap-2">
-                    <Mail className="h-4 w-4" aria-hidden /> info@echevensko.com
-                  </p>
-                  <p className="flex items-center gap-2">
-                    <Phone className="h-4 w-4" aria-hidden /> +56 9 2008 0031
-                  </p>
-                  <p className="flex items-center gap-2">
-                    <MapPin className="h-4 w-4" aria-hidden /> Santiago, Chile
-                  </p>
-                  <p className="flex items-center gap-2">
-                    <CalendarDays className="h-4 w-4" aria-hidden /> Respuesta en
-                    24h hábiles
-                  </p>
+                  <p className="flex items-center gap-2"><Mail className="h-4 w-4" aria-hidden /> info@echevensko.com</p>
+                  <p className="flex items-center gap-2"><Phone className="h-4 w-4" aria-hidden /> +56 9 2008 0031</p>
+                  <p className="flex items-center gap-2"><MapPin className="h-4 w-4" aria-hidden /> Santiago, Chile</p>
+                  <p className="flex items-center gap-2"><CalendarDays className="h-4 w-4" aria-hidden /> Respuesta en 24h hábiles</p>
                   <div className="pt-3 border-t">
                     <p className="font-medium">Incluye</p>
                     <ul className="mt-2 space-y-1">
-                      <li className="flex gap-2">
-                        <Check className="h-4 w-4 mt-0.5" aria-hidden /> Factura
-                        electrónica (afecta a IVA o exenta)
-                      </li>
-                      <li className="flex gap-2">
-                        <Check className="h-4 w-4 mt-0.5" aria-hidden /> Contrato
-                        de servicios
-                      </li>
-                      <li className="flex gap-2">
-                        <Check className="h-4 w-4 mt-0.5" aria-hidden /> Prueba
-                        técnica previa
-                      </li>
+                      <li className="flex gap-2"><Check className="h-4 w-4 mt-0.5" aria-hidden /> Factura electrónica (afecta a IVA o exenta)</li>
+                      <li className="flex gap-2"><Check className="h-4 w-4 mt-0.5" aria-hidden /> Contrato de servicios</li>
+                      <li className="flex gap-2"><Check className="h-4 w-4 mt-0.5" aria-hidden /> Prueba técnica previa</li>
                     </ul>
                   </div>
                 </CardContent>
@@ -1123,9 +895,7 @@ export default function EchevenskoB2BLanding() {
         <div className="mx-auto max-w-6xl px-4 py-10 text-sm text-neutral-600 flex flex-col md:flex-row items-center justify-between gap-3">
           <p>© {new Date().getFullYear()} Echevensko. Todos los derechos reservados.</p>
           <div className="flex items-center gap-4">
-            <a href="/privacidad-condiciones" className="hover:text-neutral-800">
-              Privacidad y Condiciones
-            </a>
+            <a href="/privacidad-condiciones" className="hover:text-neutral-800">Privacidad y Condiciones</a>
             <a
               href="https://instagram.com/cristobalechevensko"
               target="_blank"
@@ -1140,13 +910,7 @@ export default function EchevenskoB2BLanding() {
               rel="noopener noreferrer"
               className="hover:text-neutral-800 inline-flex items-center gap-2"
             >
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                viewBox="0 0 24 24"
-                fill="currentColor"
-                className="h-4 w-4"
-                aria-hidden
-              >
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" className="h-4 w-4" aria-hidden>
                 <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.447-2.136 2.942v5.664H9.352V9h3.414v1.561h.048c.476-.9 1.637-1.852 3.372-1.852 3.604 0 4.268 2.372 4.268 5.455v6.288zM5.337 7.433a2.062 2.062 0 11.001-4.124 2.062 2.062 0 01-.001 4.124zM6.993 20.452H3.681V9h3.312v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.225 0z"/>
               </svg>
               LinkedIn
