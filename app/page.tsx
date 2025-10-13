@@ -1,4 +1,6 @@
-// app/page.tsx  — Landing principal magiaimaginacion.cl
+// app/page.tsx — Landing principal magiaimaginacion.cl (versión estable)
+"use client";
+
 import React from "react";
 import Script from "next/script";
 import Image from "next/image";
@@ -25,94 +27,22 @@ import {
   Instagram,
 } from "lucide-react";
 
-// ====== SEO ======
-export const dynamic = "force-static";
-
-export const metadata = {
-  metadataBase: new URL("https://magiaimaginacion.cl"),
-  title: "Charlas corporativas | La Magia de la Imaginación",
-  description:
-    "Charla-espectáculo para empresas: bienestar, foco y creatividad. Presencial/online. Cotiza tu fecha.",
-  keywords: [
-    "charlas corporativas",
-    "bienestar laboral",
-    "cultura organizacional",
-    "charla motivacional",
-    "RR.HH.",
-    "engagement",
-    "creatividad",
-    "liderazgo",
-  ],
-  robots: {
-    index: true,
-    follow: true,
-    "max-image-preview": "large",
-    "max-snippet": -1,
-    "max-video-preview": -1,
-  },
-  alternates: {
-    canonical: "https://magiaimaginacion.cl/",
-    languages: { "es-CL": "https://magiaimaginacion.cl/" },
-  },
-  openGraph: {
-    type: "website",
-    url: "https://magiaimaginacion.cl/",
-    title: "Charlas corporativas | La Magia de la Imaginación",
-    siteName: "La Magia de la Imaginación",
-    description:
-      "Experiencia validada por miles de asistentes. Presencial/online. Ideal para RR.HH., cultura y liderazgo.",
-    images: [
-      {
-        url: "/og-cover.jpg",
-        width: 1200,
-        height: 630,
-        alt: "Echevensko impartiendo charla corporativa ante auditorio",
-      },
-    ],
-    locale: "es_CL",
-  },
-  twitter: {
-    card: "summary_large_image",
-    site: "@cristobalechevensko",
-    creator: "@cristobalechevensko",
-    title: "Charlas corporativas | La Magia de la Imaginación",
-    description: "Bienestar, foco y creatividad para equipos. Presencial/online.",
-    images: ["/og-cover.jpg"],
-  },
-};
-
-// ====== PÁGINA ======
 export default function MagiaImaginacionLanding() {
   return (
     <div className="min-h-screen bg-neutral-50 text-neutral-900">
-      {/* ===== reCAPTCHA y Zoho ===== */}
+      {/* ===== reCAPTCHA y Zoho (cargan en cliente, no bloquean build) ===== */}
       <Script src="https://www.google.com/recaptcha/api.js" strategy="afterInteractive" />
       <Script
         id="zoho-wf-analytics"
         src="https://crm.zohopublic.com/crm/WebFormAnalyticsServeServlet?rid=f006b969b9c6cbbbe3969721beab6c3d89e0c5e48d40c0525a7a34265ca323e18eeae21df5d1c6ef245999914dd58c44gid6f3f1db35c40eff13bb84beb39cf749a6051bed7833ac7f134b5546d13da0e90gide27c6c0e33783fb81b1cf6b3871c958aa4c6fd6cb76e4ffc99aaa8de844b238dgid49c5889d55ad8c6be2f4d43d80c30a404bc25e2491335730f0c35e68fb019f72&tw=f3ee672cf8723ef1e80c6500554b89304f263dc5a9a7fbfaaeccc650174eacce"
         strategy="afterInteractive"
       />
-
-      {/* ===== Validaciones Zoho ===== */}
       <Script id="zoho-validators" strategy="afterInteractive">
         {`function rccallback6988454000000575779(){var r=document.getElementById('recap6988454000000575779');if(r)r.setAttribute('captcha-verified','true');var e=document.getElementById('recapErr6988454000000575779');if(e&&e.style.visibility==='visible')e.style.visibility='hidden';}
-        function reCaptchaAlert6988454000000575779(){var r=document.getElementById('recap6988454000000575779');if(r&&r.getAttribute('captcha-verified')!=='true'){var e=document.getElementById('recapErr6988454000000575779');if(e)e.style.visibility='visible';return false;}return true;}
-        function validateEmail6988454000000575779(){var f=document.forms['WebToLeads6988454000000575779'];if(!f)return true;var eFld=f.querySelectorAll('[name="Email"],[ftype="email"]');for(var i=0;i<eFld.length;i++){var v=(eFld[i].value||'').trim();if(v.length){var a=v.indexOf('@'),d=v.lastIndexOf('.');if(a<1||d<a+2||d+2>=v.length){alert('Introduzca una dirección de correo electrónico válida.');eFld[i].focus();return false;}}}return true;}
-        function checkMandatory6988454000000575779(e){var f=document.forms['WebToLeads6988454000000575779'];if(!f)return true;var m=['Company','First Name','Last Name','Email','City','LEADCF3'],l=['Empresa','Nombre','Apellido','Correo electrónico','Ciudad','Mensaje'];for(var i=0;i<m.length;i++){var o=f[m[i]];if(o){var v=(o.value||'').trim();if(!v){alert(l[i]+' no puede estar vacío.');o.focus();if(e)e.preventDefault();return false;}}}if(!validateEmail6988454000000575779()){if(e)e.preventDefault();return false;}if(!reCaptchaAlert6988454000000575779()){if(e)e.preventDefault();return false;}var b=document.querySelector('.crmWebToEntityForm .formsubmit,button[type="submit"]');if(b)b.setAttribute('disabled','true');return true;}
-        window.addEventListener('DOMContentLoaded',function(){var f=document.getElementById('webform6988454000000575779');if(f)f.addEventListener('submit',checkMandatory6988454000000575779);});`}
-      </Script>
-
-      {/* ====== JSON-LD ====== */}
-      <Script id="ld-json-org" type="application/ld+json" strategy="afterInteractive">
-        {JSON.stringify({
-          "@context": "https://schema.org",
-          "@type": "Organization",
-          name: "Echevensko",
-          url: "https://magiaimaginacion.cl/",
-          logo: "https://magiaimaginacion.cl/og-cover.jpg",
-          contactPoint: [{ "@type": "ContactPoint", contactType: "sales", email: "info@echevensko.com", telephone: "+56 9 2008 0031", areaServed: "CL" }],
-          sameAs: ["https://instagram.com/cristobalechevensko"],
-        })}
+function reCaptchaAlert6988454000000575779(){var r=document.getElementById('recap6988454000000575779');if(r&&r.getAttribute('captcha-verified')!=='true'){var e=document.getElementById('recapErr6988454000000575779');if(e)e.style.visibility='visible';return false;}return true;}
+function validateEmail6988454000000575779(){var f=document.forms['WebToLeads6988454000000575779'];if(!f)return true;var eFld=f.querySelectorAll('[name="Email"],[ftype="email"]');for(var i=0;i<eFld.length;i++){var v=(eFld[i].value||'').trim();if(v.length){var a=v.indexOf('@'),d=v.lastIndexOf('.');if(a<1||d<a+2||d+2>=v.length){alert('Introduzca una dirección de correo electrónico válida.');eFld[i].focus();return false;}}}return true;}
+function checkMandatory6988454000000575779(e){var f=document.forms['WebToLeads6988454000000575779'];if(!f)return true;var m=['Company','First Name','Last Name','Email','City','LEADCF3'],l=['Empresa','Nombre','Apellido','Correo electrónico','Ciudad','Mensaje'];for(var i=0;i<m.length;i++){var o=f[m[i]];if(o){var v=(o.value||'').trim();if(!v){alert(l[i]+' no puede estar vacío.');o.focus();if(e)e.preventDefault();return false;}}}if(!validateEmail6988454000000575779()){if(e)e.preventDefault();return false;}if(!reCaptchaAlert6988454000000575779()){if(e)e.preventDefault();return false;}var b=document.querySelector('.crmWebToEntityForm .formsubmit,button[type="submit"]');if(b)b.setAttribute('disabled','true');return true;}
+window.addEventListener('DOMContentLoaded',function(){var f=document.getElementById('webform6988454000000575779');if(f)f.addEventListener('submit',checkMandatory6988454000000575779);});`}
       </Script>
 
       {/* HEADER */}
@@ -139,10 +69,7 @@ export default function MagiaImaginacionLanding() {
         <section className="relative overflow-hidden">
           <div className="absolute inset-0">
             <div className="absolute inset-0 bg-gradient-to-b from-amber-50 to-transparent" />
-            <div
-              aria-hidden
-              className="absolute inset-0 bg-[url('/images/echevensko_web_foto_2.jpg')] bg-cover bg-center opacity-10"
-            />
+            <div aria-hidden className="absolute inset-0 bg-[url('/images/echevensko_web_foto_2.jpg')] bg-cover bg-center opacity-10" />
           </div>
 
           <div className="relative mx-auto max-w-6xl px-4 py-20 md:py-28">
@@ -150,34 +77,21 @@ export default function MagiaImaginacionLanding() {
               <div>
                 <Badge className="mb-4">B2B · Cultura & Bienestar</Badge>
                 <h1 className="text-4xl md:text-5xl font-extrabold leading-tight tracking-tight">
-                  Eleva <span className="text-amber-600">la imaginación</span> y el
-                  rendimiento de tu equipo
+                  Eleva <span className="text-amber-600">la imaginación</span> y el rendimiento de tu equipo
                 </h1>
                 <p className="mt-4 text-lg text-neutral-700">
-                  Charla-espectáculo corporativa presentada por{" "}
-                  <strong>Cristóbal Echevensko</strong> para organizaciones que
-                  buscan mejorar clima, engagement y creatividad. Entretenida,
-                  práctica y memorable, con aplicación inmediata en el día a día.
+                  Charla-espectáculo corporativa presentada por <strong>Cristóbal Echevensko</strong> para organizaciones que
+                  buscan mejorar clima, engagement y creatividad. Entretenida, práctica y memorable, con aplicación inmediata.
                 </p>
                 <div className="mt-6 flex flex-col sm:flex-row gap-3">
-                  <Button size="lg" className="rounded-2xl" asChild>
-                    <a href="#contacto">Reservar charla</a>
-                  </Button>
-                  <Button size="lg" variant="outline" className="rounded-2xl" asChild>
-                    <a href="#valor">Ver valor y alcance</a>
-                  </Button>
+                  <Button size="lg" className="rounded-2xl" asChild><a href="#contacto">Reservar charla</a></Button>
+                  <Button size="lg" variant="outline" className="rounded-2xl" asChild><a href="#valor">Ver valor y alcance</a></Button>
                 </div>
 
                 <div className="mt-6 flex flex-wrap items-center gap-4 text-sm text-neutral-600">
-                  <div className="flex items-center gap-1">
-                    <Star className="h-4 w-4 fill-amber-500 stroke-amber-500" aria-hidden /> Altas valoraciones
-                  </div>
-                  <div className="flex items-center gap-1">
-                    <Users className="h-4 w-4" aria-hidden /> Miles de asistentes
-                  </div>
-                  <div className="flex items-center gap-1">
-                    <Trophy className="h-4 w-4" aria-hidden /> Recomendado por empresas
-                  </div>
+                  <div className="flex items-center gap-1"><Star className="h-4 w-4 fill-amber-500 stroke-amber-500" aria-hidden /> Altas valoraciones</div>
+                  <div className="flex items-center gap-1"><Users className="h-4 w-4" aria-hidden /> Miles de asistentes</div>
+                  <div className="flex items-center gap-1"><Trophy className="h-4 w-4" aria-hidden /> Recomendado por empresas</div>
                 </div>
               </div>
 
@@ -198,15 +112,9 @@ export default function MagiaImaginacionLanding() {
                   </Card>
                 </div>
                 <div className="mt-4 grid grid-cols-3 gap-3 text-sm">
-                  <div className="flex items-center gap-2">
-                    <Timer className="h-4 w-4" aria-hidden /> 60–75 min
-                  </div>
-                  <div className="flex items-center gap-2">
-                    <Building2 className="h-4 w-4" aria-hidden /> Presencial / Online
-                  </div>
-                  <div className="flex items-center gap-2">
-                    <Globe2 className="h-4 w-4" aria-hidden /> ES / EN opcional
-                  </div>
+                  <div className="flex items-center gap-2"><Timer className="h-4 w-4" aria-hidden /> 60–75 min</div>
+                  <div className="flex items-center gap-2"><Building2 className="h-4 w-4" aria-hidden /> Presencial / Online</div>
+                  <div className="flex items-center gap-2"><Globe2 className="h-4 w-4" aria-hidden /> ES / EN opcional</div>
                 </div>
               </div>
             </div>
@@ -220,9 +128,7 @@ export default function MagiaImaginacionLanding() {
               <h2 className="text-3xl font-bold leading-tight">
                 ¿Por qué llevar <span className="text-amber-700">La Magia de la Imaginación</span> a tu organización?
               </h2>
-              <p className="mt-4 text-neutral-700">
-                Diseñado para RR.HH., People, Cultura y Liderazgo: impacto real en clima, foco y productividad.
-              </p>
+              <p className="mt-4 text-neutral-700">Diseñado para RR.HH., People, Cultura y Liderazgo: impacto real en clima, foco y productividad.</p>
             </div>
             <div className="md:col-span-7 grid sm:grid-cols-2 gap-4">
               {[
@@ -232,12 +138,8 @@ export default function MagiaImaginacionLanding() {
                 { title: "Engagement y propósito", desc: "Reconecta a las personas con su potencial y el sentido del trabajo." },
               ].map((b, i) => (
                 <Card key={i} className="rounded-2xl">
-                  <CardHeader className="pb-2">
-                    <CardTitle className="text-base">{b.title}</CardTitle>
-                  </CardHeader>
-                  <CardContent className="pt-0 text-sm text-neutral-700">
-                    {b.desc}
-                  </CardContent>
+                  <CardHeader className="pb-2"><CardTitle className="text-base">{b.title}</CardTitle></CardHeader>
+                  <CardContent className="pt-0 text-sm text-neutral-700">{b.desc}</CardContent>
                 </Card>
               ))}
             </div>
@@ -250,12 +152,8 @@ export default function MagiaImaginacionLanding() {
             <div className="grid lg:grid-cols-2 gap-10 items-start">
               <div>
                 <Badge className="mb-3">Un recurso innovador para potenciar equipos en tu empresa</Badge>
-                <h2 className="text-3xl font-bold">
-                  La Magia de la Imaginación | Charla corporativa para equipos.
-                </h2>
-                <p className="mt-2 text-neutral-700">
-                  Conoce cómo esta experiencia puede integrarse a iniciativas de bienestar, liderazgo y cultura organizacional.
-                </p>
+                <h2 className="text-3xl font-bold">La Magia de la Imaginación | Charla corporativa para equipos.</h2>
+                <p className="mt-2 text-neutral-700">Conoce cómo esta experiencia puede integrarse a iniciativas de bienestar, liderazgo y cultura organizacional.</p>
                 <div className="mt-6 rounded-2xl overflow-hidden border">
                   <div className="aspect-video">
                     <iframe
@@ -274,30 +172,16 @@ export default function MagiaImaginacionLanding() {
 
               <div>
                 <h3 className="text-xl font-semibold">Momentos que importan</h3>
-                <p className="mt-2 text-neutral-700">
-                  Escenas reales que reflejan participación, foco y energía en contextos corporativos.
-                </p>
+                <p className="mt-2 text-neutral-700">Escenas reales que reflejan participación, foco y energía en contextos corporativos.</p>
                 <div className="mt-6 grid grid-cols-1 sm:grid-cols-2 gap-4">
                   <Card className="rounded-2xl overflow-hidden">
                     <CardContent className="p-0">
-                      <Image
-                        src="/images/echevensko_foto3.jpg"
-                        alt="Auditorio atento durante la charla corporativa"
-                        width={800}
-                        height={600}
-                        className="w-full h-56 object-cover"
-                      />
+                      <Image src="/images/echevensko_foto3.jpg" alt="Auditorio atento durante la charla corporativa" width={800} height={600} className="w-full h-56 object-cover" />
                     </CardContent>
                   </Card>
                   <Card className="rounded-2xl overflow-hidden">
                     <CardContent className="p-0">
-                      <Image
-                        src="/images/echevensko_foto4.jpg"
-                        alt="Dinámica participativa con equipos"
-                        width={800}
-                        height={600}
-                        className="w-full h-56 object-cover"
-                      />
+                      <Image src="/images/echevensko_foto4.jpg" alt="Dinámica participativa con equipos" width={800} height={600} className="w-full h-56 object-cover" />
                     </CardContent>
                   </Card>
                 </div>
@@ -307,9 +191,7 @@ export default function MagiaImaginacionLanding() {
                   <li className="flex gap-2"><Check className="h-4 w-4 mt-0.5" aria-hidden /> Cobertura nacional y Latam, presencial u online.</li>
                 </ul>
                 <div className="mt-6">
-                  <Button asChild className="rounded-2xl">
-                    <a href="#contacto">Solicitar propuesta para RR.HH.</a>
-                  </Button>
+                  <Button asChild className="rounded-2xl"><a href="#contacto">Solicitar propuesta para RR.HH.</a></Button>
                 </div>
               </div>
             </div>
@@ -330,9 +212,7 @@ export default function MagiaImaginacionLanding() {
             </div>
             <div className="mt-6 flex flex-wrap gap-2" aria-label="Industrias">
               {["Colegios","Fundaciones","Empresas","Corporaciones","Universidades","Municipalidades","Salud","Retail","Tecnología","Startups"].map((tag) => (
-                <Badge key={tag} variant="secondary" className="rounded-full">
-                  {tag}
-                </Badge>
+                <Badge key={tag} variant="secondary" className="rounded-full">{tag}</Badge>
               ))}
             </div>
           </div>
@@ -342,9 +222,7 @@ export default function MagiaImaginacionLanding() {
         <section id="estructura" className="bg-white border-y">
           <div className="mx-auto max-w-6xl px-4 py-16">
             <h2 className="text-3xl font-bold">Contenido del espectáculo corporativo</h2>
-            <p className="mt-3 text-neutral-700 max-w-3xl">
-              Una charla entretenida y útil en tres actos, con historias, humor y ejercicios prácticos.
-            </p>
+            <p className="mt-3 text-neutral-700 max-w-3xl">Una charla entretenida y útil en tres actos, con historias, humor y ejercicios prácticos.</p>
             <div className="mt-8 grid md:grid-cols-3 gap-4">
               {[
                 { title: "Acto I – Potencial interno", points: ["Autoimagen y autoestima práctica","Cambiar actitud para cambiar realidad"] },
@@ -356,9 +234,7 @@ export default function MagiaImaginacionLanding() {
                   <CardContent className="text-sm text-neutral-700">
                     <ul className="space-y-2">
                       {col.points.map((p, j) => (
-                        <li key={j} className="flex items-start gap-2">
-                          <Check className="h-4 w-4 mt-0.5" aria-hidden /> {p}
-                        </li>
+                        <li key={j} className="flex items-start gap-2"><Check className="h-4 w-4 mt-0.5" aria-hidden /> {p}</li>
                       ))}
                     </ul>
                   </CardContent>
@@ -387,9 +263,7 @@ export default function MagiaImaginacionLanding() {
           <div className="flex items-end justify-between flex-wrap gap-4">
             <div>
               <h2 className="text-3xl font-bold">Valor y alcance</h2>
-              <p className="mt-2 text-neutral-700">
-                Un solo plan claro para simplificar la decisión. *Viáticos o traslados pueden aplicar.
-              </p>
+              <p className="mt-2 text-neutral-700">Un solo plan claro para simplificar la decisión. *Viáticos o traslados pueden aplicar.</p>
             </div>
             <Badge variant="secondary">ES/EN · Presencial u Online</Badge>
           </div>
@@ -412,29 +286,19 @@ export default function MagiaImaginacionLanding() {
                     "Guía práctica 7 días para equipos",
                     "Reporte de feedback post-evento",
                   ].map((f) => (
-                    <li key={f} className="flex gap-2">
-                      <Check className="h-4 w-4 mt-0.5" aria-hidden />
-                      {f}
-                    </li>
+                    <li key={f} className="flex gap-2"><Check className="h-4 w-4 mt-0.5" aria-hidden />{f}</li>
                   ))}
                 </ul>
 
                 <div className="mt-4 rounded-xl border border-amber-200 bg-amber-50 px-4 py-3 text-sm text-amber-900">
-                  💡 Dependiendo de la magnitud del evento y las necesidades específicas,
-                  podemos evaluar adaptaciones o versiones más acotadas del plan con un valor menor.
+                  💡 Dependiendo de la magnitud del evento y las necesidades específicas, podemos evaluar adaptaciones o versiones más acotadas del plan con un valor menor.
                 </div>
 
                 <div className="mt-6 flex flex-wrap gap-3">
-                  <Button asChild className="rounded-2xl">
-                    <a href="#contacto">Reservar</a>
-                  </Button>
-                  <Button asChild variant="outline" className="rounded-2xl">
-                    <a href="#faq">Ver condiciones</a>
-                  </Button>
+                  <Button asChild className="rounded-2xl"><a href="#contacto">Reservar</a></Button>
+                  <Button asChild variant="outline" className="rounded-2xl"><a href="#faq">Ver condiciones</a></Button>
                 </div>
-                <p className="text-xs text-neutral-500 mt-4">
-                  *Factura electrónica y contrato de servicios. Precio no incluye eventuales viáticos.
-                </p>
+                <p className="text-xs text-neutral-500 mt-4">*Factura electrónica y contrato de servicios. Precio no incluye eventuales viáticos.</p>
               </CardContent>
             </Card>
 
@@ -469,12 +333,9 @@ export default function MagiaImaginacionLanding() {
 
             <div className="mt-8 grid md:grid-cols-3 gap-4">
               {[
-                { name: "Ana María Cooper", role: "Líder de Personas",
-                  quote: "Interactividad, claridad y herramientas concretas. Al día siguiente mi equipo aplicó la técnica." },
-                { name: "Sergio Barriga", role: "Gerente Comercial",
-                  quote: "Dinámica y directa. 100% recomendable para kickoffs y ciclos comerciales." },
-                { name: "Francisca Sánchez", role: "People Partner",
-                  quote: "Llegamos con carga y salimos con foco y energía. Impacto real en el ánimo del equipo." },
+                { name: "Ana María Cooper", role: "Líder de Personas", quote: "Interactividad, claridad y herramientas concretas. Al día siguiente mi equipo aplicó la técnica." },
+                { name: "Sergio Barriga", role: "Gerente Comercial", quote: "Dinámica y directa. 100% recomendable para kickoffs y ciclos comerciales." },
+                { name: "Francisca Sánchez", role: "People Partner", quote: "Llegamos con carga y salimos con foco y energía. Impacto real en el ánimo del equipo." },
               ].map((t, i) => (
                 <Card key={i} className="rounded-2xl">
                   <CardContent className="pt-6">
@@ -486,9 +347,7 @@ export default function MagiaImaginacionLanding() {
               ))}
             </div>
 
-            <p className="text-xs text-neutral-500 mt-6">
-              *Testimonios reales de asistentes, adaptados al contexto corporativo.
-            </p>
+            <p className="text-xs text-neutral-500 mt-6">*Testimonios reales de asistentes, adaptados al contexto corporativo.</p>
           </div>
         </section>
 
@@ -498,17 +357,11 @@ export default function MagiaImaginacionLanding() {
             <CardContent className="p-8 md:p-10 grid md:grid-cols-2 gap-8 items-center">
               <div>
                 <h3 className="text-2xl font-bold">¿Por qué elegir La Magia de la Imaginación?</h3>
-                <p className="mt-2 text-neutral-700">
-                  Experiencia validada en Chile y Latam. Adaptada al lenguaje corporativo: entretenida, práctica y con aplicación inmediata.
-                </p>
+                <p className="mt-2 text-neutral-700">Experiencia validada en Chile y Latam. Adaptada al lenguaje corporativo: entretenida, práctica y con aplicación inmediata.</p>
               </div>
               <div className="flex gap-3">
-                <Button asChild size="lg" className="rounded-2xl w-full md:w-auto">
-                  <a href="#contacto">Quiero cotizar</a>
-                </Button>
-                <Button asChild size="lg" variant="outline" className="rounded-2xl w-full md:w-auto">
-                  <a href="#faq">Ver preguntas frecuentes</a>
-                </Button>
+                <Button asChild size="lg" className="rounded-2xl w-full md:w-auto"><a href="#contacto">Quiero cotizar</a></Button>
+                <Button asChild size="lg" variant="outline" className="rounded-2xl w-full md:w-auto"><a href="#faq">Ver preguntas frecuentes</a></Button>
               </div>
             </CardContent>
           </Card>
@@ -536,7 +389,7 @@ export default function MagiaImaginacionLanding() {
           </div>
         </section>
 
-        {/* CONTACTO (Zoho actualizado) */}
+        {/* CONTACTO */}
         <section id="contacto" className="mx-auto max-w-6xl px-4 py-16">
           <div className="grid md:grid-cols-5 gap-8">
             <div className="md:col-span-3">
@@ -553,14 +406,12 @@ export default function MagiaImaginacionLanding() {
                 method="POST"
                 acceptCharset="UTF-8"
               >
-                {/* ====== Hidden obligatorios Zoho (NUEVOS) ====== */}
                 <input type="text" style={{ display: "none" }} name="xnQsjsdp" value="d321a76473bf7648453467a2131c0a1d5768c33d84662f26ac77cb14438c74e8" />
                 <input type="hidden" name="zc_gad" id="zc_gad" value="" />
                 <input type="text" style={{ display: "none" }} name="xmIwtLD" value="93151026649bfc5084c55d3fcd41373aa77416d23f7811637147f89e7f29f1d422cb33569091b8569a5a49a3708e46f0" />
                 <input type="text" style={{ display: "none" }} name="actionType" value="TGVhZHM=" />
                 <input type="text" style={{ display: "none" }} name="returnURL" value="https://magiaimaginacion.cl/gracias" />
 
-                {/* ====== Campos visibles (mismo diseño) ====== */}
                 <div className="grid sm:grid-cols-2 gap-3">
                   <Input name="First Name" placeholder="Nombre" required />
                   <Input name="Last Name" placeholder="Apellido" required />
@@ -592,17 +443,10 @@ export default function MagiaImaginacionLanding() {
                   required
                 />
 
-                {/* ====== Selects ocultos de origen (igual que snippet) ====== */}
+                {/* Selects ocultos de origen */}
                 <div className="wfrm_fld_dpNn" aria-hidden>
                   <label className="sr-only" htmlFor="LEADCF5">Echevensko</label>
-                  <select
-                    id="LEADCF5"
-                    name="LEADCF5"
-                    className="hidden"
-                    defaultValue="Echevensko"
-                    onChange={() => { /* preservado por compatibilidad */ }}
-                    aria-label="LEADCF5"
-                  >
+                  <select id="LEADCF5" name="LEADCF5" className="hidden" defaultValue="Echevensko" aria-label="LEADCF5">
                     <option value="-None-">-None-</option>
                     <option value="Tronx-Group">Tronx-Group</option>
                     <option value="Dekaelo">Dekaelo</option>
@@ -616,14 +460,7 @@ export default function MagiaImaginacionLanding() {
 
                 <div className="wfrm_fld_dpNn" aria-hidden>
                   <label className="sr-only" htmlFor="LEADCF9">Lead_Origen</label>
-                  <select
-                    id="LEADCF9"
-                    name="LEADCF9"
-                    className="hidden"
-                    defaultValue="magiaimaginacion.cl"
-                    onChange={() => { /* preservado por compatibilidad */ }}
-                    aria-label="LEADCF9"
-                  >
+                  <select id="LEADCF9" name="LEADCF9" className="hidden" defaultValue="magiaimaginacion.cl" aria-label="LEADCF9">
                     <option value="-None-">-None-</option>
                     <option value="plan.dekaelomedia.com">plan.dekaelomedia.com</option>
                     <option value="tronxgroup.com/contacto">tronxgroup.com/contacto</option>
@@ -637,10 +474,10 @@ export default function MagiaImaginacionLanding() {
                   </select>
                 </div>
 
-                {/* ====== Honeypot ====== */}
+                {/* Honeypot */}
                 <input type="hidden" name="aG9uZXlwb3Q" value="" />
 
-                {/* Checkbox de privacidad/condiciones */}
+                {/* Privacidad */}
                 <label className="flex items-start gap-2 text-sm text-neutral-700">
                   <input type="checkbox" required />
                   <span>
@@ -649,7 +486,7 @@ export default function MagiaImaginacionLanding() {
                   </span>
                 </label>
 
-                {/* === reCAPTCHA (v2 Checkbox) — sitekey NUEVO === */}
+                {/* reCAPTCHA */}
                 <div className="mt-2">
                   <div
                     id="recap6988454000000575779"
@@ -659,32 +496,22 @@ export default function MagiaImaginacionLanding() {
                     data-callback="rccallback6988454000000575779"
                     data-size="normal"
                     aria-label="Verificación reCAPTCHA"
+                    // atributo usado por el validador
+                    // @ts-ignore
                     captcha-verified="false"
                   />
-                  <div
-                    id="recapErr6988454000000575779"
-                    style={{ fontSize: 12, color: "red", visibility: "hidden" }}
-                  >
+                  <div id="recapErr6988454000000575779" style={{ fontSize: 12, color: "red", visibility: "hidden" }}>
                     Error en validación de Captcha. Si no es un robot, inténtelo de nuevo.
                   </div>
                 </div>
 
                 <div className="flex flex-wrap gap-3 mt-4">
-                  <Button className="rounded-2xl formsubmit" type="submit">
-                    Enviar consulta
+                  <Button className="rounded-2xl formsubmit" type="submit">Enviar consulta</Button>
+                  <Button asChild variant="outline" className="rounded-2xl">
+                    <a href="mailto:info@echevensko.com?subject=Cotizaci%C3%B3n%20charla%20corporativa">O escríbenos por email</a>
                   </Button>
                   <Button asChild variant="outline" className="rounded-2xl">
-                    <a href="mailto:info@echevensko.com?subject=Cotizaci%C3%B3n%20charla%20corporativa">
-                      O escríbenos por email
-                    </a>
-                  </Button>
-                  <Button asChild variant="outline" className="rounded-2xl">
-                    <a
-                      href="https://wa.me/56920080031?text=Hola%20quiero%20cotizar%20la%20charla%20corporativa%20La%20Magia%20de%20la%20Imaginaci%C3%B3n"
-                      rel="noopener"
-                    >
-                      WhatsApp
-                    </a>
+                    <a href="https://wa.me/56920080031?text=Hola%20quiero%20cotizar%20la%20charla%20corporativa%20La%20Magia%20de%20la%20Imaginaci%C3%B3n" rel="noopener">WhatsApp</a>
                   </Button>
                 </div>
 
@@ -697,9 +524,7 @@ export default function MagiaImaginacionLanding() {
 
             <div className="md:col-span-2">
               <Card className="rounded-2xl md:sticky md:top-24">
-                <CardHeader>
-                  <CardTitle>Datos de contacto</CardTitle>
-                </CardHeader>
+                <CardHeader><CardTitle>Datos de contacto</CardTitle></CardHeader>
                 <CardContent className="text-sm text-neutral-700 space-y-3">
                   <p className="flex items-center gap-2"><Mail className="h-4 w-4" aria-hidden /> info@echevensko.com</p>
                   <p className="flex items-center gap-2"><Phone className="h-4 w-4" aria-hidden /> +56 9 2008 0031</p>
@@ -726,20 +551,10 @@ export default function MagiaImaginacionLanding() {
           <p>© {new Date().getFullYear()} Echevensko. Todos los derechos reservados.</p>
           <div className="flex items-center gap-4">
             <a href="/privacidad-condiciones" className="hover:text-neutral-800">Privacidad y Condiciones</a>
-            <a
-              href="https://instagram.com/cristobalechevensko"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="hover:text-neutral-800 inline-flex items-center gap-2"
-            >
+            <a href="https://instagram.com/cristobalechevensko" target="_blank" rel="noopener noreferrer" className="hover:text-neutral-800 inline-flex items-center gap-2">
               <Instagram className="h-4 w-4" aria-hidden /> @cristobalechevensko
             </a>
-            <a
-              href="https://www.linkedin.com/company/la-magia-de-la-imaginacion/"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="hover:text-neutral-800 inline-flex items-center gap-2"
-            >
+            <a href="https://www.linkedin.com/company/la-magia-de-la-imaginacion/" target="_blank" rel="noopener noreferrer" className="hover:text-neutral-800 inline-flex items-center gap-2">
               <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" className="h-4 w-4" aria-hidden>
                 <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.447-2.136 2.942v5.664H9.352V9h3.414v1.561h.048c.476-.9 1.637-1.852 3.372-1.852 3.604 0 4.268 2.372 4.268 5.455v6.288zM5.337 7.433a2.062 2.062 0 11.001-4.124 2.062 2.062 0 01-.001 4.124zM6.993 20.452H3.681V9h3.312v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.225 0z"/>
               </svg>
