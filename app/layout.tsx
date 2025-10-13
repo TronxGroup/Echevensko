@@ -2,66 +2,66 @@
 import "./globals.css";
 import type { ReactNode } from "react";
 import type { Metadata } from "next";
-import Script from "next/script";
 
 export const metadata: Metadata = {
-  title: "Charla corporativa – La Magia de la Imaginación",
-  description: "Echevensko Empresas",
+  title: "La Magia de la Imaginación – Charla Corporativa",
+  description:
+    "Charla-espectáculo motivacional para empresas, colegios y fundaciones. Bienestar, foco y creatividad con Cristóbal Echevensko.",
+  keywords: [
+    "charlas motivacionales",
+    "charlas corporativas",
+    "bienestar laboral",
+    "liderazgo",
+    "creatividad",
+    "Echevensko",
+    "La Magia de la Imaginación",
+  ],
+  openGraph: {
+    type: "website",
+    locale: "es_CL",
+    url: "https://magiaimaginacion.cl",
+    siteName: "La Magia de la Imaginación",
+    title: "La Magia de la Imaginación – Charla Corporativa",
+    description:
+      "Bienestar, foco y creatividad con Cristóbal Echevensko. Presencial u online para equipos y organizaciones.",
+    images: [
+      {
+        url: "/images/og-cover.jpg",
+        width: 1200,
+        height: 630,
+        alt: "La Magia de la Imaginación – Charla Corporativa",
+      },
+    ],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "La Magia de la Imaginación – Charla Corporativa",
+    description:
+      "Charla motivacional con Cristóbal Echevensko. Bienestar, foco y creatividad para equipos.",
+    images: ["/images/og-cover.jpg"],
+  },
   icons: {
     icon: "/images/favicon.png",
     shortcut: "/images/favicon.png",
     apple: "/images/favicon.png",
+  },
+  alternates: {
+    canonical: "https://magiaimaginacion.cl",
+    languages: {
+      "es-CL": "https://magiaimaginacion.cl",
+    },
   },
 };
 
 export default function RootLayout({ children }: { children: ReactNode }) {
   return (
     <html lang="es">
-      <head />
-      <body>
-        {/* Consent Mode v2 (debe cargarse antes que GTM) */}
-        <Script id="consent-mode" strategy="beforeInteractive">
-          {`
-            window.dataLayer = window.dataLayer || [];
-            function gtag(){dataLayer.push(arguments);}
-
-            // Estado por defecto (EU/EEE + UK + EFTA)
-            gtag('consent', 'default', {
-              'ad_storage': 'denied',
-              'analytics_storage': 'denied',
-              'ad_user_data': 'denied',
-              'ad_personalization': 'denied',
-              'region': ['AT','BE','BG','HR','CY','CZ','DK','EE','FI','FR','DE','GR','HU','IE','IT','LV','LT','LU','MT','NL','PL','PT','RO','SK','SI','ES','SE','IS','LI','NO','GB'],
-              'wait_for_update': 500
-            });
-
-            // Recomendaciones de privacidad
-            gtag('set', 'ads_data_redaction', true);
-            gtag('set', 'url_passthrough', true);
-          `}
-        </Script>
-
-        {/* Google Tag Manager (snippet oficial) */}
-        <Script id="gtm" strategy="afterInteractive">
-          {`
-            (function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
-            new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
-            j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
-            'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
-            })(window,document,'script','dataLayer','GTM-MPC5JP6K');
-          `}
-        </Script>
-
-        {/* Fallback sin JS */}
-        <noscript>
-          <iframe
-            src="https://www.googletagmanager.com/ns.html?id=GTM-MPC5JP6K"
-            height="0"
-            width="0"
-            style={{ display: "none", visibility: "hidden" }}
-          />
-        </noscript>
-
+      <head>
+        {/* Metadatos adicionales básicos */}
+        <meta name="theme-color" content="#f59e0b" />
+        <meta name="author" content="Cristóbal Echevensko" />
+      </head>
+      <body className="antialiased bg-white text-neutral-900">
         {children}
       </body>
     </html>
