@@ -1,7 +1,7 @@
-// app/layout.tsx
 import "./globals.css";
 import type { ReactNode } from "react";
 import type { Metadata, Viewport } from "next";
+import Script from "next/script";
 
 export const metadata: Metadata = {
   metadataBase: new URL("https://magiaimaginacion.cl"),
@@ -64,7 +64,23 @@ export default function RootLayout({ children }: { children: ReactNode }) {
     <html lang="es">
       <head>
         <meta name="author" content="Cristóbal Echevensko" />
+
+        {/* 🔹 Google tag (gtag.js) – cuenta de Google Ads */}
+        <Script
+          id="google-ads-tag"
+          src="https://www.googletagmanager.com/gtag/js?id=AW-17649557831"
+          strategy="afterInteractive"
+        />
+        <Script id="google-ads-init" strategy="afterInteractive">
+          {`
+            window.dataLayer = window.dataLayer || [];
+            function gtag(){dataLayer.push(arguments);}
+            gtag('js', new Date());
+            gtag('config', 'AW-17649557831');
+          `}
+        </Script>
       </head>
+
       <body className="antialiased bg-white text-neutral-900">
         {children}
       </body>
