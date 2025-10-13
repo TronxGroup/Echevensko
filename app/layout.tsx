@@ -1,9 +1,10 @@
 // app/layout.tsx
 import "./globals.css";
 import type { ReactNode } from "react";
-import type { Metadata } from "next";
+import type { Metadata, Viewport } from "next";
 
 export const metadata: Metadata = {
+  metadataBase: new URL("https://magiaimaginacion.cl"),
   title: "La Magia de la Imaginación – Charla Corporativa",
   description:
     "Charla-espectáculo motivacional para empresas, colegios y fundaciones. Bienestar, foco y creatividad con Cristóbal Echevensko.",
@@ -16,17 +17,21 @@ export const metadata: Metadata = {
     "Echevensko",
     "La Magia de la Imaginación",
   ],
+  alternates: {
+    canonical: "/",
+    languages: { "es-CL": "/" },
+  },
   openGraph: {
     type: "website",
     locale: "es_CL",
-    url: "https://magiaimaginacion.cl",
+    url: "/",
     siteName: "La Magia de la Imaginación",
     title: "La Magia de la Imaginación – Charla Corporativa",
     description:
       "Bienestar, foco y creatividad con Cristóbal Echevensko. Presencial u online para equipos y organizaciones.",
     images: [
       {
-        url: "/images/og-cover.jpg",
+        url: "/images/og-cover.jpg", // se resolverá con metadataBase
         width: 1200,
         height: 630,
         alt: "La Magia de la Imaginación – Charla Corporativa",
@@ -45,20 +50,19 @@ export const metadata: Metadata = {
     shortcut: "/images/favicon.png",
     apple: "/images/favicon.png",
   },
-  alternates: {
-    canonical: "https://magiaimaginacion.cl",
-    languages: {
-      "es-CL": "https://magiaimaginacion.cl",
-    },
-  },
+};
+
+export const viewport: Viewport = {
+  themeColor: "#f59e0b",
+  width: "device-width",
+  initialScale: 1,
+  maximumScale: 1,
 };
 
 export default function RootLayout({ children }: { children: ReactNode }) {
   return (
     <html lang="es">
       <head>
-        {/* Metadatos adicionales básicos */}
-        <meta name="theme-color" content="#f59e0b" />
         <meta name="author" content="Cristóbal Echevensko" />
       </head>
       <body className="antialiased bg-white text-neutral-900">
