@@ -1,4 +1,4 @@
-// app/page.tsx  (Landing principal para magiaimaginacion.cl)
+// app/page.tsx  — Landing principal magiaimaginacion.cl
 import React from "react";
 import Script from "next/script";
 import Image from "next/image";
@@ -25,8 +25,11 @@ import {
   Instagram,
 } from "lucide-react";
 
-// ====== SEO (Next.js App Router) ======
+// ====== SEO ======
+export const dynamic = "force-static";
+
 export const metadata = {
+  metadataBase: new URL("https://magiaimaginacion.cl"),
   title: "Charlas corporativas | La Magia de la Imaginación",
   description:
     "Charla-espectáculo para empresas: bienestar, foco y creatividad. Presencial/online. Cotiza tu fecha.",
@@ -78,116 +81,28 @@ export const metadata = {
   },
 };
 
+// ====== PÁGINA ======
 export default function MagiaImaginacionLanding() {
   return (
     <div className="min-h-screen bg-neutral-50 text-neutral-900">
-      {/* reCAPTCHA v2 (checkbox) */}
-      <Script
-        src="https://www.google.com/recaptcha/api.js"
-        strategy="afterInteractive"
-      />
-
-      {/* ====== Zoho WebForm Analytics (nuevo) ====== */}
+      {/* ===== reCAPTCHA y Zoho ===== */}
+      <Script src="https://www.google.com/recaptcha/api.js" strategy="afterInteractive" />
       <Script
         id="zoho-wf-analytics"
         src="https://crm.zohopublic.com/crm/WebFormAnalyticsServeServlet?rid=f006b969b9c6cbbbe3969721beab6c3d89e0c5e48d40c0525a7a34265ca323e18eeae21df5d1c6ef245999914dd58c44gid6f3f1db35c40eff13bb84beb39cf749a6051bed7833ac7f134b5546d13da0e90gide27c6c0e33783fb81b1cf6b3871c958aa4c6fd6cb76e4ffc99aaa8de844b238dgid49c5889d55ad8c6be2f4d43d80c30a404bc25e2491335730f0c35e68fb019f72&tw=f3ee672cf8723ef1e80c6500554b89304f263dc5a9a7fbfaaeccc650174eacce"
         strategy="afterInteractive"
       />
 
-      {/* ====== Validaciones Zoho (adaptadas al ID nuevo y a reCAPTCHA) ====== */}
+      {/* ===== Validaciones Zoho ===== */}
       <Script id="zoho-validators" strategy="afterInteractive">
-        {`
-          function rccallback6988454000000575779(){
-            var recap = document.getElementById('recap6988454000000575779');
-            if(recap){ recap.setAttribute('captcha-verified', 'true'); }
-            var err = document.getElementById('recapErr6988454000000575779');
-            if(err && err.style.visibility === 'visible'){ err.style.visibility = 'hidden'; }
-          }
-          function reCaptchaAlert6988454000000575779(){
-            var recap = document.getElementById('recap6988454000000575779');
-            if(recap && recap.getAttribute('captcha-verified') !== 'true'){
-              var err = document.getElementById('recapErr6988454000000575779');
-              if(err){ err.style.visibility = 'visible'; }
-              return false;
-            }
-            return true;
-          }
-          function validateEmail6988454000000575779(){
-            var form = document.forms['WebToLeads6988454000000575779'];
-            if(!form) return true;
-            var emailFld = form.querySelectorAll('[name="Email"],[ftype="email"]');
-            for(var i=0; i<emailFld.length; i++){
-              var emailVal = (emailFld[i].value || '').trim();
-              if(emailVal.length){
-                var atpos = emailVal.indexOf('@');
-                var dotpos = emailVal.lastIndexOf('.');
-                if(atpos < 1 || dotpos < atpos + 2 || dotpos + 2 >= emailVal.length){
-                  alert('Introduzca una dirección de correo electrónico válida.');
-                  emailFld[i].focus();
-                  return false;
-                }
-              }
-            }
-            return true;
-          }
-          function checkMandatory6988454000000575779(e){
-            var form = document.forms['WebToLeads6988454000000575779'];
-            if(!form) return true;
-            var mndFileds = ['Company','First Name','Last Name','Email','City','LEADCF3'];
-            var fldLangVal = ['Empresa','Nombre','Apellido','Correo electrónico','Ciudad','Mensaje'];
-            for(var i=0; i<mndFileds.length; i++){
-              var fieldObj = form[mndFileds[i]];
-              if(fieldObj){
-                var val = (fieldObj.value || '').trim();
-                if(!val){
-                  alert(fldLangVal[i] + ' no puede estar vacío.');
-                  fieldObj.focus();
-                  if(e){ e.preventDefault(); }
-                  return false;
-                }
-                if(fieldObj.nodeName === 'SELECT' && fieldObj.value === '-None-'){
-                  alert(fldLangVal[i] + ' no puede ser nulo.');
-                  fieldObj.focus();
-                  if(e){ e.preventDefault(); }
-                  return false;
-                }
-              }
-            }
-            if(!validateEmail6988454000000575779()){
-              if(e){ e.preventDefault(); }
-              return false;
-            }
-            if(!reCaptchaAlert6988454000000575779()){
-              if(e){ e.preventDefault(); }
-              return false;
-            }
-            var submitBtn = document.querySelector('.crmWebToEntityForm .formsubmit, button[type="submit"]');
-            if(submitBtn){ submitBtn.setAttribute('disabled', 'true'); }
-            return true;
-          }
-          function addAriaSelected6988454000000575779(){
-            var optionElem = event?.target;
-            if(!optionElem) return;
-            var previous = optionElem.querySelector('[aria-selected=true]');
-            if(previous){ previous.removeAttribute('aria-selected'); }
-            optionElem.querySelectorAll('option')[optionElem.selectedIndex].ariaSelected = 'true';
-          }
-          window.addEventListener('DOMContentLoaded', function(){
-            var f = document.getElementById('webform6988454000000575779');
-            if(f){
-              f.addEventListener('submit', function(ev){
-                if(!checkMandatory6988454000000575779(ev)){
-                  ev.preventDefault();
-                  return false;
-                }
-                return true;
-              });
-            }
-          });
-        `}
+        {`function rccallback6988454000000575779(){var r=document.getElementById('recap6988454000000575779');if(r)r.setAttribute('captcha-verified','true');var e=document.getElementById('recapErr6988454000000575779');if(e&&e.style.visibility==='visible')e.style.visibility='hidden';}
+        function reCaptchaAlert6988454000000575779(){var r=document.getElementById('recap6988454000000575779');if(r&&r.getAttribute('captcha-verified')!=='true'){var e=document.getElementById('recapErr6988454000000575779');if(e)e.style.visibility='visible';return false;}return true;}
+        function validateEmail6988454000000575779(){var f=document.forms['WebToLeads6988454000000575779'];if(!f)return true;var eFld=f.querySelectorAll('[name="Email"],[ftype="email"]');for(var i=0;i<eFld.length;i++){var v=(eFld[i].value||'').trim();if(v.length){var a=v.indexOf('@'),d=v.lastIndexOf('.');if(a<1||d<a+2||d+2>=v.length){alert('Introduzca una dirección de correo electrónico válida.');eFld[i].focus();return false;}}}return true;}
+        function checkMandatory6988454000000575779(e){var f=document.forms['WebToLeads6988454000000575779'];if(!f)return true;var m=['Company','First Name','Last Name','Email','City','LEADCF3'],l=['Empresa','Nombre','Apellido','Correo electrónico','Ciudad','Mensaje'];for(var i=0;i<m.length;i++){var o=f[m[i]];if(o){var v=(o.value||'').trim();if(!v){alert(l[i]+' no puede estar vacío.');o.focus();if(e)e.preventDefault();return false;}}}if(!validateEmail6988454000000575779()){if(e)e.preventDefault();return false;}if(!reCaptchaAlert6988454000000575779()){if(e)e.preventDefault();return false;}var b=document.querySelector('.crmWebToEntityForm .formsubmit,button[type="submit"]');if(b)b.setAttribute('disabled','true');return true;}
+        window.addEventListener('DOMContentLoaded',function(){var f=document.getElementById('webform6988454000000575779');if(f)f.addEventListener('submit',checkMandatory6988454000000575779);});`}
       </Script>
 
-      {/* ====== JSON-LD SEO (actualizado a magiaimaginacion.cl) ====== */}
+      {/* ====== JSON-LD ====== */}
       <Script id="ld-json-org" type="application/ld+json" strategy="afterInteractive">
         {JSON.stringify({
           "@context": "https://schema.org",
@@ -195,100 +110,19 @@ export default function MagiaImaginacionLanding() {
           name: "Echevensko",
           url: "https://magiaimaginacion.cl/",
           logo: "https://magiaimaginacion.cl/og-cover.jpg",
-          contactPoint: [
-            {
-              "@type": "ContactPoint",
-              contactType: "sales",
-              email: "info@echevensko.com",
-              telephone: "+56 9 2008 0031",
-              areaServed: "CL",
-            },
-          ],
+          contactPoint: [{ "@type": "ContactPoint", contactType: "sales", email: "info@echevensko.com", telephone: "+56 9 2008 0031", areaServed: "CL" }],
           sameAs: ["https://instagram.com/cristobalechevensko"],
         })}
       </Script>
 
-      <Script id="ld-json-website" type="application/ld+json" strategy="afterInteractive">
-        {JSON.stringify({
-          "@context": "https://schema.org",
-          "@type": "WebSite",
-          url: "https://magiaimaginacion.cl/",
-          name: "La Magia de la Imaginación",
-          potentialAction: {
-            "@type": "SearchAction",
-            target: "https://magiaimaginacion.cl/?q={search_term_string}",
-            "query-input": "required name=search_term_string",
-          },
-        })}
-      </Script>
-
-      <Script id="ld-json-service" type="application/ld+json" strategy="afterInteractive">
-        {JSON.stringify({
-          "@context": "https://schema.org",
-          "@type": "Service",
-          name: "La Magia de la Imaginación — Charla corporativa",
-          provider: { "@type": "Organization", name: "Echevensko" },
-          areaServed: ["CL", "LATAM"],
-          audience: {
-            "@type": "Audience",
-            audienceType: ["Empresas", "Colegios", "Fundaciones", "Universidades"],
-          },
-          serviceType: "Corporate Motivational Talk",
-          offers: {
-            "@type": "Offer",
-            priceCurrency: "CLF",
-            price: "32",
-            availability: "https://schema.org/InStock",
-            url: "https://magiaimaginacion.cl/#valor",
-          },
-        })}
-      </Script>
-
-      <Script id="ld-json-breadcrumb" type="application/ld+json" strategy="afterInteractive">
-        {JSON.stringify({
-          "@context": "https://schema.org",
-          "@type": "BreadcrumbList",
-          itemListElement: [
-            { "@type": "ListItem", position: 1, name: "Inicio", item: "https://magiaimaginacion.cl/" },
-            { "@type": "ListItem", position: 2, name: "Charlas corporativas", item: "https://magiaimaginacion.cl/#valor" },
-          ],
-        })}
-      </Script>
-
-      <Script id="ld-json-faq" type="application/ld+json" strategy="afterInteractive">
-        {JSON.stringify({
-          "@context": "https://schema.org",
-          "@type": "FAQPage",
-          mainEntity: [
-            { "@type": "Question", name: "¿Se puede personalizar para un área o industria?",
-              acceptedAnswer: { "@type": "Answer", text: "Sí. Hacemos un breve discovery y adaptamos ejemplos al negocio." } },
-            { "@type": "Question", name: "¿Qué requerimientos técnicos hay?",
-              acceptedAnswer: { "@type": "Answer", text: "Presencial: proyector/LED y audio. Online: Zoom/Teams y prueba técnica 24 h antes." } },
-            { "@type": "Question", name: "¿Ofrecen factura y contrato?",
-              acceptedAnswer: { "@type": "Answer", text: "Sí, factura electrónica y acuerdo de servicios." } },
-            { "@type": "Question", name: "¿En qué ciudades trabajan?",
-              acceptedAnswer: { "@type": "Answer", text: "Base en Santiago; cobertura nacional y Latam. Viáticos según ciudad/país." } },
-            { "@type": "Question", name: "¿Se puede medir el impacto?",
-              acceptedAnswer: { "@type": "Answer", text: "Encuesta post-evento y reporte de insights para RR.HH." } },
-            { "@type": "Question", name: "¿Idiomas y formatos?",
-              acceptedAnswer: { "@type": "Answer", text: "Español, opción inglés. Presencial u online." } },
-          ],
-        })}
-      </Script>
-
-      {/* NAVBAR */}
+      {/* HEADER */}
       <header className="sticky top-0 z-50 backdrop-blur bg-white/70 border-b">
         <div className="mx-auto max-w-6xl px-4 py-3 flex items-center justify-between">
           <div className="flex items-center gap-3">
-            <Sparkles className="h-6 w-6" aria-hidden />
-            <span className="font-semibold tracking-tight">
-              La Magia de la Imaginación
-            </span>
+            <Sparkles className="h-6 w-6" />
+            <span className="font-semibold tracking-tight">La Magia de la Imaginación</span>
           </div>
-          <nav
-            className="hidden md:flex items-center gap-6 text-sm"
-            aria-label="Navegación principal"
-          >
+          <nav className="hidden md:flex items-center gap-6 text-sm">
             <a href="#por-que" className="hover:text-neutral-600">Impacto</a>
             <a href="#dirigido" className="hover:text-neutral-600">¿A quién va?</a>
             <a href="#estructura" className="hover:text-neutral-600">Contenido</a>
@@ -296,11 +130,7 @@ export default function MagiaImaginacionLanding() {
             <a href="#testimonios" className="hover:text-neutral-600">Testimonios</a>
             <a href="#faq" className="hover:text-neutral-600">FAQ</a>
           </nav>
-          <div className="flex items-center gap-2">
-            <Button asChild size="sm" className="rounded-2xl">
-              <a href="#contacto">Solicitar propuesta</a>
-            </Button>
-          </div>
+          <Button asChild size="sm" className="rounded-2xl"><a href="#contacto">Solicitar propuesta</a></Button>
         </div>
       </header>
 
