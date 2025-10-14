@@ -31,7 +31,7 @@ export const metadata: Metadata = {
       "Bienestar, foco y creatividad con Cristóbal Echevensko. Presencial u online para equipos y organizaciones.",
     images: [
       {
-        url: "/images/og-cover.jpg", // se resolverá con metadataBase
+        url: "/images/og-cover.jpg",
         width: 1200,
         height: 630,
         alt: "La Magia de la Imaginación – Charla Corporativa",
@@ -65,20 +65,28 @@ export default function RootLayout({ children }: { children: ReactNode }) {
       <head>
         <meta name="author" content="Cristóbal Echevensko" />
 
-        {/* 🔹 Google tag (gtag.js) – cuenta de Google Ads */}
+        {/* ========================================================= */}
+        {/* 🔹 Google Tag (unificado para GA4 + Google Ads) */}
+        {/* ========================================================= */}
         <Script
-          id="google-ads-tag"
-          src="https://www.googletagmanager.com/gtag/js?id=AW-17649557831"
+          id="google-tag"
+          src="https://www.googletagmanager.com/gtag/js?id=G-T290GH79DQ"
           strategy="afterInteractive"
         />
-        <Script id="google-ads-init" strategy="afterInteractive">
+        <Script id="google-tag-init" strategy="afterInteractive">
           {`
             window.dataLayer = window.dataLayer || [];
             function gtag(){dataLayer.push(arguments);}
             gtag('js', new Date());
+
+            // Configuración GA4
+            gtag('config', 'G-T290GH79DQ');
+
+            // Configuración Google Ads
             gtag('config', 'AW-17649557831');
           `}
         </Script>
+        {/* ========================================================= */}
       </head>
 
       <body className="antialiased bg-white text-neutral-900">
