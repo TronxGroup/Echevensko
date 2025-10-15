@@ -1,6 +1,7 @@
 // app/gracias/page.tsx
 import React from "react";
 import Link from "next/link";
+import Script from "next/script";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
@@ -13,13 +14,8 @@ export const metadata = {
   title: "¡Gracias! | La Magia de la Imaginación",
   description:
     "Gracias por tu interés. Te contactaremos a la brevedad con la propuesta.",
-  alternates: {
-    canonical: "https://www.magiaimaginacion.cl/gracias",
-  },
-  robots: {
-    index: false, // evitar indexar la página de confirmación
-    follow: false,
-  },
+  alternates: { canonical: "https://www.magiaimaginacion.cl/gracias" },
+  robots: { index: false, follow: false },
   openGraph: {
     type: "website",
     url: "https://www.magiaimaginacion.cl/gracias",
@@ -49,7 +45,18 @@ export const metadata = {
 export default function GraciasPage() {
   return (
     <div className="min-h-[70vh] bg-neutral-50">
-      {/* Header compacto para mantener la identidad */}
+      {/* 🔍 Script opcional para debug: confirma que gtag existe */}
+      <Script id="gtag-check" strategy="afterInteractive">
+        {`
+          if (typeof gtag === 'function') {
+            console.log('✅ Google tag activo (AW-17649557831)');
+          } else {
+            console.warn('⚠️ gtag no detectado');
+          }
+        `}
+      </Script>
+
+      {/* Header compacto */}
       <header className="border-b bg-white/70 backdrop-blur">
         <div className="mx-auto max-w-6xl px-4 py-3 flex items-center justify-between">
           <div className="flex items-center gap-2">
@@ -85,11 +92,7 @@ export default function GraciasPage() {
                 </Link>
               </Button>
 
-              <Button
-                asChild
-                variant="outline"
-                className="rounded-2xl"
-              >
+              <Button asChild variant="outline" className="rounded-2xl">
                 <a
                   href="https://wa.me/56920080031?text=Hola%2C%20acabo%20de%20enviar%20el%20formulario%20en%20magiaimaginacion.cl%20y%20quiero%20coordinar%20una%20charla%20corporativa."
                   rel="noopener"
