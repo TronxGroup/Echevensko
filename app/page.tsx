@@ -1,4 +1,4 @@
-// app/page.tsx — Landing principal magiaimaginacion.cl (versión estable)
+// app/page.tsx — Landing principal magiaimaginacion.cl (versión sin precios)
 "use client";
 
 import React from "react";
@@ -32,17 +32,94 @@ export default function MagiaImaginacionLanding() {
     <div className="min-h-screen bg-neutral-50 text-neutral-900">
       {/* ===== reCAPTCHA y Zoho (cargan en cliente, no bloquean build) ===== */}
       <Script src="https://www.google.com/recaptcha/api.js" strategy="afterInteractive" />
+
+      {/* Analytics Zoho (nuevos datos) */}
       <Script
         id="zoho-wf-analytics"
-        src="https://crm.zohopublic.com/crm/WebFormAnalyticsServeServlet?rid=f006b969b9c6cbbbe3969721beab6c3d89e0c5e48d40c0525a7a34265ca323e18eeae21df5d1c6ef245999914dd58c44gid6f3f1db35c40eff13bb84beb39cf749a6051bed7833ac7f134b5546d13da0e90gide27c6c0e33783fb81b1cf6b3871c958aa4c6fd6cb76e4ffc99aaa8de844b238dgid49c5889d55ad8c6be2f4d43d80c30a404bc25e2491335730f0c35e68fb019f72&tw=f3ee672cf8723ef1e80c6500554b89304f263dc5a9a7fbfaaeccc650174eacce"
+        src="https://crm.zohopublic.com/crm/WebFormAnalyticsServeServlet?rid=fee7c1bafea2661c9997e37c41c59cb445f826a65325d8f5a4739f83e2f0792aa8b373107d7f752fd56da4c13b1e6ea9gid17d84ea467391076102a5e17c4ceb5e46f0e8c97c8e4ec657efda52a847e640egid709883a9fe5c13efc46469418983ea231f3f387d63c04ea294ff27cc49c931b9gid2d12d24eb6184bc462e5506056223c61b3c38aeca8b23b786dd9bdf0ecd58008&tw=a7501812887942453320df557f0aaa2f67d7ee2c72ff98af67a179a0a7f4553c"
         strategy="afterInteractive"
       />
+
+      {/* Validadores Zoho (nuevos) */}
       <Script id="zoho-validators" strategy="afterInteractive">
-        {`function rccallback6988454000000575779(){var r=document.getElementById('recap6988454000000575779');if(r)r.setAttribute('captcha-verified','true');var e=document.getElementById('recapErr6988454000000575779');if(e&&e.style.visibility==='visible')e.style.visibility='hidden';}
-function reCaptchaAlert6988454000000575779(){var r=document.getElementById('recap6988454000000575779');if(r&&r.getAttribute('captcha-verified')!=='true'){var e=document.getElementById('recapErr6988454000000575779');if(e)e.style.visibility='visible';return false;}return true;}
-function validateEmail6988454000000575779(){var f=document.forms['WebToLeads6988454000000575779'];if(!f)return true;var eFld=f.querySelectorAll('[name="Email"],[ftype="email"]');for(var i=0;i<eFld.length;i++){var v=(eFld[i].value||'').trim();if(v.length){var a=v.indexOf('@'),d=v.lastIndexOf('.');if(a<1||d<a+2||d+2>=v.length){alert('Introduzca una dirección de correo electrónico válida.');eFld[i].focus();return false;}}}return true;}
-function checkMandatory6988454000000575779(e){var f=document.forms['WebToLeads6988454000000575779'];if(!f)return true;var m=['Company','First Name','Last Name','Email','City','LEADCF3'],l=['Empresa','Nombre','Apellido','Correo electrónico','Ciudad','Mensaje'];for(var i=0;i<m.length;i++){var o=f[m[i]];if(o){var v=(o.value||'').trim();if(!v){alert(l[i]+' no puede estar vacío.');o.focus();if(e)e.preventDefault();return false;}}}if(!validateEmail6988454000000575779()){if(e)e.preventDefault();return false;}if(!reCaptchaAlert6988454000000575779()){if(e)e.preventDefault();return false;}var b=document.querySelector('.crmWebToEntityForm .formsubmit,button[type="submit"]');if(b)b.setAttribute('disabled','true');return true;}
-window.addEventListener('DOMContentLoaded',function(){var f=document.getElementById('webform6988454000000575779');if(f)f.addEventListener('submit',checkMandatory6988454000000575779);});`}
+        {`
+function addAriaSelected6988454000000575779(){
+  var optionElem = event.target;
+  var previousSelectedOption = optionElem.querySelector('[aria-selected=true]');
+  if(previousSelectedOption){ previousSelectedOption.removeAttribute('aria-selected'); }
+  optionElem.querySelectorAll('option')[optionElem.selectedIndex].ariaSelected = 'true';
+}
+
+/* Do not remove this code. */
+function rccallback6988454000000575779(){
+  var el = document.getElementById('recap6988454000000575779');
+  if(el){ el.setAttribute('captcha-verified', true); }
+  var err = document.getElementById('recapErr6988454000000575779');
+  if(err && err.style.visibility === 'visible'){ err.style.visibility = 'hidden'; }
+}
+function reCaptchaAlert6988454000000575779(){
+  var recap = document.getElementById('recap6988454000000575779');
+  if(recap && recap.getAttribute('captcha-verified') == 'false'){
+    var err = document.getElementById('recapErr6988454000000575779');
+    if(err){ err.style.visibility = 'visible'; }
+    return false;
+  }
+  return true;
+}
+function validateEmail6988454000000575779(){
+  var form = document.forms['WebToLeads6988454000000575779'];
+  var emailFld = form.querySelectorAll('[ftype=email]');
+  for(var i=0;i<emailFld.length;i++){
+    var emailVal = emailFld[i].value;
+    if((emailVal.replace(/^\\s+|\\s+$/g,'' )).length != 0){
+      var atpos = emailVal.indexOf('@');
+      var dotpos = emailVal.lastIndexOf('.');
+      if(atpos < 1 || dotpos < atpos + 2 || dotpos + 2 >= emailVal.length){
+        alert('Introduzca una dirección de correo electrónico válida. ');
+        emailFld[i].focus();
+        return false;
+      }
+    }
+  }
+  return true;
+}
+function checkMandatory6988454000000575779(){
+  var mndFileds = new Array('Company','First Name','Last Name','Email','Phone','City','LEADCF3','LEADCF6');
+  var fldLangVal = new Array('Empresa','Nombre','Apellido','Correo electrónico','Teléfono','Ciudad','Mensaje','Modalidad');
+  for(var i=0;i<mndFileds.length;i++){
+    var fieldObj = document.forms['WebToLeads6988454000000575779'][mndFileds[i]];
+    if(fieldObj){
+      if(((fieldObj.value).replace(/^\\s+|\\s+$/g,'' )).length == 0){
+        if(fieldObj.type == 'file'){ alert('Seleccione un archivo para cargar.'); fieldObj.focus(); return false; }
+        alert(fldLangVal[i] + ' no puede estar vacío.');
+        fieldObj.focus(); return false;
+      }else if(fieldObj.nodeName == 'SELECT'){
+        if(fieldObj.options[fieldObj.selectedIndex].value == '-None-'){
+          alert(fldLangVal[i] + ' no puede ser nulo.'); fieldObj.focus(); return false;
+        }
+      }else if(fieldObj.type == 'checkbox'){
+        if(fieldObj.checked == false){ alert('Please accept ' + fldLangVal[i]); fieldObj.focus(); return false; }
+      }
+      try{ if(fieldObj.name == 'Last Name'){ name = fieldObj.value; } }catch(e){}
+    }
+  }
+  if(!validateEmail6988454000000575779()){ return false; }
+  if(!reCaptchaAlert6988454000000575779()){ return false; }
+  var urlparams = new URLSearchParams(window.location.search);
+  if(urlparams.has('service') && (urlparams.get('service') === 'smarturl')){
+    var webform = document.getElementById('webform6988454000000575779');
+    var service = urlparams.get('service');
+    var smarturlfield = document.createElement('input');
+    smarturlfield.setAttribute('type','hidden');
+    smarturlfield.setAttribute('value', service);
+    smarturlfield.setAttribute('name','service');
+    webform.appendChild(smarturlfield);
+  }
+  var sb = document.querySelector('.crmWebToEntityForm .formsubmit');
+  if(sb){ sb.setAttribute('disabled', true); }
+  return true;
+}
+        `}
       </Script>
 
       {/* HEADER */}
@@ -56,7 +133,7 @@ window.addEventListener('DOMContentLoaded',function(){var f=document.getElementB
             <a href="#por-que" className="hover:text-neutral-600">Impacto</a>
             <a href="#dirigido" className="hover:text-neutral-600">¿A quién va?</a>
             <a href="#estructura" className="hover:text-neutral-600">Contenido</a>
-            <a href="#valor" className="hover:text-neutral-600">Valor</a>
+            <a href="#valor" className="hover:text-neutral-600">Propuesta</a>
             <a href="#testimonios" className="hover:text-neutral-600">Testimonios</a>
             <a href="#faq" className="hover:text-neutral-600">FAQ</a>
           </nav>
@@ -85,7 +162,7 @@ window.addEventListener('DOMContentLoaded',function(){var f=document.getElementB
                 </p>
                 <div className="mt-6 flex flex-col sm:flex-row gap-3">
                   <Button size="lg" className="rounded-2xl" asChild><a href="#contacto">Reservar charla</a></Button>
-                  <Button size="lg" variant="outline" className="rounded-2xl" asChild><a href="#valor">Ver valor y alcance</a></Button>
+                  <Button size="lg" variant="outline" className="rounded-2xl" asChild><a href="#valor">Ver propuesta y alcance</a></Button>
                 </div>
 
                 <div className="mt-6 flex flex-wrap items-center gap-4 text-sm text-neutral-600">
@@ -258,12 +335,12 @@ window.addEventListener('DOMContentLoaded',function(){var f=document.getElementB
           </div>
         </section>
 
-        {/* VALOR */}
+        {/* PROPUESTA (antes "Valor") */}
         <section id="valor" className="mx-auto max-w-6xl px-4 py-16">
           <div className="flex items-end justify-between flex-wrap gap-4">
             <div>
-              <h2 className="text-3xl font-bold">Valor y alcance</h2>
-              <p className="mt-2 text-neutral-700">Un solo plan claro para simplificar la decisión. *Viáticos o traslados pueden aplicar.</p>
+              <h2 className="text-3xl font-bold">Propuesta y alcance</h2>
+              <p className="mt-2 text-neutral-700">Plan corporativo claro, adaptable a tu contexto. *Viáticos o traslados pueden aplicar.</p>
             </div>
             <Badge variant="secondary">ES/EN · Presencial u Online</Badge>
           </div>
@@ -272,13 +349,12 @@ window.addEventListener('DOMContentLoaded',function(){var f=document.getElementB
             <Card className="rounded-3xl border-amber-500 shadow-lg">
               <CardHeader>
                 <CardTitle className="flex items-center justify-between">
-                  <span>Plan Único</span>
+                  <span>Plan Corporativo</span>
                   <Badge className="bg-amber-600">Recomendado</Badge>
                 </CardTitle>
               </CardHeader>
               <CardContent>
-                <div className="text-3xl font-extrabold">UF 32</div>
-                <ul className="mt-4 space-y-2 text-sm text-neutral-700">
+                <ul className="mt-1 space-y-2 text-sm text-neutral-700">
                   {[
                     "Charla 60–75 min",
                     "Material PDF resumen",
@@ -291,14 +367,14 @@ window.addEventListener('DOMContentLoaded',function(){var f=document.getElementB
                 </ul>
 
                 <div className="mt-4 rounded-xl border border-amber-200 bg-amber-50 px-4 py-3 text-sm text-amber-900">
-                  💡 Dependiendo de la magnitud del evento y las necesidades específicas, podemos evaluar adaptaciones o versiones más acotadas del plan con un valor menor.
+                  💡 Cuéntanos el alcance (audiencia, modalidad, ciudad) y te enviaremos una propuesta a medida.
                 </div>
 
                 <div className="mt-6 flex flex-wrap gap-3">
-                  <Button asChild className="rounded-2xl"><a href="#contacto">Reservar</a></Button>
+                  <Button asChild className="rounded-2xl"><a href="#contacto">Cotizar</a></Button>
                   <Button asChild variant="outline" className="rounded-2xl"><a href="#faq">Ver condiciones</a></Button>
                 </div>
-                <p className="text-xs text-neutral-500 mt-4">*Factura electrónica y contrato de servicios. Precio no incluye eventuales viáticos.</p>
+                <p className="text-xs text-neutral-500 mt-4">Incluye factura electrónica y contrato de servicios. *Viáticos según ciudad/país.</p>
               </CardContent>
             </Card>
 
@@ -374,7 +450,7 @@ window.addEventListener('DOMContentLoaded',function(){var f=document.getElementB
             <div className="mt-8 grid md:grid-cols-2 gap-6">
               {[
                 { q: "¿Se puede personalizar para un área o industria?", a: "Sí. Hacemos un breve discovery y adaptamos ejemplos al negocio." },
-                { q: "¿Qué requerimientos técnicos hay?", a: "Presencial: proyector/LED y audio. Online: Zoom/Teams y prueba técnica 24 h antes." },
+                { q: "¿Qué requerimientos técnicos hay?", a: "Presencial: proyector/LED y audio. Online: Zoom/Teams y prueba técnica 24 h antes. Nosotros contamos con parlante, micrófono y luces para poder hacer la charla donde sea." },
                 { q: "¿Ofrecen factura y contrato?", a: "Sí, factura electrónica y acuerdo de servicios." },
                 { q: "¿En qué ciudades trabajan?", a: "Base en Santiago; cobertura nacional y Latam. Viáticos según ciudad/país." },
                 { q: "¿Se puede medir el impacto?", a: "Encuesta post-evento y reporte de insights para RR.HH." },
@@ -395,9 +471,10 @@ window.addEventListener('DOMContentLoaded',function(){var f=document.getElementB
             <div className="md:col-span-3">
               <h2 className="text-3xl font-bold">Solicita tu propuesta</h2>
               <p className="mt-2 text-neutral-700">
-                Cuéntanos fecha tentativa, modalidad y tamaño de audiencia. <strong>Valor de referencia: UF 32</strong> (adaptaciones a evaluar según alcance y requerimientos).
+                Cuéntanos fecha tentativa, modalidad y tamaño de audiencia. Te enviaremos una propuesta a medida según tu alcance y necesidades.
               </p>
 
+              {/* === FORMULARIO: mismo diseño, nuevos datos Zoho === */}
               <form
                 className="crmWebToEntityForm mt-6 grid grid-cols-1 gap-3"
                 id="webform6988454000000575779"
@@ -405,30 +482,49 @@ window.addEventListener('DOMContentLoaded',function(){var f=document.getElementB
                 name="WebToLeads6988454000000575779"
                 method="POST"
                 acceptCharset="UTF-8"
+                onSubmit={() => {
+                  // Zoho exige este charset switch en el onSubmit. Lo emulamos aquí:
+                  // @ts-ignore
+                  document.charset = "UTF-8";
+                  // validación ya la maneja checkMandatory... inyectado via Script
+                  // devolvemos true para no bloquear el submit desde React
+                  return true;
+                }}
               >
-                <input type="text" style={{ display: "none" }} name="xnQsjsdp" value="d321a76473bf7648453467a2131c0a1d5768c33d84662f26ac77cb14438c74e8" />
+                {/* Nuevos tokens Zoho */}
+                <input type="text" style={{ display: "none" }} name="xnQsjsdp" value="262358f21ca24f4e670022a44d6a3bef7a3f01e2ca41871145e1340fe759c917" />
                 <input type="hidden" name="zc_gad" id="zc_gad" value="" />
-                <input type="text" style={{ display: "none" }} name="xmIwtLD" value="93151026649bfc5084c55d3fcd41373aa77416d23f7811637147f89e7f29f1d422cb33569091b8569a5a49a3708e46f0" />
+                <input type="text" style={{ display: "none" }} name="xmIwtLD" value="1cb4a097c9fb16a1423586156657ec9743e2fa6ac2ee4419a9fe52186dbe61b9a441224667d017f52ced1af798ef3874" />
                 <input type="text" style={{ display: "none" }} name="actionType" value="TGVhZHM=" />
                 <input type="text" style={{ display: "none" }} name="returnURL" value="https://magiaimaginacion.cl/gracias" />
 
                 <div className="grid sm:grid-cols-2 gap-3">
-                  <Input name="First Name" placeholder="Nombre" required />
-                  <Input name="Last Name" placeholder="Apellido" required />
+                  <Input name="First Name" id="First_Name" placeholder="Nombre" required />
+                  <Input name="Last Name" id="Last_Name" placeholder="Apellido" required />
                 </div>
 
                 <div className="grid sm:grid-cols-2 gap-3">
-                  <Input name="Email" placeholder="Email corporativo" type="email" required />
-                  <Input name="Company" placeholder="Organización/Empresa" required />
+                  <Input name="Email" id="Email" placeholder="Email corporativo" type="email" required /* Zoho valida ftype=email */ ftype="email" />
+                  <Input name="Company" id="Company" placeholder="Organización/Empresa" required />
                 </div>
 
                 <div className="grid sm:grid-cols-2 gap-3">
-                  <Input name="City" placeholder="Ciudad/País" required />
+                  <Input name="Phone" id="Phone" placeholder="Teléfono" required />
+                  <Input name="City" id="City" placeholder="Ciudad/País" required />
+                </div>
+
+                <div className="grid sm:grid-cols-2 gap-3">
                   <select
                     name="LEADCF6"
+                    id="LEADCF6"
                     className="h-10 rounded-md border border-input bg-background px-3 py-2 text-sm"
                     defaultValue="Presencial"
                     aria-label="Modalidad"
+                    onChange={() => {
+                      // coincide con helper de Zoho
+                      // @ts-ignore
+                      if (typeof addAriaSelected6988454000000575779 === "function") addAriaSelected6988454000000575779();
+                    }}
                   >
                     <option value="-None-">-None-</option>
                     <option value="Presencial">Presencial</option>
@@ -438,12 +534,13 @@ window.addEventListener('DOMContentLoaded',function(){var f=document.getElementB
 
                 <Textarea
                   name="LEADCF3"
+                  id="LEADCF3"
                   placeholder="Cuéntanos el objetivo de la actividad (kickoff, bienestar, liderazgo, colegios, fundaciones, etc.)"
                   className="min-h-[120px]"
                   required
                 />
 
-                {/* Selects ocultos de origen */}
+                {/* Selects ocultos de origen (manteniendo nuevos defaults del snippet) */}
                 <div className="wfrm_fld_dpNn" aria-hidden>
                   <label className="sr-only" htmlFor="LEADCF5">Echevensko</label>
                   <select id="LEADCF5" name="LEADCF5" className="hidden" defaultValue="Echevensko" aria-label="LEADCF5">
@@ -517,7 +614,7 @@ window.addEventListener('DOMContentLoaded',function(){var f=document.getElementB
 
                 <p className="text-xs text-neutral-500 mt-2">
                   *Al enviar, aceptas ser contactado(a) con fines comerciales. <br />
-                  💡 El valor de referencia es <strong>UF 32</strong>, pero podemos ajustar el alcance y condiciones según la magnitud de tu evento.
+                  💡 Te responderemos con una propuesta ajustada a tu evento.
                 </p>
               </form>
             </div>
