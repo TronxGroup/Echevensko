@@ -450,7 +450,7 @@ function checkMandatory6988454000000575779(){
             <div className="mt-8 grid md:grid-cols-2 gap-6">
               {[
                 { q: "¿Se puede personalizar para un área o industria?", a: "Sí. Hacemos un breve discovery y adaptamos ejemplos al negocio." },
-                { q: "¿Qué requerimientos técnicos hay?", a: "Presencial: proyector/LED y audio. Online: Zoom/Teams y prueba técnica 24 h antes. Nosotros contamos con parlante, micrófono y luces para poder hacer la charla donde sea." },
+                { q: "¿Qué requerimientos técnicos hay?", a: "Nosotros contamos con parlante, micrófono y luces para poder hacer la charla donde sea." },
                 { q: "¿Ofrecen factura y contrato?", a: "Sí, factura electrónica y acuerdo de servicios." },
                 { q: "¿En qué ciudades trabajan?", a: "Base en Santiago; cobertura nacional y Latam. Viáticos según ciudad/país." },
                 { q: "¿Se puede medir el impacto?", a: "Encuesta post-evento y reporte de insights para RR.HH." },
