@@ -15,7 +15,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
       url: `${baseUrl}/privacidad-condiciones`,
       lastModified,
       changeFrequency: "yearly",
-      priority: 0.4,
+      priority: 0.3,
     },
   ];
 }
