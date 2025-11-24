@@ -64,6 +64,8 @@ export default function RootLayout({ children }: { children: ReactNode }) {
     <html lang="es">
       <head>
         <meta name="author" content="Cristóbal Echevensko" />
+        <meta name="robots" content="index,follow" />
+        <meta httpEquiv="content-language" content="es-cl" />
 
         {/* Google tag (gtag.js) */}
         <Script
@@ -78,6 +80,31 @@ export default function RootLayout({ children }: { children: ReactNode }) {
             gtag('js', new Date());
 
             gtag('config', 'G-BQ0940XD1E');
+          `}
+        </Script>
+
+        {/* JSON-LD Organization */}
+        <Script
+          id="ld-json-org"
+          type="application/ld+json"
+          strategy="afterInteractive"
+        >
+          {`
+            {
+              "@context": "https://schema.org",
+              "@type": "Organization",
+              "name": "La Magia de la Imaginación",
+              "url": "https://magiaimaginacion.cl",
+              "logo": "https://magiaimaginacion.cl/images/og-cover.jpg",
+              "founder": {
+                "@type": "Person",
+                "name": "Cristóbal Echevensko"
+              },
+              "sameAs": [
+                "https://www.linkedin.com/company/la-magia-de-la-imaginacion/",
+                "https://instagram.com/cristobalechevensko"
+              ]
+            }
           `}
         </Script>
       </head>
