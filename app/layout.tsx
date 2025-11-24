@@ -65,28 +65,21 @@ export default function RootLayout({ children }: { children: ReactNode }) {
       <head>
         <meta name="author" content="Cristóbal Echevensko" />
 
-        {/* ========================================================= */}
-        {/* 🔹 Google Tag (unificado para GA4 + Google Ads) */}
-        {/* ========================================================= */}
+        {/* Google tag (gtag.js) */}
         <Script
-          id="google-tag"
-          src="https://www.googletagmanager.com/gtag/js?id=G-T290GH79DQ"
+          async
+          src="https://www.googletagmanager.com/gtag/js?id=G-BQ0940XD1E"
           strategy="afterInteractive"
         />
-        <Script id="google-tag-init" strategy="afterInteractive">
+        <Script id="ga-init" strategy="afterInteractive">
           {`
             window.dataLayer = window.dataLayer || [];
             function gtag(){dataLayer.push(arguments);}
             gtag('js', new Date());
 
-            // Configuración GA4
-            gtag('config', 'G-T290GH79DQ');
-
-            // Configuración Google Ads
-            gtag('config', 'AW-17649557831');
+            gtag('config', 'G-BQ0940XD1E');
           `}
         </Script>
-        {/* ========================================================= */}
       </head>
 
       <body className="antialiased bg-white text-neutral-900">
