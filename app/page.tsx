@@ -1,4 +1,4 @@
-// app/page.tsx — Landing principal magiaimaginacion.cl (versión optimizada para Ads)
+// app/page.tsx — Landing principal magiaimaginacion.cl (versión optimizada para Ads fin de año)
 "use client";
 
 import React from "react";
@@ -172,6 +172,9 @@ function checkMandatory6988454000000575779(){
           <div className="relative mx-auto max-w-6xl px-4 py-20 md:py-28">
             <div className="grid md:grid-cols-2 gap-10 items-center">
               <div>
+                <Badge className="mb-2" variant="secondary">
+                  Especial cierre de año & kickoffs 2026
+                </Badge>
                 <Badge className="mb-4">
                   Charlas corporativas · Bienestar & Cultura
                 </Badge>
@@ -191,13 +194,16 @@ function checkMandatory6988454000000575779(){
                   aplicables.
                 </p>
                 <p className="mt-3 text-sm text-neutral-600">
-                  +3.000 personas han vivido la charla en empresas, colegios y
-                  fundaciones en Chile y Latam.
+                  Ideal para{" "}
+                  <strong>cierres de año, jornadas de bienestar</strong> y{" "}
+                  <strong>kickoffs 2026</strong> con equipos comerciales,
+                  corporativos y educativos. Más de 3.000 personas han vivido la
+                  experiencia en Chile y Latam.
                 </p>
 
                 <div className="mt-6 flex flex-col sm:flex-row gap-3">
                   <Button size="lg" className="rounded-2xl" asChild>
-                    <a href="#contacto">Solicitar propuesta corporativa</a>
+                    <a href="#contacto">Agendar charla / solicitar propuesta</a>
                   </Button>
                   <Button
                     size="lg"
@@ -277,7 +283,9 @@ function checkMandatory6988454000000575779(){
               <p className="mt-4 text-neutral-700">
                 Diseñada para RR.HH., People, Cultura y Liderazgo: impacto real
                 en clima, foco y productividad, con un lenguaje cercano y
-                aplicable al día a día.
+                aplicable al día a día. Perfecta para{" "}
+                <strong>cierre de año, jornadas de bienestar</strong> y{" "}
+                <strong>kickoffs de equipos 2026</strong>.
               </p>
             </div>
             <div className="md:col-span-7 grid sm:grid-cols-2 gap-4">
@@ -324,8 +332,11 @@ function checkMandatory6988454000000575779(){
                   La Magia de la Imaginación | Charla corporativa para equipos
                 </h2>
                 <p className="mt-2 text-neutral-700">
-                  Conoce cómo esta experiencia puede integrarse a iniciativas de
-                  bienestar, liderazgo y cultura organizacional.
+                  Integra esta experiencia a tus iniciativas de bienestar,
+                  liderazgo y cultura organizacional. Ideal para{" "}
+                  <strong>cierres de año</strong>,{" "}
+                  <strong>kickoffs comerciales</strong> y jornadas de
+                  planificación 2026.
                 </p>
                 <div className="mt-6 rounded-2xl overflow-hidden border">
                   <div className="aspect-video">
@@ -347,7 +358,8 @@ function checkMandatory6988454000000575779(){
                 <h3 className="text-xl font-semibold">Momentos que importan</h3>
                 <p className="mt-2 text-neutral-700">
                   Escenas reales que reflejan participación, foco y energía en
-                  contextos corporativos.
+                  contextos corporativos: desde cierres de año hasta kickoffs de
+                  equipos.
                 </p>
                 <div className="mt-6 grid grid-cols-1 sm:grid-cols-2 gap-4">
                   <Card className="rounded-2xl overflow-hidden">
@@ -410,8 +422,9 @@ function checkMandatory6988454000000575779(){
                   <strong>universidades</strong>,{" "}
                   <strong>municipalidades</strong>, áreas de{" "}
                   <strong>salud</strong>, <strong>retail</strong> y{" "}
-                  <strong>tecnología</strong>. Adaptamos ejemplos al contexto
-                  del público.
+                  <strong>tecnología</strong>. Adaptamos ejemplos al contexto del
+                  público, ya sea cierre de año, jornada de bienestar o kickoff
+                  del nuevo ciclo.
                 </p>
               </div>
             </div>
@@ -448,7 +461,8 @@ function checkMandatory6988454000000575779(){
             <p className="mt-3 text-neutral-700 max-w-3xl">
               Una charla entretenida y útil en tres actos, con historias, humor
               y ejercicios prácticos para que tu equipo se lleve herramientas
-              concretas.
+              concretas que pueda aplicar al día siguiente, tanto en cierre de
+              año como en el arranque de 2026.
             </p>
             <div className="mt-8 grid md:grid-cols-3 gap-4">
               {[
@@ -481,15 +495,8 @@ function checkMandatory6988454000000575779(){
                   <CardContent className="text-sm text-neutral-700">
                     <ul className="space-y-2">
                       {col.points.map((p, j) => (
-                        <li
-                          key={j}
-                          className="flex items-start gap-2"
-                        >
-                          <Check
-                            className="h-4 w-4 mt-0.5"
-                            aria-hidden
-                          />{" "}
-                          {p}
+                        <li key={j} className="flex items-start gap-2">
+                          <Check className="h-4 w-4 mt-0.5" aria-hidden /> {p}
                         </li>
                       ))}
                     </ul>
@@ -533,8 +540,11 @@ function checkMandatory6988454000000575779(){
             <div>
               <h2 className="text-3xl font-bold">Propuesta y alcance</h2>
               <p className="mt-2 text-neutral-700">
-                Plan corporativo claro, adaptable a tu contexto. *Viáticos o
-                traslados pueden aplicar según ciudad/país.
+                Plan corporativo claro, adaptable a tu contexto:{" "}
+                <strong>cierre de año</strong>,{" "}
+                <strong>kickoff comercial 2026</strong> o jornada de bienestar
+                para tu organización. *Viáticos o traslados pueden aplicar según
+                ciudad/país.
               </p>
             </div>
             <Badge variant="secondary">ES/EN · Presencial u Online</Badge>
@@ -565,7 +575,8 @@ function checkMandatory6988454000000575779(){
                 </ul>
 
                 <div className="mt-4 rounded-xl border border-amber-200 bg-amber-50 px-4 py-3 text-sm text-amber-900">
-                  💡 Cuéntanos el alcance (audiencia, modalidad, ciudad) y te
+                  💡 Cuéntanos el alcance (audiencia, modalidad, ciudad y tipo
+                  de instancia: cierre de año, kickoff, jornada interna) y te
                   enviaremos una propuesta a medida.
                 </div>
 
@@ -621,7 +632,8 @@ function checkMandatory6988454000000575779(){
                   Lo que dicen quienes ya vivieron la experiencia
                 </h2>
                 <p className="mt-2 text-neutral-700">
-                  Comentarios que hablan de un antes y un después.
+                  Comentarios que hablan de un antes y un después en el clima y
+                  la motivación de los equipos.
                 </p>
               </div>
               <div
@@ -687,8 +699,9 @@ function checkMandatory6988454000000575779(){
                   ¿Por qué elegir La Magia de la Imaginación?
                 </h3>
                 <p className="mt-2 text-neutral-700">
-                  Experiencia validada en Chile y Latam. Adaptada al lenguaje
-                  corporativo: entretenida, práctica y con aplicación inmediata.
+                  Experiencia validada en Chile y Latam, adaptada al lenguaje
+                  corporativo: entretenida, práctica y con aplicación inmediata
+                  en el día a día de tus equipos.
                 </p>
               </div>
               <div className="flex gap-3">
@@ -719,16 +732,16 @@ function checkMandatory6988454000000575779(){
             <div className="mt-8 grid md:grid-cols-2 gap-6">
               {[
                 {
-                  q: "¿Se puede personalizar para un área o industria?",
-                  a: "Sí. Hacemos un breve discovery y adaptamos ejemplos al negocio.",
+                  q: "¿Se puede personalizar para un área, industria o tipo de evento?",
+                  a: "Sí. Hacemos un breve discovery y adaptamos ejemplos al negocio y al tipo de instancia (cierre de año, kickoff, jornada de bienestar, etc.).",
                 },
                 {
                   q: "¿Qué requerimientos técnicos hay?",
-                  a: "Nosotros contamos con parlante, micrófono y luces para poder hacer la charla donde sea.",
+                  a: "Nosotros contamos con parlante, micrófono y luces para poder hacer la charla donde sea. Coordinamos con tu equipo de facilities o TI.",
                 },
                 {
                   q: "¿Ofrecen factura y contrato?",
-                  a: "Sí, factura electrónica y acuerdo de servicios.",
+                  a: "Sí, factura electrónica (afecta a IVA o exenta) y acuerdo de servicios.",
                 },
                 {
                   q: "¿En qué ciudades trabajan?",
@@ -736,11 +749,11 @@ function checkMandatory6988454000000575779(){
                 },
                 {
                   q: "¿Se puede medir el impacto?",
-                  a: "Encuesta post-evento y reporte de insights para RR.HH.",
+                  a: "Incluimos encuesta post-evento y reporte de insights para RR.HH. y liderazgo.",
                 },
                 {
                   q: "¿Idiomas y formatos?",
-                  a: "Español, opción inglés. Presencial u online.",
+                  a: "Español, opción inglés. Formato presencial u online (Zoom, Teams u otra plataforma).",
                 },
               ].map((item, i) => (
                 <Card key={i} className="rounded-2xl">
@@ -762,9 +775,9 @@ function checkMandatory6988454000000575779(){
             <div className="md:col-span-3">
               <h2 className="text-3xl font-bold">Solicita tu propuesta</h2>
               <p className="mt-2 text-neutral-700">
-                Cuéntanos fecha tentativa, modalidad y tamaño de audiencia. Te
-                enviaremos una propuesta a medida según tu alcance y
-                necesidades.
+                Cuéntanos fecha tentativa (cierre de año o kickoff 2026),
+                modalidad y tamaño de audiencia. Te enviaremos una propuesta a
+                medida según tu alcance y necesidades.
               </p>
               <p className="mt-1 text-sm text-neutral-600">
                 Respuesta habitual: dentro de 24 horas hábiles.
@@ -782,18 +795,7 @@ function checkMandatory6988454000000575779(){
                   // Zoho exige este charset switch
                   // @ts-ignore
                   document.charset = "UTF-8";
-
-                  // Tracking GA4 (si existe gtag)
-                  if (
-                    typeof window !== "undefined" &&
-                    (window as any).gtag
-                  ) {
-                    (window as any).gtag("event", "lead_submit", {
-                      event_category: "magiaimaginacion",
-                      event_label: "Formulario contacto corporativo",
-                    });
-                  }
-
+                  // Tracking de eventos (GA4 / Google Ads) se implementará luego acá si es necesario.
                   return true;
                 }}
               >
@@ -804,12 +806,7 @@ function checkMandatory6988454000000575779(){
                   name="xnQsjsdp"
                   value="262358f21ca24f4e670022a44d6a3bef7a3f01e2ca41871145e1340fe759c917"
                 />
-                <input
-                  type="hidden"
-                  name="zc_gad"
-                  id="zc_gad"
-                  value=""
-                />
+                <input type="hidden" name="zc_gad" id="zc_gad" value="" />
                 <input
                   type="text"
                   style={{ display: "none" }}
@@ -900,7 +897,7 @@ function checkMandatory6988454000000575779(){
                 <Textarea
                   name="LEADCF3"
                   id="LEADCF3"
-                  placeholder="Cuéntanos el objetivo de la actividad (kickoff, bienestar, liderazgo, colegios, fundaciones, etc.)"
+                  placeholder="Cuéntanos el objetivo de la actividad (cierre de año, kickoff 2026, bienestar, liderazgo, colegios, fundaciones, etc.)"
                   className="min-h-[120px]"
                   required
                 />
@@ -978,10 +975,7 @@ function checkMandatory6988454000000575779(){
                   <input type="checkbox" required />
                   <span>
                     He leído y acepto la{" "}
-                    <a
-                      href="/privacidad-condiciones"
-                      className="underline"
-                    >
+                    <a href="/privacidad-condiciones" className="underline">
                       Política de Privacidad y Condiciones
                     </a>
                     .
@@ -1015,26 +1009,15 @@ function checkMandatory6988454000000575779(){
                 </div>
 
                 <div className="flex flex-wrap gap-3 mt-4">
-                  <Button
-                    className="rounded-2xl formsubmit"
-                    type="submit"
-                  >
+                  <Button className="rounded-2xl formsubmit" type="submit">
                     Enviar consulta
                   </Button>
-                  <Button
-                    asChild
-                    variant="outline"
-                    className="rounded-2xl"
-                  >
+                  <Button asChild variant="outline" className="rounded-2xl">
                     <a href="mailto:info@echevensko.com?subject=Cotizaci%C3%B3n%20charla%20corporativa">
                       O escríbenos por email
                     </a>
                   </Button>
-                  <Button
-                    asChild
-                    variant="outline"
-                    className="rounded-2xl"
-                  >
+                  <Button asChild variant="outline" className="rounded-2xl">
                     <a
                       href="https://wa.me/56920080031?text=Hola%20quiero%20cotizar%20la%20charla%20corporativa%20La%20Magia%20de%20la%20Imaginaci%C3%B3n"
                       rel="noopener"
