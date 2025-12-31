@@ -1134,44 +1134,58 @@ function checkMandatory6988454000000575779(){
       </div>
 
       {/* FOOTER */}
-      <footer className="border-t">
-        <div className="mx-auto max-w-6xl px-4 py-10 text-sm text-neutral-600 flex flex-col md:flex-row items-center justify-between gap-3">
-          <p>© {new Date().getFullYear()} Echevensko. Todos los derechos reservados.</p>
+<footer className="border-t">
+  <div className="mx-auto max-w-6xl px-4 py-10 text-sm text-neutral-600 flex flex-col md:flex-row items-center justify-between gap-3">
+    <p>
+      © {new Date().getFullYear()} Echevensko. Todos los derechos reservados.
+    </p>
 
-          <div className="flex items-center gap-4">
-            <a href="/privacidad-condiciones" className="hover:text-neutral-800">
-              Privacidad y Condiciones
-            </a>
+    <div className="flex items-center gap-4">
+      <a href="/privacidad-condiciones" className="hover:text-neutral-800">
+        Privacidad y Condiciones
+      </a>
 
-            <a
-              href="https://instagram.com/cristobalechevensko"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="hover:text-neutral-800 inline-flex items-center gap-2"
-            >
-              <Instagram className="h-4 w-4" aria-hidden /> @cristobalechevensko
-            </a>
+      <a
+        href="https://instagram.com/cristobalechevensko"
+        target="_blank"
+        rel="noopener noreferrer"
+        className="hover:text-neutral-800 inline-flex items-center gap-2"
+      >
+        <Instagram className="h-4 w-4" aria-hidden /> @cristobalechevensko
+      </a>
 
-            <a
-              href="https://www.linkedin.com/company/la-magia-de-la-imaginacion/"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="hover:text-neutral-800 inline-flex items-center gap-2"
-            >
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                viewBox="0 0 24 24"
-                fill="currentColor"
-                className="h-4 w-4"
-                aria-hidden
-              >
-                <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.447-2.136 2.942v5.664H9.352V9h3.414v1.561h.048c.476-.9 1.637-1.852 3.372-1.852 3.604 0 4.268 2.372 4.268 5.455v6.288zM5.337 7.433a2.062 2.062 0 11.001-4.124 2.062 2.062 0 01-.001 4.124zM6.993 20.452H3.681V9h3.312v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.225 0z" />
-              </svg>
-              LinkedIn
-            </a>
-          </div>
-        </div>
-      </footer>
+      <a
+        href="https://www.linkedin.com/company/la-magia-de-la-imaginacion/"
+        target="_blank"
+        rel="noopener noreferrer"
+        className="hover:text-neutral-800 inline-flex items-center gap-2"
+      >
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          viewBox="0 0 24 24"
+          fill="currentColor"
+          className="h-4 w-4"
+          aria-hidden
+        >
+          <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.447-2.136 2.942v5.664H9.352V9h3.414v1.561h.048c.476-.9 1.637-1.852 3.372-1.852 3.604 0 4.268 2.372 4.268 5.455v6.288zM5.337 7.433a2.062 2.062 0 11.001-4.124 2.062 2.062 0 01-.001 4.124zM6.993 20.452H3.681V9h3.312v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.225 0z" />
+        </svg>
+        LinkedIn
+      </a>
+    </div>
+  </div>
+
+  {/* Crédito discreto */}
+  <div className="pb-6 text-center">
+    <a
+      href="https://www.tronxstrategy.com/"
+      target="_blank"
+      rel="noopener noreferrer"
+      className="text-[11px] text-neutral-400 hover:text-neutral-600 transition"
+    >
+      Desarrollado por <span className="font-medium">Tronx Strategy</span>
+    </a>
+  </div>
+</footer>
     </div>
   );
 }
