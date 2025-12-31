@@ -1,4 +1,4 @@
-// app/page.tsx — Landing principal magiaimaginacion.cl (versión optimizada para Ads fin de año)
+// app/page.tsx — Landing principal magiaimaginacion.cl (optimizada para Google Ads / conversión 2–3 charlas/mes)
 "use client";
 
 import React from "react";
@@ -25,16 +25,22 @@ import {
   Sparkles,
   Target,
   Instagram,
+  ArrowRight,
+  ShieldCheck,
+  FileText,
+  Presentation,
+  Mic,
 } from "lucide-react";
+
+function cx(...classes: Array<string | false | undefined | null>) {
+  return classes.filter(Boolean).join(" ");
+}
 
 export default function MagiaImaginacionLanding() {
   return (
     <div className="min-h-screen bg-neutral-50 text-neutral-900">
       {/* ===== reCAPTCHA y Zoho (cargan en cliente, no bloquean build) ===== */}
-      <Script
-        src="https://www.google.com/recaptcha/api.js"
-        strategy="afterInteractive"
-      />
+      <Script src="https://www.google.com/recaptcha/api.js" strategy="afterInteractive" />
 
       {/* Analytics Zoho */}
       <Script
@@ -109,16 +115,33 @@ function checkMandatory6988454000000575779(){
   }
   if(!validateEmail6988454000000575779()){ return false; }
   if(!reCaptchaAlert6988454000000575779()){ return false; }
-  var urlparams = new URLSearchParams(window.location.search);
-  if(urlparams.has('service') && (urlparams.get('service') === 'smarturl')){
-    var webform = document.getElementById('webform6988454000000575779');
-    var service = urlparams.get('service');
-    var smarturlfield = document.createElement('input');
-    smarturlfield.setAttribute('type','hidden');
-    smarturlfield.setAttribute('value', service);
-    smarturlfield.setAttribute('name','service');
-    webform.appendChild(smarturlfield);
-  }
+
+  // Captura simple de UTMs (si vienen desde Ads)
+  try {
+    var params = new URLSearchParams(window.location.search);
+    var fields = [
+      ['utm_source','LEADCF10'],
+      ['utm_medium','LEADCF11'],
+      ['utm_campaign','LEADCF12'],
+      ['utm_term','LEADCF13'],
+      ['utm_content','LEADCF14'],
+      ['gclid','LEADCF15']
+    ];
+    fields.forEach(function(pair){
+      var key = pair[0], fieldName = pair[1];
+      if(params.has(key)){
+        var existing = document.querySelector('input[name="'+fieldName+'"]');
+        if(!existing){
+          var h = document.createElement('input');
+          h.type = 'hidden';
+          h.name = fieldName;
+          h.value = params.get(key) || '';
+          document.getElementById('webform6988454000000575779')?.appendChild(h);
+        }
+      }
+    });
+  } catch(e) {}
+
   var sb = document.querySelector('.crmWebToEntityForm .formsubmit');
   if(sb){ sb.setAttribute('disabled', true); }
   return true;
@@ -127,34 +150,45 @@ function checkMandatory6988454000000575779(){
       </Script>
 
       {/* HEADER */}
-      <header className="sticky top-0 z-50 backdrop-blur bg-white/70 border-b">
-        <div className="mx-auto max-w-6xl px-4 py-3 flex items-center justify-between">
+      <header className="sticky top-0 z-50 backdrop-blur bg-white/75 border-b">
+        <div className="mx-auto max-w-6xl px-4 py-3 flex items-center justify-between gap-3">
+          <a href="#main" className="sr-only focus:not-sr-only focus:underline">
+            Ir al contenido
+          </a>
+
           <div className="flex items-center gap-3">
-            <Sparkles className="h-6 w-6" />
-            <span className="font-semibold tracking-tight">
-              La Magia de la Imaginación
-            </span>
+            <div className="flex h-9 w-9 items-center justify-center rounded-xl bg-amber-100 text-amber-900">
+              <Sparkles className="h-5 w-5" />
+            </div>
+            <div className="leading-tight">
+              <p className="font-semibold tracking-tight">La Magia de la Imaginación</p>
+              <p className="text-xs text-neutral-600">Charlas corporativas · Bienestar · Cultura</p>
+            </div>
           </div>
+
           <nav className="hidden md:flex items-center gap-6 text-sm">
-            <a href="#por-que" className="hover:text-neutral-600">
+            <a href="#impacto" className="hover:text-neutral-600">
               Impacto
             </a>
-            <a href="#estructura" className="hover:text-neutral-600">
+            <a href="#contenido" className="hover:text-neutral-600">
               Contenido
+            </a>
+            <a href="#logistica" className="hover:text-neutral-600">
+              Logística
             </a>
             <a href="#testimonios" className="hover:text-neutral-600">
               Testimonios
             </a>
-            <a
-              href="#contacto"
-              className="hover:text-neutral-900 font-semibold"
-            >
-              Contacto
+            <a href="#contacto" className="hover:text-neutral-900 font-semibold">
+              Solicitar propuesta
             </a>
           </nav>
-          <Button asChild size="sm" className="rounded-2xl">
-            <a href="#contacto">Solicitar propuesta</a>
-          </Button>
+
+          <div className="flex items-center gap-2">
+            <Button asChild size="sm" className="rounded-2xl">
+              <a href="#contacto">Solicitar propuesta</a>
+            </Button>
+          </div>
         </div>
       </header>
 
@@ -165,185 +199,246 @@ function checkMandatory6988454000000575779(){
             <div className="absolute inset-0 bg-gradient-to-b from-amber-50 to-transparent" />
             <div
               aria-hidden
-              className="absolute inset-0 bg-[url('/images/echevensko_web_foto_2.jpg')] bg-cover bg-center opacity-10"
+              className="absolute inset-0 bg-[url('/images/echevensko_web_foto_2.jpg')] bg-cover bg-center opacity-[0.12]"
             />
+            <div aria-hidden className="absolute inset-0 bg-white/70" />
           </div>
 
-          <div className="relative mx-auto max-w-6xl px-4 py-20 md:py-28">
+          <div className="relative mx-auto max-w-6xl px-4 py-16 md:py-20">
             <div className="grid md:grid-cols-2 gap-10 items-center">
               <div>
-                <Badge className="mb-2" variant="secondary">
-                  Especial cierre de año & kickoffs 2026
-                </Badge>
-                <Badge className="mb-4">
-                  Charlas corporativas · Bienestar & Cultura
-                </Badge>
-                <h1 className="text-4xl md:text-5xl font-extrabold leading-tight tracking-tight">
-                  Charla corporativa para equipos que necesitan
-                  <span className="text-amber-600">
-                    {" "}
-                    más foco, bienestar y motivación
-                  </span>
+                <div className="flex flex-wrap items-center gap-2">
+                  <Badge className="rounded-full" variant="secondary">
+                    Cierres de año · Jornadas de bienestar · Kickoff 2026
+                  </Badge>
+                  <Badge className="rounded-full">Presencial u Online</Badge>
+                </div>
+
+                <h1 className="mt-4 text-4xl md:text-5xl font-extrabold leading-tight tracking-tight">
+                  Una charla corporativa{" "}
+                  <span className="text-amber-700">entretenida y aplicable</span>{" "}
+                  para mejorar foco, bienestar y clima de equipo.
                 </h1>
-                <p className="mt-4 text-lg text-neutral-700">
-                  <strong>La Magia de la Imaginación</strong> es una
-                  charla-espectáculo presentada por{" "}
-                  <strong>Cristóbal Echevensko</strong>, diseñada para áreas de
-                  Personas, Cultura y Liderazgo que buscan mejorar clima
-                  laboral, engagement y creatividad con herramientas simples y
-                  aplicables.
-                </p>
-                <p className="mt-3 text-sm text-neutral-600">
-                  Ideal para{" "}
-                  <strong>cierres de año, jornadas de bienestar</strong> y{" "}
-                  <strong>kickoffs 2026</strong> con equipos comerciales,
-                  corporativos y educativos. Más de 3.000 personas han vivido la
-                  experiencia en Chile y Latam.
+
+                <p className="mt-4 text-lg text-neutral-800">
+                  <strong>La Magia de la Imaginación</strong> es una charla-espectáculo presentada por{" "}
+                  <strong>Cristóbal Echevensko</strong>, diseñada para{" "}
+                  <strong>RR.HH., People & Cultura y Liderazgo</strong>.
+                  Se adapta a la realidad del equipo y deja herramientas simples para aplicar al día siguiente.
                 </p>
 
-                <div className="mt-6 flex flex-col sm:flex-row gap-3">
+                <div className="mt-5 grid gap-2 text-sm text-neutral-700">
+                  {[
+                    "Alcance definido por escrito (modalidad, audiencia, tiempos y requerimientos).",
+                    "Participación + historias + técnica práctica (sin “charla motivacional” vacía).",
+                    "Incluye coordinación, factura, contrato y prueba técnica previa.",
+                  ].map((x) => (
+                    <div key={x} className="flex items-start gap-2">
+                      <Check className="h-4 w-4 mt-0.5 text-amber-700" />
+                      <span>{x}</span>
+                    </div>
+                  ))}
+                </div>
+
+                <div className="mt-7 flex flex-col sm:flex-row gap-3">
                   <Button size="lg" className="rounded-2xl" asChild>
-                    <a href="#contacto">Agendar charla / solicitar propuesta</a>
+                    <a href="#contacto" aria-label="Solicitar propuesta de charla">
+                      Solicitar propuesta <ArrowRight className="ml-2 h-4 w-4" />
+                    </a>
                   </Button>
-                  <Button
-                    size="lg"
-                    variant="outline"
-                    className="rounded-2xl"
-                    asChild
-                  >
-                    <a href="#rrhh">Ver cómo funciona la charla</a>
+
+                  <Button size="lg" variant="outline" className="rounded-2xl" asChild>
+                    <a href="#contenido">Ver contenido y estructura</a>
                   </Button>
                 </div>
 
-                <div className="mt-6 flex flex-wrap items-center gap-4 text-sm text-neutral-600">
+                <div className="mt-6 flex flex-wrap items-center gap-4 text-sm text-neutral-700">
                   <div className="flex items-center gap-1">
-                    <Star
-                      className="h-4 w-4 fill-amber-500 stroke-amber-500"
-                      aria-hidden
-                    />{" "}
-                    Altas valoraciones
+                    <Star className="h-4 w-4 fill-amber-500 stroke-amber-500" aria-hidden /> Altas valoraciones
                   </div>
                   <div className="flex items-center gap-1">
                     <Users className="h-4 w-4" aria-hidden /> Miles de asistentes
                   </div>
                   <div className="flex items-center gap-1">
-                    <Trophy className="h-4 w-4" aria-hidden /> Recomendado por
-                    empresas
+                    <Trophy className="h-4 w-4" aria-hidden /> Recomendado por organizaciones
+                  </div>
+                </div>
+
+                {/* Mobile image (para Ads móvil) */}
+                <div className="mt-8 md:hidden">
+                  <Card className="rounded-3xl shadow-sm overflow-hidden">
+                    <CardContent className="p-0">
+                      <Image
+                        src="/images/echevensko_web_foto_1.jpg"
+                        alt="Echevensko presentando ante un auditorio"
+                        width={1200}
+                        height={900}
+                        className="object-cover w-full h-[240px]"
+                        priority
+                      />
+                    </CardContent>
+                  </Card>
+                  <div className="mt-3 grid grid-cols-3 gap-2 text-xs text-neutral-700">
+                    <div className="flex items-center gap-2">
+                      <Timer className="h-4 w-4" /> 60–75 min
+                    </div>
+                    <div className="flex items-center gap-2">
+                      <Building2 className="h-4 w-4" /> Presencial/Online
+                    </div>
+                    <div className="flex items-center gap-2">
+                      <Globe2 className="h-4 w-4" /> ES / EN opcional
+                    </div>
                   </div>
                 </div>
               </div>
 
+              {/* Desktop visual + “mini-brief” */}
               <div className="hidden md:block">
                 <div className="relative">
-                  <div
-                    className="absolute -inset-2 bg-amber-200/40 blur-2xl rounded-3xl"
-                    aria-hidden
-                  />
-                  <Card className="relative rounded-3xl shadow-xl">
+                  <div className="absolute -inset-2 bg-amber-200/50 blur-2xl rounded-3xl" aria-hidden />
+                  <Card className="relative rounded-3xl shadow-xl overflow-hidden">
                     <CardContent className="p-0">
                       <Image
                         src="/images/echevensko_web_foto_1.jpg"
                         alt="Echevensko presentando ante un auditorio corporativo"
                         width={1200}
                         height={900}
-                        className="rounded-3xl object-cover h-[360px] w-full"
+                        className="rounded-3xl object-cover h-[340px] w-full"
                         priority
                       />
                     </CardContent>
                   </Card>
                 </div>
-                <div className="mt-4 grid grid-cols-3 gap-3 text-sm">
+
+                <div className="mt-4 grid grid-cols-3 gap-3 text-sm text-neutral-700">
                   <div className="flex items-center gap-2">
                     <Timer className="h-4 w-4" aria-hidden /> 60–75 min
                   </div>
                   <div className="flex items-center gap-2">
-                    <Building2 className="h-4 w-4" aria-hidden /> Presencial /
-                    Online
+                    <Building2 className="h-4 w-4" aria-hidden /> Presencial / Online
                   </div>
                   <div className="flex items-center gap-2">
                     <Globe2 className="h-4 w-4" aria-hidden /> ES / EN opcional
                   </div>
                 </div>
+
+                <Card className="mt-4 rounded-3xl">
+                  <CardHeader className="pb-2">
+                    <CardTitle className="text-base">Para cotizar rápido</CardTitle>
+                  </CardHeader>
+                  <CardContent className="pt-0 text-sm text-neutral-700">
+                    <div className="grid gap-2">
+                      {[
+                        { icon: CalendarDays, label: "Fecha tentativa" },
+                        { icon: Users, label: "Cantidad de asistentes" },
+                        { icon: Building2, label: "Presencial u Online" },
+                        { icon: MapPin, label: "Ciudad / País" },
+                      ].map((it) => {
+                        const Icon = it.icon;
+                        return (
+                          <div key={it.label} className="flex items-center gap-2">
+                            <Icon className="h-4 w-4 text-amber-700" />
+                            <span>{it.label}</span>
+                          </div>
+                        );
+                      })}
+                    </div>
+                    <div className="mt-4">
+                      <Button asChild className="rounded-2xl w-full">
+                        <a href="#contacto">Completar formulario</a>
+                      </Button>
+                      <p className="mt-2 text-xs text-neutral-500">
+                        Respuesta habitual: <strong>24h hábiles</strong>.
+                      </p>
+                    </div>
+                  </CardContent>
+                </Card>
               </div>
             </div>
           </div>
         </section>
 
-        {/* POR QUÉ EMPRESAS */}
-        <section id="por-que" className="mx-auto max-w-6xl px-4 py-16">
+        {/* IMPACTO / BENEFICIOS */}
+        <section id="impacto" className="mx-auto max-w-6xl px-4 py-14">
           <div className="grid md:grid-cols-12 gap-10 items-start">
             <div className="md:col-span-5">
               <h2 className="text-3xl font-bold leading-tight">
-                ¿Por qué llevar{" "}
-                <span className="text-amber-700">
-                  La Magia de la Imaginación
-                </span>{" "}
-                a tu organización?
+                Impacto que RR.HH. puede <span className="text-amber-700">defender internamente</span>
               </h2>
               <p className="mt-4 text-neutral-700">
-                Diseñada para RR.HH., People, Cultura y Liderazgo: impacto real
-                en clima, foco y productividad, con un lenguaje cercano y
-                aplicable al día a día. Perfecta para{" "}
-                <strong>cierre de año, jornadas de bienestar</strong> y{" "}
-                <strong>kickoffs de equipos 2026</strong>.
+                Una instancia que mejora energía y foco sin perder el estándar corporativo: lenguaje claro, participación y
+                una técnica práctica para bajar tensión y recuperar atención.
               </p>
+
+              <div className="mt-6 grid gap-3 text-sm text-neutral-700">
+                {[
+                  { icon: ShieldCheck, title: "Operación clara", desc: "Alcance definido por escrito + coordinación + prueba técnica." },
+                  { icon: Presentation, title: "Formato profesional", desc: "Estructura, narrativa y dinámica para audiencias reales (no teoría abstracta)." },
+                  { icon: FileText, title: "Cierre útil", desc: "Material de apoyo y opción de reporte post-evento (según modalidad)." },
+                ].map((b) => {
+                  const Icon = b.icon;
+                  return (
+                    <div key={b.title} className="flex items-start gap-3">
+                      <div className="mt-0.5 flex h-9 w-9 items-center justify-center rounded-xl bg-amber-100 text-amber-900">
+                        <Icon className="h-4 w-4" />
+                      </div>
+                      <div>
+                        <p className="font-semibold">{b.title}</p>
+                        <p className="text-neutral-600">{b.desc}</p>
+                      </div>
+                    </div>
+                  );
+                })}
+              </div>
             </div>
+
             <div className="md:col-span-7 grid sm:grid-cols-2 gap-4">
               {[
                 {
-                  title: "Bienestar emocional",
-                  desc: "Reduce estrés y ansiedad con una práctica simple y aplicable.",
+                  title: "Bienestar y regulación",
+                  desc: "Práctica simple para reducir tensión y recuperar claridad mental.",
                 },
                 {
-                  title: "Cohesión de equipos",
-                  desc: "Lenguaje común que mejora comunicación y confianza.",
+                  title: "Cohesión de equipo",
+                  desc: "Lenguaje común que mejora comunicación y colaboración.",
                 },
                 {
                   title: "Creatividad aplicada",
-                  desc: "Herramientas para resolver problemas y tomar mejores decisiones.",
+                  desc: "Recursos concretos para resolver problemas y tomar mejores decisiones.",
                 },
                 {
-                  title: "Engagement y propósito",
-                  desc: "Reconecta a las personas con su potencial y el sentido del trabajo.",
+                  title: "Engagement",
+                  desc: "Una experiencia que activa participación real y deja energía arriba.",
                 },
-              ].map((b, i) => (
-                <Card key={i} className="rounded-2xl">
+              ].map((b) => (
+                <Card key={b.title} className="rounded-2xl">
                   <CardHeader className="pb-2">
                     <CardTitle className="text-base">{b.title}</CardTitle>
                   </CardHeader>
-                  <CardContent className="pt-0 text-sm text-neutral-700">
-                    {b.desc}
-                  </CardContent>
+                  <CardContent className="pt-0 text-sm text-neutral-700">{b.desc}</CardContent>
                 </Card>
               ))}
             </div>
           </div>
         </section>
 
-        {/* RR.HH. – DEMO + FOTOS */}
+        {/* VIDEO + FOTOS */}
         <section id="rrhh" className="bg-white border-y">
-          <div className="mx-auto max-w-6xl px-4 py-16">
+          <div className="mx-auto max-w-6xl px-4 py-14">
             <div className="grid lg:grid-cols-2 gap-10 items-start">
               <div>
-                <Badge className="mb-3">
-                  Un recurso innovador para potenciar equipos en tu empresa
-                </Badge>
-                <h2 className="text-3xl font-bold">
-                  La Magia de la Imaginación | Charla corporativa para equipos
-                </h2>
+                <Badge className="mb-3 rounded-full">Demo y contexto real</Badge>
+                <h2 className="text-3xl font-bold">Mira un extracto (formato corporativo)</h2>
                 <p className="mt-2 text-neutral-700">
-                  Integra esta experiencia a tus iniciativas de bienestar,
-                  liderazgo y cultura organizacional. Ideal para{" "}
-                  <strong>cierres de año</strong>,{" "}
-                  <strong>kickoffs comerciales</strong> y jornadas de
-                  planificación 2026.
+                  Útil para decidir rápido: tono, ritmo, participación y el tipo de herramienta que se entrega.
                 </p>
-                <div className="mt-6 rounded-2xl overflow-hidden border">
+
+                <div className="mt-6 rounded-2xl overflow-hidden border bg-neutral-100">
                   <div className="aspect-video">
                     <iframe
                       className="w-full h-full"
                       src="https://www.youtube.com/embed/_K00lO5cwzA?rel=0&modestbranding=1"
-                      title="La Magia de la Imaginación | Charlas corporativas para equipos"
+                      title="La Magia de la Imaginación | Charlas corporativas"
                       frameBorder={0}
                       allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
                       allowFullScreen
@@ -352,15 +447,33 @@ function checkMandatory6988454000000575779(){
                     />
                   </div>
                 </div>
+
+                <div className="mt-6 grid gap-2 text-sm text-neutral-700">
+                  {[
+                    "Adecuado para cierres de año, kickoffs, semanas de bienestar y jornadas internas.",
+                    "Se adapta el ejemplo/énfasis a industria y objetivo del evento.",
+                    "Puede incluir Q&A breve (opcional).",
+                  ].map((x) => (
+                    <div key={x} className="flex items-start gap-2">
+                      <Check className="h-4 w-4 mt-0.5 text-amber-700" />
+                      <span>{x}</span>
+                    </div>
+                  ))}
+                </div>
+
+                <div className="mt-6">
+                  <Button asChild className="rounded-2xl">
+                    <a href="#contacto">Solicitar propuesta</a>
+                  </Button>
+                </div>
               </div>
 
               <div>
                 <h3 className="text-xl font-semibold">Momentos que importan</h3>
                 <p className="mt-2 text-neutral-700">
-                  Escenas reales que reflejan participación, foco y energía en
-                  contextos corporativos: desde cierres de año hasta kickoffs de
-                  equipos.
+                  Participación, energía y foco: escenas reales de audiencias corporativas.
                 </p>
+
                 <div className="mt-6 grid grid-cols-1 sm:grid-cols-2 gap-4">
                   <Card className="rounded-2xl overflow-hidden">
                     <CardContent className="p-0">
@@ -385,23 +498,22 @@ function checkMandatory6988454000000575779(){
                     </CardContent>
                   </Card>
                 </div>
+
                 <ul className="mt-4 space-y-2 text-sm text-neutral-700">
                   <li className="flex gap-2">
-                    <Check className="h-4 w-4 mt-0.5" aria-hidden /> Enfoque en
-                    clima, engagement y liderazgo.
+                    <Mic className="h-4 w-4 mt-0.5 text-amber-700" /> Tono cercano, estándar profesional.
                   </li>
                   <li className="flex gap-2">
-                    <Check className="h-4 w-4 mt-0.5" aria-hidden /> Contrato,
-                    factura y métricas post-evento (opcional).
+                    <FileText className="h-4 w-4 mt-0.5 text-amber-700" /> Coordinación, factura y contrato.
                   </li>
                   <li className="flex gap-2">
-                    <Check className="h-4 w-4 mt-0.5" aria-hidden /> Cobertura
-                    nacional y Latam, presencial u online.
+                    <Globe2 className="h-4 w-4 mt-0.5 text-amber-700" /> Cobertura Chile/Latam (presencial u online).
                   </li>
                 </ul>
+
                 <div className="mt-6">
-                  <Button asChild className="rounded-2xl">
-                    <a href="#contacto">Solicitar propuesta para RR.HH.</a>
+                  <Button asChild variant="outline" className="rounded-2xl">
+                    <a href="#contenido">Ver estructura y logística</a>
                   </Button>
                 </div>
               </div>
@@ -409,40 +521,33 @@ function checkMandatory6988454000000575779(){
           </div>
         </section>
 
-        {/* ¿A QUIÉN VA? */}
+        {/* A QUIÉN VA */}
         <section id="dirigido" className="bg-white border-y">
-          <div className="mx-auto max-w-6xl px-4 py-16">
+          <div className="mx-auto max-w-6xl px-4 py-14">
             <div className="flex items-start gap-3">
               <Target className="h-6 w-6 mt-1" aria-hidden />
               <div>
-                <h2 className="text-3xl font-bold">¿A quién va dirigido?</h2>
+                <h2 className="text-3xl font-bold">¿Para qué equipos funciona mejor?</h2>
                 <p className="mt-2 text-neutral-700 max-w-3xl">
-                  Ideal para <strong>colegios</strong>,{" "}
-                  <strong>fundaciones</strong>, <strong>empresas</strong>,{" "}
-                  <strong>universidades</strong>,{" "}
-                  <strong>municipalidades</strong>, áreas de{" "}
-                  <strong>salud</strong>, <strong>retail</strong> y{" "}
-                  <strong>tecnología</strong>. Adaptamos ejemplos al contexto del
-                  público, ya sea cierre de año, jornada de bienestar o kickoff
-                  del nuevo ciclo.
+                  Equipos con alta carga, metas exigentes o necesidad de re-energizar el ciclo: comerciales, operación,
+                  educación, salud, servicios, tecnología y organizaciones públicas/privadas.
+                  Ajustamos ejemplos al contexto y al objetivo del encuentro.
                 </p>
               </div>
             </div>
-            <div
-              className="mt-6 flex flex-wrap gap-2"
-              aria-label="Industrias objetivo"
-            >
+
+            <div className="mt-6 flex flex-wrap gap-2" aria-label="Industrias objetivo">
               {[
-                "Colegios",
-                "Fundaciones",
-                "Empresas",
-                "Corporaciones",
-                "Universidades",
-                "Municipalidades",
+                "RR.HH. / People & Culture",
+                "Liderazgo",
+                "Equipos comerciales",
+                "Operación",
+                "Educación",
                 "Salud",
                 "Retail",
                 "Tecnología",
-                "Startups",
+                "Sector público",
+                "Fundaciones",
               ].map((tag) => (
                 <Badge key={tag} variant="secondary" className="rounded-full">
                   {tag}
@@ -452,51 +557,39 @@ function checkMandatory6988454000000575779(){
           </div>
         </section>
 
-        {/* ESTRUCTURA */}
-        <section id="estructura" className="bg-white border-y">
-          <div className="mx-auto max-w-6xl px-4 py-16">
-            <h2 className="text-3xl font-bold">
-              Contenido del espectáculo corporativo
-            </h2>
+        {/* CONTENIDO */}
+        <section id="contenido" className="bg-white border-y">
+          <div className="mx-auto max-w-6xl px-4 py-14">
+            <h2 className="text-3xl font-bold">Estructura de la charla (3 actos)</h2>
             <p className="mt-3 text-neutral-700 max-w-3xl">
-              Una charla entretenida y útil en tres actos, con historias, humor
-              y ejercicios prácticos para que tu equipo se lleve herramientas
-              concretas que pueda aplicar al día siguiente, tanto en cierre de
-              año como en el arranque de 2026.
+              Contenido entretenido y útil: historias + humor + ejercicios simples.
+              El foco está en que el equipo salga con una herramienta práctica y un lenguaje común para el día a día.
             </p>
+
             <div className="mt-8 grid md:grid-cols-3 gap-4">
               {[
                 {
-                  title: "Acto I – Potencial interno",
-                  points: [
-                    "Autoimagen y autoestima práctica",
-                    "Cambiar actitud para cambiar realidad",
-                  ],
+                  title: "Acto I — Potencial y atención",
+                  points: ["Autoimagen práctica", "Cómo recuperar foco en contextos de presión"],
                 },
                 {
-                  title: "Acto II – El obstáculo",
-                  points: [
-                    "La causa del autosabotaje",
-                    "Cómo gestionarla en el día a día",
-                  ],
+                  title: "Acto II — Obstáculo y gestión",
+                  points: ["Qué bloquea el rendimiento", "Cómo gestionarlo en el trabajo diario"],
                 },
                 {
-                  title: "Acto III – La técnica",
-                  points: [
-                    "Práctica ancestral moderna",
-                    "Menos preocupación, más foco",
-                  ],
+                  title: "Acto III — Técnica aplicable",
+                  points: ["Ejercicio guiado", "Plan simple para sostener el cambio (7 días)"],
                 },
-              ].map((col, i) => (
-                <Card key={i} className="rounded-2xl">
+              ].map((col) => (
+                <Card key={col.title} className="rounded-2xl">
                   <CardHeader>
                     <CardTitle className="text-lg">{col.title}</CardTitle>
                   </CardHeader>
                   <CardContent className="text-sm text-neutral-700">
                     <ul className="space-y-2">
-                      {col.points.map((p, j) => (
-                        <li key={j} className="flex items-start gap-2">
-                          <Check className="h-4 w-4 mt-0.5" aria-hidden /> {p}
+                      {col.points.map((p) => (
+                        <li key={p} className="flex items-start gap-2">
+                          <Check className="h-4 w-4 mt-0.5 text-amber-700" aria-hidden /> {p}
                         </li>
                       ))}
                     </ul>
@@ -505,119 +598,137 @@ function checkMandatory6988454000000575779(){
               ))}
             </div>
 
-            {/* LOGÍSTICA */}
-            <div className="mt-10 grid md:grid-cols-3 gap-4">
-              {[
-                {
-                  title: "Modalidad",
-                  desc: "Presencial (auditorio/sala) u online (Zoom/Teams).",
-                },
-                {
-                  title: "Duración",
-                  desc: "60–75 min + Q&A (opcional).",
-                },
-                {
-                  title: "Audiencia",
-                  desc: "20 a 600 personas (consultar para más).",
-                },
-              ].map((c, i) => (
-                <Card key={i} className="rounded-2xl border-dashed">
-                  <CardHeader className="pb-2">
-                    <CardTitle className="text-base">{c.title}</CardTitle>
-                  </CardHeader>
-                  <CardContent className="pt-0 text-sm text-neutral-700">
-                    {c.desc}
-                  </CardContent>
-                </Card>
-              ))}
+            <div className="mt-10">
+              <Card className="rounded-3xl">
+                <CardContent className="p-6 md:p-8 grid md:grid-cols-3 gap-6">
+                  {[
+                    {
+                      title: "Modalidad",
+                      desc: "Presencial (auditorio/sala) u online (Zoom/Teams).",
+                      icon: Building2,
+                    },
+                    {
+                      title: "Duración",
+                      desc: "60–75 min + Q&A breve (opcional).",
+                      icon: Timer,
+                    },
+                    {
+                      title: "Audiencia",
+                      desc: "20 a 600 personas (consultar para más).",
+                      icon: Users,
+                    },
+                  ].map((c) => {
+                    const Icon = c.icon;
+                    return (
+                      <div key={c.title} className="flex items-start gap-3">
+                        <div className="mt-0.5 flex h-10 w-10 items-center justify-center rounded-2xl bg-amber-100 text-amber-900">
+                          <Icon className="h-5 w-5" />
+                        </div>
+                        <div>
+                          <p className="font-semibold">{c.title}</p>
+                          <p className="text-sm text-neutral-700">{c.desc}</p>
+                        </div>
+                      </div>
+                    );
+                  })}
+                </CardContent>
+              </Card>
+            </div>
+
+            <div className="mt-8 flex flex-wrap gap-3">
+              <Button asChild className="rounded-2xl">
+                <a href="#contacto">Solicitar propuesta</a>
+              </Button>
+              <Button asChild variant="outline" className="rounded-2xl">
+                <a href="#faq">Ver preguntas frecuentes</a>
+              </Button>
             </div>
           </div>
         </section>
 
-        {/* PROPUESTA */}
-        <section id="valor" className="mx-auto max-w-6xl px-4 py-16">
-          <div className="flex items-end justify-between flex-wrap gap-4">
-            <div>
-              <h2 className="text-3xl font-bold">Propuesta y alcance</h2>
-              <p className="mt-2 text-neutral-700">
-                Plan corporativo claro, adaptable a tu contexto:{" "}
-                <strong>cierre de año</strong>,{" "}
-                <strong>kickoff comercial 2026</strong> o jornada de bienestar
-                para tu organización. *Viáticos o traslados pueden aplicar según
-                ciudad/país.
-              </p>
-            </div>
-            <Badge variant="secondary">ES/EN · Presencial u Online</Badge>
-          </div>
-
-          <div className="mt-8 grid md:grid-cols-2 gap-6">
-            <Card className="rounded-3xl border-amber-500 shadow-lg">
+        {/* LOGÍSTICA / CÓMO SE CONTRATA */}
+        <section id="logistica" className="mx-auto max-w-6xl px-4 py-14">
+          <div className="grid md:grid-cols-2 gap-6 items-start">
+            <Card className="rounded-3xl">
               <CardHeader>
-                <CardTitle className="flex items-center justify-between">
-                  <span>Plan Corporativo</span>
-                  <Badge className="bg-amber-600">Recomendado</Badge>
-                </CardTitle>
+                <CardTitle>Cómo se contrata (simple)</CardTitle>
               </CardHeader>
-              <CardContent>
-                <ul className="mt-1 space-y-2 text-sm text-neutral-700">
+              <CardContent className="text-sm text-neutral-700 space-y-3">
+                {[
+                  {
+                    title: "1) Brief de 10 minutos",
+                    desc: "Objetivo del evento, perfil de audiencia, modalidad, ciudad y fecha tentativa.",
+                  },
+                  {
+                    title: "2) Propuesta por escrito",
+                    desc: "Alcance definido, requerimientos, tiempos y condiciones. Sin ambigüedades.",
+                  },
+                  {
+                    title: "3) Confirmación y coordinación",
+                    desc: "Contrato + factura + prueba técnica (si aplica) + checklist de sala/online.",
+                  },
+                ].map((s) => (
+                  <div key={s.title} className="flex items-start gap-3">
+                    <div className="mt-0.5 flex h-8 w-8 items-center justify-center rounded-xl bg-neutral-100">
+                      <Check className="h-4 w-4 text-amber-700" />
+                    </div>
+                    <div>
+                      <p className="font-semibold">{s.title}</p>
+                      <p className="text-neutral-600">{s.desc}</p>
+                    </div>
+                  </div>
+                ))}
+
+                <div className="pt-3 border-t">
+                  <p className="font-semibold">Incluye</p>
+                  <ul className="mt-2 space-y-1 text-neutral-700">
+                    {[
+                      "Factura electrónica (afecta a IVA o exenta)",
+                      "Contrato de servicios",
+                      "Prueba técnica previa (online o soporte coordinación presencial)",
+                    ].map((x) => (
+                      <li key={x} className="flex items-start gap-2">
+                        <Check className="h-4 w-4 mt-0.5 text-amber-700" /> {x}
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+              </CardContent>
+            </Card>
+
+            <Card className="rounded-3xl border-amber-300 shadow-sm">
+              <CardHeader>
+                <CardTitle>Resultados que buscamos</CardTitle>
+              </CardHeader>
+              <CardContent className="text-sm text-neutral-700">
+                <ul className="space-y-2">
                   {[
-                    "Charla 60–75 min",
-                    "Material PDF resumen",
-                    "Soporte técnico básico",
-                    "Guía práctica 7 días para equipos",
-                    "Reporte de feedback post-evento",
-                  ].map((f) => (
-                    <li key={f} className="flex gap-2">
-                      <Check className="h-4 w-4 mt-0.5" aria-hidden />
-                      {f}
+                    "Subir energía y foco del equipo (sin “humo”).",
+                    "Mejorar clima y colaboración con un lenguaje común.",
+                    "Dejar una técnica simple con adopción inmediata.",
+                    "Que RR.HH. tenga un recurso defendible y replicable.",
+                  ].map((x) => (
+                    <li key={x} className="flex items-start gap-2">
+                      <Check className="h-4 w-4 mt-0.5 text-amber-700" /> {x}
                     </li>
                   ))}
                 </ul>
 
-                <div className="mt-4 rounded-xl border border-amber-200 bg-amber-50 px-4 py-3 text-sm text-amber-900">
-                  💡 Cuéntanos el alcance (audiencia, modalidad, ciudad y tipo
-                  de instancia: cierre de año, kickoff, jornada interna) y te
-                  enviaremos una propuesta a medida.
+                <div className="mt-5 rounded-xl border border-amber-200 bg-amber-50 px-4 py-3 text-sm text-amber-900">
+                  💡 Cuéntanos: <strong>fecha</strong>, <strong>modalidad</strong>, <strong>audiencia</strong> y{" "}
+                  <strong>objetivo</strong>. Te respondemos con una propuesta ajustada al evento.
                 </div>
 
-                <div className="mt-6 flex flex-wrap gap-3">
+                <div className="mt-5 flex flex-wrap gap-3">
                   <Button asChild className="rounded-2xl">
                     <a href="#contacto">Cotizar</a>
                   </Button>
                   <Button asChild variant="outline" className="rounded-2xl">
-                    <a href="#faq">Ver condiciones</a>
+                    <a href="https://wa.me/56920080031?text=Hola%20quiero%20cotizar%20la%20charla%20corporativa%20La%20Magia%20de%20la%20Imaginaci%C3%B3n" rel="noopener">
+                      WhatsApp
+                    </a>
                   </Button>
                 </div>
-                <p className="text-xs text-neutral-500 mt-4">
-                  Incluye factura electrónica y contrato de servicios. *Viáticos
-                  según ciudad/país.
-                </p>
-              </CardContent>
-            </Card>
-
-            <Card className="rounded-3xl">
-              <CardContent className="p-6">
-                <h3 className="text-xl font-semibold">
-                  Resultados que buscamos
-                </h3>
-                <ul className="mt-3 space-y-2 text-sm text-neutral-700">
-                  <li className="flex gap-2">
-                    <Check className="h-4 w-4 mt-0.5" aria-hidden /> Subir ánimo
-                    y foco del equipo
-                  </li>
-                  <li className="flex gap-2">
-                    <Check className="h-4 w-4 mt-0.5" aria-hidden /> Refuerzo de
-                    cultura y colaboración
-                  </li>
-                  <li className="flex gap-2">
-                    <Check className="h-4 w-4 mt-0.5" aria-hidden /> Lenguaje
-                    común para afrontar desafíos
-                  </li>
-                  <li className="flex gap-2">
-                    <Check className="h-4 w-4 mt-0.5" aria-hidden /> Técnicas
-                    simples con adopción inmediata
-                  </li>
-                </ul>
               </CardContent>
             </Card>
           </div>
@@ -625,27 +736,17 @@ function checkMandatory6988454000000575779(){
 
         {/* TESTIMONIOS */}
         <section id="testimonios" className="bg-white border-y">
-          <div className="mx-auto max-w-6xl px-4 py-16">
+          <div className="mx-auto max-w-6xl px-4 py-14">
             <div className="flex items-end justify-between flex-wrap gap-4">
               <div>
-                <h2 className="text-3xl font-bold">
-                  Lo que dicen quienes ya vivieron la experiencia
-                </h2>
+                <h2 className="text-3xl font-bold">Lo que comentan asistentes y equipos</h2>
                 <p className="mt-2 text-neutral-700">
-                  Comentarios que hablan de un antes y un después en el clima y
-                  la motivación de los equipos.
+                  Señales típicas: participación alta, energía arriba y herramienta aplicada al día siguiente.
                 </p>
               </div>
-              <div
-                className="flex items-center gap-1 text-amber-600"
-                aria-label="Valoraciones"
-              >
+              <div className="flex items-center gap-1 text-amber-600" aria-label="Valoraciones">
                 {[...Array(5)].map((_, i) => (
-                  <Star
-                    key={i}
-                    className="h-5 w-5 fill-amber-500 stroke-amber-500"
-                    aria-hidden
-                  />
+                  <Star key={i} className="h-5 w-5 fill-amber-500 stroke-amber-500" aria-hidden />
                 ))}
               </div>
             </div>
@@ -662,7 +763,7 @@ function checkMandatory6988454000000575779(){
                   name: "Sergio Barriga",
                   role: "Gerente Comercial",
                   quote:
-                    "Dinámica y directa. 100% recomendable para kickoffs y ciclos comerciales.",
+                    "Dinámica y directa. Recomendable para kickoffs y ciclos comerciales exigentes.",
                 },
                 {
                   name: "Francisca Sánchez",
@@ -670,8 +771,8 @@ function checkMandatory6988454000000575779(){
                   quote:
                     "Llegamos con carga y salimos con foco y energía. Impacto real en el ánimo del equipo.",
                 },
-              ].map((t, i) => (
-                <Card key={i} className="rounded-2xl">
+              ].map((t) => (
+                <Card key={t.name} className="rounded-2xl">
                   <CardContent className="pt-6">
                     <Quote className="h-6 w-6 opacity-50" aria-hidden />
                     <p className="mt-3 text-neutral-800">{t.quote}</p>
@@ -684,41 +785,39 @@ function checkMandatory6988454000000575779(){
             </div>
 
             <p className="text-xs text-neutral-500 mt-6">
-              *Testimonios reales de asistentes, adaptados al contexto
-              corporativo.
+              *Testimonios referenciales de asistentes; se presentan en lenguaje corporativo para lectura rápida.
             </p>
           </div>
         </section>
 
         {/* CTA INTERMEDIA */}
-        <section className="mx-auto max-w-6xl px-4 py-16">
+        <section className="mx-auto max-w-6xl px-4 py-14">
           <Card className="rounded-3xl overflow-hidden">
             <CardContent className="p-8 md:p-10 grid md:grid-cols-2 gap-8 items-center">
               <div>
-                <h3 className="text-2xl font-bold">
-                  ¿Por qué elegir La Magia de la Imaginación?
-                </h3>
+                <h3 className="text-2xl font-bold">¿Necesitas una propuesta hoy?</h3>
                 <p className="mt-2 text-neutral-700">
-                  Experiencia validada en Chile y Latam, adaptada al lenguaje
-                  corporativo: entretenida, práctica y con aplicación inmediata
-                  en el día a día de tus equipos.
+                  Envíanos fecha tentativa, modalidad, ciudad y cantidad de asistentes. Respondemos con propuesta y siguiente paso.
                 </p>
+                <div className="mt-4 flex flex-wrap gap-2 text-xs text-neutral-600">
+                  {[
+                    "Alcance definido por escrito",
+                    "Factura + contrato",
+                    "Prueba técnica previa",
+                    "Presencial u Online",
+                  ].map((x) => (
+                    <span key={x} className="inline-flex items-center rounded-full border px-3 py-1 bg-white">
+                      {x}
+                    </span>
+                  ))}
+                </div>
               </div>
-              <div className="flex gap-3">
-                <Button
-                  asChild
-                  size="lg"
-                  className="rounded-2xl w-full md:w-auto"
-                >
-                  <a href="#contacto">Quiero cotizar</a>
+              <div className="flex flex-col sm:flex-row gap-3">
+                <Button asChild size="lg" className="rounded-2xl w-full sm:w-auto">
+                  <a href="#contacto">Solicitar propuesta</a>
                 </Button>
-                <Button
-                  asChild
-                  size="lg"
-                  variant="outline"
-                  className="rounded-2xl w-full md:w-auto"
-                >
-                  <a href="#faq">Ver preguntas frecuentes</a>
+                <Button asChild size="lg" variant="outline" className="rounded-2xl w-full sm:w-auto">
+                  <a href="mailto:info@echevensko.com?subject=Cotizaci%C3%B3n%20charla%20corporativa">Enviar email</a>
                 </Button>
               </div>
             </CardContent>
@@ -727,42 +826,40 @@ function checkMandatory6988454000000575779(){
 
         {/* FAQ */}
         <section id="faq" className="bg-white border-y">
-          <div className="mx-auto max-w-6xl px-4 py-16">
+          <div className="mx-auto max-w-6xl px-4 py-14">
             <h2 className="text-3xl font-bold">Preguntas frecuentes</h2>
             <div className="mt-8 grid md:grid-cols-2 gap-6">
               {[
                 {
-                  q: "¿Se puede personalizar para un área, industria o tipo de evento?",
-                  a: "Sí. Hacemos un breve discovery y adaptamos ejemplos al negocio y al tipo de instancia (cierre de año, kickoff, jornada de bienestar, etc.).",
+                  q: "¿Se puede adaptar a industria / área / tipo de evento?",
+                  a: "Sí. En un brief breve definimos objetivo y perfil de audiencia para ajustar ejemplos y énfasis (cierre de año, kickoff, bienestar, liderazgo, etc.).",
                 },
                 {
                   q: "¿Qué requerimientos técnicos hay?",
-                  a: "Nosotros contamos con parlante, micrófono y luces para poder hacer la charla donde sea. Coordinamos con tu equipo de facilities o TI.",
+                  a: "Se coordina con tu equipo (sala/sonido/online). Si es online, realizamos prueba previa. En presencial, se valida la infraestructura disponible con checklist.",
                 },
                 {
                   q: "¿Ofrecen factura y contrato?",
-                  a: "Sí, factura electrónica (afecta a IVA o exenta) y acuerdo de servicios.",
+                  a: "Sí. Factura electrónica y acuerdo de servicios.",
                 },
                 {
                   q: "¿En qué ciudades trabajan?",
-                  a: "Base en Santiago; cobertura nacional y Latam. Viáticos según ciudad/país.",
+                  a: "Base en Santiago; cobertura nacional y Latam. Traslados/viáticos aplican según ciudad/país.",
                 },
                 {
-                  q: "¿Se puede medir el impacto?",
-                  a: "Incluimos encuesta post-evento y reporte de insights para RR.HH. y liderazgo.",
+                  q: "¿Se puede medir impacto?",
+                  a: "Se puede incluir encuesta post-evento y un resumen de insights para RR.HH. (según modalidad y alcance).",
                 },
                 {
                   q: "¿Idiomas y formatos?",
-                  a: "Español, opción inglés. Formato presencial u online (Zoom, Teams u otra plataforma).",
+                  a: "Español, opción inglés. Presencial u online (Zoom, Teams u otra plataforma).",
                 },
-              ].map((item, i) => (
-                <Card key={i} className="rounded-2xl">
+              ].map((item) => (
+                <Card key={item.q} className="rounded-2xl">
                   <CardHeader className="pb-2">
                     <CardTitle className="text-base">{item.q}</CardTitle>
                   </CardHeader>
-                  <CardContent className="pt-0 text-sm text-neutral-700">
-                    {item.a}
-                  </CardContent>
+                  <CardContent className="pt-0 text-sm text-neutral-700">{item.a}</CardContent>
                 </Card>
               ))}
             </div>
@@ -770,17 +867,15 @@ function checkMandatory6988454000000575779(){
         </section>
 
         {/* CONTACTO */}
-        <section id="contacto" className="mx-auto max-w-6xl px-4 py-16">
+        <section id="contacto" className="mx-auto max-w-6xl px-4 py-14">
           <div className="grid md:grid-cols-5 gap-8">
             <div className="md:col-span-3">
-              <h2 className="text-3xl font-bold">Solicita tu propuesta</h2>
+              <h2 className="text-3xl font-bold">Solicitar propuesta</h2>
               <p className="mt-2 text-neutral-700">
-                Cuéntanos fecha tentativa (cierre de año o kickoff 2026),
-                modalidad y tamaño de audiencia. Te enviaremos una propuesta a
-                medida según tu alcance y necesidades.
+                Cuéntanos fecha tentativa, modalidad, ciudad y tamaño de audiencia. Respondemos con una propuesta ajustada al alcance.
               </p>
               <p className="mt-1 text-sm text-neutral-600">
-                Respuesta habitual: dentro de 24 horas hábiles.
+                Respuesta habitual: <strong>dentro de 24 horas hábiles</strong>.
               </p>
 
               {/* FORMULARIO Zoho */}
@@ -792,14 +887,12 @@ function checkMandatory6988454000000575779(){
                 method="POST"
                 acceptCharset="UTF-8"
                 onSubmit={() => {
-                  // Zoho exige este charset switch
                   // @ts-ignore
                   document.charset = "UTF-8";
-                  // Tracking de eventos (GA4 / Google Ads) se implementará luego acá si es necesario.
                   return true;
                 }}
               >
-                {/* Nuevos tokens Zoho */}
+                {/* Tokens Zoho */}
                 <input
                   type="text"
                   style={{ display: "none" }}
@@ -813,12 +906,7 @@ function checkMandatory6988454000000575779(){
                   name="xmIwtLD"
                   value="1cb4a097c9fb16a1423586156657ec9743e2fa6ac2ee4419a9fe52186dbe61b9a441224667d017f52ced1af798ef3874"
                 />
-                <input
-                  type="text"
-                  style={{ display: "none" }}
-                  name="actionType"
-                  value="TGVhZHM="
-                />
+                <input type="text" style={{ display: "none" }} name="actionType" value="TGVhZHM=" />
                 <input
                   type="text"
                   style={{ display: "none" }}
@@ -827,49 +915,18 @@ function checkMandatory6988454000000575779(){
                 />
 
                 <div className="grid sm:grid-cols-2 gap-3">
-                  <Input
-                    name="First Name"
-                    id="First_Name"
-                    placeholder="Nombre"
-                    required
-                  />
-                  <Input
-                    name="Last Name"
-                    id="Last_Name"
-                    placeholder="Apellido"
-                    required
-                  />
+                  <Input name="First Name" id="First_Name" placeholder="Nombre" required />
+                  <Input name="Last Name" id="Last_Name" placeholder="Apellido" required />
                 </div>
 
                 <div className="grid sm:grid-cols-2 gap-3">
-                  <Input
-                    name="Email"
-                    id="Email"
-                    placeholder="Email corporativo"
-                    type="email"
-                    required
-                    // Zoho valida este atributo
-                    ftype="email"
-                  />
-                  <Input
-                    name="Company"
-                    id="Company"
-                    placeholder="Organización/Empresa"
-                    required
-                  />
+                  <Input name="Email" id="Email" placeholder="Email corporativo" type="email" required ftype="email" />
+                  <Input name="Company" id="Company" placeholder="Organización/Empresa" required />
                 </div>
 
                 <div className="grid sm:grid-cols-2 gap-3">
-                  <Input
-                    name="Phone"
-                    id="Phone"
-                    placeholder="Teléfono (opcional)"
-                  />
-                  <Input
-                    name="City"
-                    id="City"
-                    placeholder="Ciudad/País (opcional)"
-                  />
+                  <Input name="Phone" id="Phone" placeholder="Teléfono (opcional)" />
+                  <Input name="City" id="City" placeholder="Ciudad/País (opcional)" />
                 </div>
 
                 <div className="grid sm:grid-cols-2 gap-3">
@@ -881,10 +938,7 @@ function checkMandatory6988454000000575779(){
                     aria-label="Modalidad"
                     onChange={() => {
                       // @ts-ignore
-                      if (
-                        typeof addAriaSelected6988454000000575779 ===
-                        "function"
-                      )
+                      if (typeof addAriaSelected6988454000000575779 === "function")
                         addAriaSelected6988454000000575779();
                     }}
                   >
@@ -892,12 +946,18 @@ function checkMandatory6988454000000575779(){
                     <option value="Presencial">Presencial</option>
                     <option value="Online">Online</option>
                   </select>
+
+                  <Input
+                    name="LEADCF16"
+                    id="LEADCF16"
+                    placeholder="Cantidad asistentes (opcional)"
+                  />
                 </div>
 
                 <Textarea
                   name="LEADCF3"
                   id="LEADCF3"
-                  placeholder="Cuéntanos el objetivo de la actividad (cierre de año, kickoff 2026, bienestar, liderazgo, colegios, fundaciones, etc.)"
+                  placeholder="Mensaje (obligatorio): objetivo del evento + fecha tentativa + tipo de audiencia."
                   className="min-h-[120px]"
                   required
                 />
@@ -907,13 +967,7 @@ function checkMandatory6988454000000575779(){
                   <label className="sr-only" htmlFor="LEADCF5">
                     Echevensko
                   </label>
-                  <select
-                    id="LEADCF5"
-                    name="LEADCF5"
-                    className="hidden"
-                    defaultValue="Echevensko"
-                    aria-label="LEADCF5"
-                  >
+                  <select id="LEADCF5" name="LEADCF5" className="hidden" defaultValue="Echevensko" aria-label="LEADCF5">
                     <option value="-None-">-None-</option>
                     <option value="Tronx-Group">Tronx-Group</option>
                     <option value="Dekaelo">Dekaelo</option>
@@ -937,33 +991,15 @@ function checkMandatory6988454000000575779(){
                     aria-label="LEADCF9"
                   >
                     <option value="-None-">-None-</option>
-                    <option value="plan.dekaelomedia.com">
-                      plan.dekaelomedia.com
-                    </option>
-                    <option value="tronxgroup.com/contacto">
-                      tronxgroup.com/contacto
-                    </option>
-                    <option value="tronxstrategic.com/contacto">
-                      tronxstrategic.com/contacto
-                    </option>
-                    <option value="dekaelomedia.com/contacto">
-                      dekaelomedia.com/contacto
-                    </option>
-                    <option value="magiaimaginacion.cl">
-                      magiaimaginacion.cl
-                    </option>
-                    <option value="asiapacific-chamber.com/contacto">
-                      asiapacific-chamber.com/contacto
-                    </option>
-                    <option value="asiapacific-chamber/join">
-                      asiapacific-chamber/join
-                    </option>
-                    <option value="hklaba.com/contacto">
-                      hklaba.com/contacto
-                    </option>
-                    <option value="asiapacific-chamber/eventos">
-                      asiapacific-chamber/eventos
-                    </option>
+                    <option value="plan.dekaelomedia.com">plan.dekaelomedia.com</option>
+                    <option value="tronxgroup.com/contacto">tronxgroup.com/contacto</option>
+                    <option value="tronxstrategic.com/contacto">tronxstrategic.com/contacto</option>
+                    <option value="dekaelomedia.com/contacto">dekaelomedia.com/contacto</option>
+                    <option value="magiaimaginacion.cl">magiaimaginacion.cl</option>
+                    <option value="asiapacific-chamber.com/contacto">asiapacific-chamber.com/contacto</option>
+                    <option value="asiapacific-chamber/join">asiapacific-chamber/join</option>
+                    <option value="hklaba.com/contacto">hklaba.com/contacto</option>
+                    <option value="asiapacific-chamber/eventos">asiapacific-chamber/eventos</option>
                   </select>
                 </div>
 
@@ -997,26 +1033,23 @@ function checkMandatory6988454000000575779(){
                   />
                   <div
                     id="recapErr6988454000000575779"
-                    style={{
-                      fontSize: 12,
-                      color: "red",
-                      visibility: "hidden",
-                    }}
+                    style={{ fontSize: 12, color: "red", visibility: "hidden" }}
                   >
-                    Error en validación de Captcha. Si no es un robot, inténtelo
-                    de nuevo.
+                    Error en validación de Captcha. Si no es un robot, inténtelo de nuevo.
                   </div>
                 </div>
 
                 <div className="flex flex-wrap gap-3 mt-4">
-                  <Button className="rounded-2xl formsubmit" type="submit">
-                    Enviar consulta
+                  <Button className="rounded-2xl formsubmit" type="submit" onClick={() => true}>
+                    Enviar solicitud
                   </Button>
+
                   <Button asChild variant="outline" className="rounded-2xl">
                     <a href="mailto:info@echevensko.com?subject=Cotizaci%C3%B3n%20charla%20corporativa">
-                      O escríbenos por email
+                      Email
                     </a>
                   </Button>
+
                   <Button asChild variant="outline" className="rounded-2xl">
                     <a
                       href="https://wa.me/56920080031?text=Hola%20quiero%20cotizar%20la%20charla%20corporativa%20La%20Magia%20de%20la%20Imaginaci%C3%B3n"
@@ -1028,9 +1061,7 @@ function checkMandatory6988454000000575779(){
                 </div>
 
                 <p className="text-xs text-neutral-500 mt-2">
-                  *Al enviar, aceptas ser contactado(a) con fines comerciales.{" "}
-                  <br />
-                  💡 Te responderemos con una propuesta ajustada a tu evento.
+                  *Al enviar, aceptas ser contactado(a) con fines comerciales. Te responderemos con una propuesta ajustada al alcance.
                 </p>
               </form>
             </div>
@@ -1038,7 +1069,7 @@ function checkMandatory6988454000000575779(){
             <div className="md:col-span-2">
               <Card className="rounded-2xl md:sticky md:top-24">
                 <CardHeader>
-                  <CardTitle>Datos de contacto</CardTitle>
+                  <CardTitle>Contacto directo</CardTitle>
                 </CardHeader>
                 <CardContent className="text-sm text-neutral-700 space-y-3">
                   <p className="flex items-center gap-2">
@@ -1051,34 +1082,42 @@ function checkMandatory6988454000000575779(){
                     <MapPin className="h-4 w-4" aria-hidden /> Santiago, Chile
                   </p>
                   <p className="flex items-center gap-2">
-                    <CalendarDays className="h-4 w-4" aria-hidden /> Respuesta
-                    en 24h hábiles
+                    <CalendarDays className="h-4 w-4" aria-hidden /> Respuesta en 24h hábiles
                   </p>
+
                   <div className="pt-3 border-t">
                     <p className="font-medium">Incluye</p>
                     <ul className="mt-2 space-y-1">
-                      <li className="flex gap-2">
-                        <Check
-                          className="h-4 w-4 mt-0.5"
-                          aria-hidden
-                        />{" "}
-                        Factura electrónica (afecta a IVA o exenta)
-                      </li>
-                      <li className="flex gap-2">
-                        <Check
-                          className="h-4 w-4 mt-0.5"
-                          aria-hidden
-                        />{" "}
-                        Contrato de servicios
-                      </li>
-                      <li className="flex gap-2">
-                        <Check
-                          className="h-4 w-4 mt-0.5"
-                          aria-hidden
-                        />{" "}
-                        Prueba técnica previa
-                      </li>
+                      {[
+                        "Factura electrónica (afecta a IVA o exenta)",
+                        "Contrato de servicios",
+                        "Prueba técnica previa",
+                      ].map((x) => (
+                        <li key={x} className="flex gap-2">
+                          <Check className="h-4 w-4 mt-0.5 text-amber-700" /> {x}
+                        </li>
+                      ))}
                     </ul>
+                  </div>
+
+                  <div className="pt-3 border-t">
+                    <p className="font-medium">Para cotizar rápido</p>
+                    <p className="mt-1 text-neutral-600 text-sm">
+                      Fecha · Modalidad · Ciudad · Asistentes.
+                    </p>
+                    <div className="mt-3 flex flex-col gap-2">
+                      <Button asChild className="rounded-2xl">
+                        <a href="#contacto">Completar formulario</a>
+                      </Button>
+                      <Button asChild variant="outline" className="rounded-2xl">
+                        <a
+                          href="https://wa.me/56920080031?text=Hola%20quiero%20cotizar%20la%20charla%20corporativa%20La%20Magia%20de%20la%20Imaginaci%C3%B3n.%20Fecha:%20__%20Modalidad:%20__%20Ciudad:%20__%20Asistentes:%20__"
+                          rel="noopener"
+                        >
+                          WhatsApp con brief
+                        </a>
+                      </Button>
+                    </div>
                   </div>
                 </CardContent>
               </Card>
@@ -1090,33 +1129,29 @@ function checkMandatory6988454000000575779(){
       {/* CTA STICKY MOBILE (para tráfico Ads en móvil) */}
       <div className="fixed bottom-4 inset-x-4 z-40 md:hidden">
         <Button asChild className="w-full rounded-2xl shadow-lg">
-          <a href="#contacto">Solicitar propuesta corporativa</a>
+          <a href="#contacto">Solicitar propuesta</a>
         </Button>
       </div>
 
       {/* FOOTER */}
       <footer className="border-t">
         <div className="mx-auto max-w-6xl px-4 py-10 text-sm text-neutral-600 flex flex-col md:flex-row items-center justify-between gap-3">
-          <p>
-            © {new Date().getFullYear()} Echevensko. Todos los derechos
-            reservados.
-          </p>
+          <p>© {new Date().getFullYear()} Echevensko. Todos los derechos reservados.</p>
+
           <div className="flex items-center gap-4">
-            <a
-              href="/privacidad-condiciones"
-              className="hover:text-neutral-800"
-            >
+            <a href="/privacidad-condiciones" className="hover:text-neutral-800">
               Privacidad y Condiciones
             </a>
+
             <a
               href="https://instagram.com/cristobalechevensko"
               target="_blank"
               rel="noopener noreferrer"
               className="hover:text-neutral-800 inline-flex items-center gap-2"
             >
-              <Instagram className="h-4 w-4" aria-hidden />{" "}
-              @cristobalechevensko
+              <Instagram className="h-4 w-4" aria-hidden /> @cristobalechevensko
             </a>
+
             <a
               href="https://www.linkedin.com/company/la-magia-de-la-imaginacion/"
               target="_blank"
