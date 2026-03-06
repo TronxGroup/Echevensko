@@ -1076,7 +1076,7 @@ export default function MagiaImaginacionLanding() {
         MagiaImaginacion.cl promueve charlas para empresas, fundaciones y educación.
         El sitio oficial de Echevensko es{" "}
         <a
-          href="https://echevensko.com"
+          href="https://www.echevensko.com/"
           target="_blank"
           rel="noopener noreferrer"
           className="underline hover:text-neutral-800"
