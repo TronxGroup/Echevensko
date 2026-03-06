@@ -38,7 +38,7 @@ type Modality = "" | "Presencial" | "Online";
 type LeadPayload = {
   name: string;
   email: string;
-  company: string; // empresa / colegio / fundación
+  company: string;
   orgType?: OrgType;
   message: string;
   phone?: string;
@@ -46,13 +46,28 @@ type LeadPayload = {
   modality?: Modality;
   attendees?: string;
   consent: boolean;
-  hp?: string; // honeypot
+  hp?: string;
   utm?: Record<string, string>;
 };
 
 function safeTrim(v: any) {
   return typeof v === "string" ? v.trim() : "";
 }
+
+const trustedOrganizations = [
+  { name: "The Grange School", src: "/logos/the-grange-school.png" },
+  { name: "Farmacias Knop", src: "/logos/farmacias-knop.png" },
+  { name: "Colegio Árabe", src: "/logos/colegio-arabe.png" },
+  { name: "Registro Civil", src: "/logos/registro-civil.png" },
+  { name: "Copesa", src: "/logos/copesa.png" },
+  { name: "Municipalidad de Providencia", src: "/logos/providencia.png" },
+  { name: "Nestlé", src: "/logos/nestle.png" },
+  { name: "Codelco", src: "/logos/codelco.png" },
+  { name: "El Colorado", src: "/logos/el-colorado.png" },
+  { name: "Quererte Cafetería", src: "/logos/quererte.png" },
+  { name: "Municipalidad de Vitacura", src: "/logos/vitacura.png" },
+  { name: "Trewhhela's School", src: "/logos/trewhhelas-school.png" },
+];
 
 export default function MagiaImaginacionLanding() {
   const [loading, setLoading] = useState(false);
@@ -77,7 +92,14 @@ export default function MagiaImaginacionLanding() {
   const utm = useMemo(() => {
     if (typeof window === "undefined") return {};
     const params = new URLSearchParams(window.location.search);
-    const keys = ["utm_source", "utm_medium", "utm_campaign", "utm_term", "utm_content", "gclid"];
+    const keys = [
+      "utm_source",
+      "utm_medium",
+      "utm_campaign",
+      "utm_term",
+      "utm_content",
+      "gclid",
+    ];
     const out: Record<string, string> = {};
     keys.forEach((k) => {
       const v = params.get(k);
@@ -87,8 +109,6 @@ export default function MagiaImaginacionLanding() {
   }, []);
 
   function fireLeadEvent() {
-    // GA4 event (opcional): crea conversión en GA/Ads desde "generate_lead"
-    // No rompe si GA no está
     // @ts-ignore
     const gtag = typeof window !== "undefined" ? (window as any).gtag : null;
     if (typeof gtag === "function") {
@@ -104,18 +124,22 @@ export default function MagiaImaginacionLanding() {
     setDone(null);
     setErrorMsg("");
 
-    // anti-spam simple
     if (safeTrim(form.hp).length > 0) {
-      setDone("ok"); // fingimos éxito
+      setDone("ok");
       return;
     }
 
-    // validación básica (mínima fricción)
-    if (!safeTrim(form.name) || !safeTrim(form.email) || !safeTrim(form.company) || !safeTrim(form.message)) {
+    if (
+      !safeTrim(form.name) ||
+      !safeTrim(form.email) ||
+      !safeTrim(form.company) ||
+      !safeTrim(form.message)
+    ) {
       setDone("error");
       setErrorMsg("Por favor completa Nombre, Email, Organización y Mensaje.");
       return;
     }
+
     if (!form.consent) {
       setDone("error");
       setErrorMsg("Debes aceptar la Política de Privacidad y Condiciones.");
@@ -123,6 +147,7 @@ export default function MagiaImaginacionLanding() {
     }
 
     setLoading(true);
+
     try {
       const res = await fetch("/api/lead", {
         method: "POST",
@@ -173,8 +198,12 @@ export default function MagiaImaginacionLanding() {
               <Trophy className="h-5 w-5" />
             </div>
             <div className="leading-tight">
-              <p className="font-semibold tracking-tight">La Magia de la Imaginación</p>
-              <p className="text-xs text-neutral-600">Charlas · Bienestar · Foco · Creatividad</p>
+              <p className="font-semibold tracking-tight">
+                La Magia de la Imaginación
+              </p>
+              <p className="text-xs text-neutral-600">
+                Charlas · Bienestar · Foco · Creatividad
+              </p>
             </div>
           </div>
 
@@ -236,9 +265,10 @@ export default function MagiaImaginacionLanding() {
 
                 <p className="mt-4 text-lg text-neutral-800">
                   Charla <strong>entretenida y aplicable</strong> para{" "}
-                  <strong>empresas</strong>, <strong>colegios</strong> y <strong>fundaciones</strong>.
-                  Incluye una <strong>técnica práctica</strong> para regular tensión y recuperar claridad{" "}
-                  <strong>desde el día siguiente</strong>.
+                  <strong>empresas</strong>, <strong>colegios</strong> y{" "}
+                  <strong>fundaciones</strong>. Incluye una{" "}
+                  <strong>técnica práctica</strong> para regular tensión y
+                  recuperar claridad <strong>desde el día siguiente</strong>.
                 </p>
 
                 <div className="mt-5 grid gap-2 text-sm text-neutral-700">
@@ -261,7 +291,12 @@ export default function MagiaImaginacionLanding() {
                     </a>
                   </Button>
 
-                  <Button size="lg" variant="outline" className="rounded-2xl" asChild>
+                  <Button
+                    size="lg"
+                    variant="outline"
+                    className="rounded-2xl"
+                    asChild
+                  >
                     <a
                       href="https://wa.me/56920080031?text=Hola%20quiero%20cotizar%20la%20charla%20La%20Magia%20de%20la%20Imaginaci%C3%B3n.%0ATipo%20de%20organizaci%C3%B3n:%20Empresa/Colegio/Fundaci%C3%B3n%0AObjetivo:%20__%0AFecha:%20__%0AModalidad:%20__%0ACiudad:%20__%0AAsistentes:%20__"
                       rel="noopener"
@@ -273,13 +308,18 @@ export default function MagiaImaginacionLanding() {
 
                 <div className="mt-6 flex flex-wrap items-center gap-4 text-sm text-neutral-700">
                   <div className="flex items-center gap-1">
-                    <Star className="h-4 w-4 fill-amber-500 stroke-amber-500" aria-hidden /> Altas valoraciones
+                    <Star
+                      className="h-4 w-4 fill-amber-500 stroke-amber-500"
+                      aria-hidden
+                    />{" "}
+                    Altas valoraciones
                   </div>
                   <div className="flex items-center gap-1">
                     <Users className="h-4 w-4" aria-hidden /> Audiencias reales
                   </div>
                   <div className="flex items-center gap-1">
-                    <ShieldCheck className="h-4 w-4" aria-hidden /> Factura + contrato
+                    <ShieldCheck className="h-4 w-4" aria-hidden /> Factura +
+                    contrato
                   </div>
                 </div>
 
@@ -314,7 +354,10 @@ export default function MagiaImaginacionLanding() {
               {/* Desktop visual + mini-brief */}
               <div className="hidden md:block">
                 <div className="relative">
-                  <div className="absolute -inset-2 bg-amber-200/50 blur-2xl rounded-3xl" aria-hidden />
+                  <div
+                    className="absolute -inset-2 bg-amber-200/50 blur-2xl rounded-3xl"
+                    aria-hidden
+                  />
                   <Card className="relative rounded-3xl shadow-xl overflow-hidden">
                     <CardContent className="p-0">
                       <Image
@@ -334,7 +377,8 @@ export default function MagiaImaginacionLanding() {
                     <Timer className="h-4 w-4" aria-hidden /> 60–75 min
                   </div>
                   <div className="flex items-center gap-2">
-                    <Building2 className="h-4 w-4" aria-hidden /> Presencial / Online
+                    <Building2 className="h-4 w-4" aria-hidden /> Presencial /
+                    Online
                   </div>
                   <div className="flex items-center gap-2">
                     <Globe2 className="h-4 w-4" aria-hidden /> Chile / Latam
@@ -343,7 +387,9 @@ export default function MagiaImaginacionLanding() {
 
                 <Card className="mt-4 rounded-3xl">
                   <CardHeader className="pb-2">
-                    <CardTitle className="text-base">Para cotizar rápido</CardTitle>
+                    <CardTitle className="text-base">
+                      Para cotizar rápido
+                    </CardTitle>
                   </CardHeader>
                   <CardContent className="pt-0 text-sm text-neutral-700">
                     <div className="grid gap-2">
@@ -355,7 +401,10 @@ export default function MagiaImaginacionLanding() {
                       ].map((it) => {
                         const Icon = it.icon;
                         return (
-                          <div key={it.label} className="flex items-center gap-2">
+                          <div
+                            key={it.label}
+                            className="flex items-center gap-2"
+                          >
                             <Icon className="h-4 w-4 text-amber-700" />
                             <span>{it.label}</span>
                           </div>
@@ -377,15 +426,75 @@ export default function MagiaImaginacionLanding() {
           </div>
         </section>
 
+        {/* ORGANIZACIONES */}
+        <section className="bg-white border-y">
+          <div className="mx-auto max-w-6xl px-4 py-12">
+            <div className="text-center max-w-3xl mx-auto">
+              <p className="text-xs font-semibold uppercase tracking-[0.18em] text-neutral-500">
+                Confianza institucional
+              </p>
+              <h2 className="mt-3 text-2xl md:text-3xl font-bold tracking-tight">
+                Organizaciones que han confiado en esta charla
+              </h2>
+              <p className="mt-3 text-sm md:text-base text-neutral-700">
+                Experiencia con instituciones educativas, empresas, municipios y
+                organizaciones de distintos contextos.
+              </p>
+            </div>
+
+            <div className="mt-8 rounded-3xl border bg-neutral-50 px-4 py-6 md:px-6 md:py-8">
+              <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-x-6 gap-y-8 items-center">
+                {trustedOrganizations.map((org) => (
+                  <div
+                    key={org.name}
+                    className="flex items-center justify-center"
+                    title={org.name}
+                  >
+                    <Image
+                      src={org.src}
+                      alt={org.name}
+                      width={180}
+                      height={90}
+                      className="h-12 md:h-14 w-auto object-contain opacity-80 hover:opacity-100 transition"
+                    />
+                  </div>
+                ))}
+              </div>
+            </div>
+
+            <div className="mt-6 flex flex-wrap items-center justify-center gap-3 text-xs md:text-sm text-neutral-600">
+              <span className="inline-flex items-center rounded-full border bg-white px-3 py-1">
+                Empresas
+              </span>
+              <span className="inline-flex items-center rounded-full border bg-white px-3 py-1">
+                Colegios
+              </span>
+              <span className="inline-flex items-center rounded-full border bg-white px-3 py-1">
+                Fundaciones
+              </span>
+              <span className="inline-flex items-center rounded-full border bg-white px-3 py-1">
+                Municipalidades
+              </span>
+              <span className="inline-flex items-center rounded-full border bg-white px-3 py-1">
+                Organizaciones públicas y privadas
+              </span>
+            </div>
+          </div>
+        </section>
+
         {/* PARA QUIÉN */}
         <section id="paraquien" className="mx-auto max-w-6xl px-4 py-14">
           <div className="flex items-start gap-3">
             <Target className="h-6 w-6 mt-1" aria-hidden />
             <div>
-              <h2 className="text-3xl font-bold">¿Para quién funciona mejor?</h2>
+              <h2 className="text-3xl font-bold">
+                ¿Para quién funciona mejor?
+              </h2>
               <p className="mt-2 text-neutral-700 max-w-3xl">
-                Se adapta a la realidad del grupo: presión por metas, alto estrés, convivencia, comunicación y necesidad
-                de re-energizar el ciclo. Mismo formato base, con ejemplos y lenguaje ajustados al público.
+                Se adapta a la realidad del grupo: presión por metas, alto
+                estrés, convivencia, comunicación y necesidad de re-energizar el
+                ciclo. Mismo formato base, con ejemplos y lenguaje ajustados al
+                público.
               </p>
             </div>
           </div>
@@ -394,11 +503,13 @@ export default function MagiaImaginacionLanding() {
             <Card className="rounded-2xl">
               <CardHeader className="pb-2">
                 <CardTitle className="text-base flex items-center gap-2">
-                  <BriefcaseBusiness className="h-4 w-4 text-amber-700" /> Empresas
+                  <BriefcaseBusiness className="h-4 w-4 text-amber-700" />{" "}
+                  Empresas
                 </CardTitle>
               </CardHeader>
               <CardContent className="text-sm text-neutral-700">
-                Kickoffs, bienestar laboral, clima, liderazgo, equipos comerciales u operación.
+                Kickoffs, bienestar laboral, clima, liderazgo, equipos
+                comerciales u operación.
               </CardContent>
             </Card>
 
@@ -409,18 +520,21 @@ export default function MagiaImaginacionLanding() {
                 </CardTitle>
               </CardHeader>
               <CardContent className="text-sm text-neutral-700">
-                Convivencia, foco y bienestar. Adaptable a estudiantes, docentes o apoderados.
+                Convivencia, foco y bienestar. Adaptable a estudiantes, docentes
+                o apoderados.
               </CardContent>
             </Card>
 
             <Card className="rounded-2xl">
               <CardHeader className="pb-2">
                 <CardTitle className="text-base flex items-center gap-2">
-                  <HeartHandshake className="h-4 w-4 text-amber-700" /> Fundaciones
+                  <HeartHandshake className="h-4 w-4 text-amber-700" />{" "}
+                  Fundaciones
                 </CardTitle>
               </CardHeader>
               <CardContent className="text-sm text-neutral-700">
-                Equipos con alta carga emocional y trabajo comunitario. Energía, foco y herramientas simples.
+                Equipos con alta carga emocional y trabajo comunitario. Energía,
+                foco y herramientas simples.
               </CardContent>
             </Card>
           </div>
@@ -447,18 +561,34 @@ export default function MagiaImaginacionLanding() {
           <div className="grid md:grid-cols-12 gap-10 items-start">
             <div className="md:col-span-5">
               <h2 className="text-3xl font-bold leading-tight">
-                Impacto que una organización puede <span className="text-amber-700">defender internamente</span>
+                Impacto que una organización puede{" "}
+                <span className="text-amber-700">
+                  defender internamente
+                </span>
               </h2>
               <p className="mt-4 text-neutral-700">
-                Ideal cuando el grupo viene con carga o presión. Se llevan una herramienta concreta y un lenguaje común
-                para sostener el cambio en el día a día.
+                Ideal cuando el grupo viene con carga o presión. Se llevan una
+                herramienta concreta y un lenguaje común para sostener el cambio
+                en el día a día.
               </p>
 
               <div className="mt-6 grid gap-3 text-sm text-neutral-700">
                 {[
-                  { icon: ShieldCheck, title: "Operación clara", desc: "Alcance definido + coordinación + prueba técnica." },
-                  { icon: Trophy, title: "Estándar profesional", desc: "Tono cuidado, participación real y ejemplos a medida." },
-                  { icon: Target, title: "Cierre aplicable", desc: "Técnica simple para adoptar desde el día siguiente." },
+                  {
+                    icon: ShieldCheck,
+                    title: "Operación clara",
+                    desc: "Alcance definido + coordinación + prueba técnica.",
+                  },
+                  {
+                    icon: Trophy,
+                    title: "Estándar profesional",
+                    desc: "Tono cuidado, participación real y ejemplos a medida.",
+                  },
+                  {
+                    icon: Target,
+                    title: "Cierre aplicable",
+                    desc: "Técnica simple para adoptar desde el día siguiente.",
+                  },
                 ].map((b) => {
                   const Icon = b.icon;
                   return (
@@ -478,16 +608,30 @@ export default function MagiaImaginacionLanding() {
 
             <div className="md:col-span-7 grid sm:grid-cols-2 gap-4">
               {[
-                { title: "Bienestar y regulación", desc: "Baja tensión, sube claridad y presencia." },
-                { title: "Cohesión y convivencia", desc: "Lenguaje común para colaborar y respetar límites." },
-                { title: "Creatividad aplicada", desc: "Recursos concretos para resolver y decidir." },
-                { title: "Engagement", desc: "Energía arriba con participación auténtica." },
+                {
+                  title: "Bienestar y regulación",
+                  desc: "Baja tensión, sube claridad y presencia.",
+                },
+                {
+                  title: "Cohesión y convivencia",
+                  desc: "Lenguaje común para colaborar y respetar límites.",
+                },
+                {
+                  title: "Creatividad aplicada",
+                  desc: "Recursos concretos para resolver y decidir.",
+                },
+                {
+                  title: "Engagement",
+                  desc: "Energía arriba con participación auténtica.",
+                },
               ].map((b) => (
                 <Card key={b.title} className="rounded-2xl">
                   <CardHeader className="pb-2">
                     <CardTitle className="text-base">{b.title}</CardTitle>
                   </CardHeader>
-                  <CardContent className="pt-0 text-sm text-neutral-700">{b.desc}</CardContent>
+                  <CardContent className="pt-0 text-sm text-neutral-700">
+                    {b.desc}
+                  </CardContent>
                 </Card>
               ))}
             </div>
@@ -499,9 +643,14 @@ export default function MagiaImaginacionLanding() {
           <div className="mx-auto max-w-6xl px-4 py-14">
             <div className="grid lg:grid-cols-2 gap-10 items-start">
               <div>
-                <Badge className="mb-3 rounded-full">Mira 90 segundos y decide</Badge>
+                <Badge className="mb-3 rounded-full">
+                  Mira 90 segundos y decide
+                </Badge>
                 <h2 className="text-3xl font-bold">Extracto (formato real)</h2>
-                <p className="mt-2 text-neutral-700">Para ver tono, ritmo, participación y la herramienta que se entrega.</p>
+                <p className="mt-2 text-neutral-700">
+                  Para ver tono, ritmo, participación y la herramienta que se
+                  entrega.
+                </p>
 
                 <div className="mt-6 rounded-2xl overflow-hidden border bg-neutral-100">
                   <div className="aspect-video">
@@ -548,7 +697,9 @@ export default function MagiaImaginacionLanding() {
 
               <div>
                 <h3 className="text-xl font-semibold">Momentos que importan</h3>
-                <p className="mt-2 text-neutral-700">Participación, energía y foco: escenas reales.</p>
+                <p className="mt-2 text-neutral-700">
+                  Participación, energía y foco: escenas reales.
+                </p>
 
                 <div className="mt-6 grid grid-cols-1 sm:grid-cols-2 gap-4">
                   <Card className="rounded-2xl overflow-hidden">
@@ -577,13 +728,16 @@ export default function MagiaImaginacionLanding() {
 
                 <ul className="mt-4 space-y-2 text-sm text-neutral-700">
                   <li className="flex gap-2">
-                    <Mic className="h-4 w-4 mt-0.5 text-amber-700" /> Tono cercano, estándar profesional.
+                    <Mic className="h-4 w-4 mt-0.5 text-amber-700" /> Tono
+                    cercano, estándar profesional.
                   </li>
                   <li className="flex gap-2">
-                    <ShieldCheck className="h-4 w-4 mt-0.5 text-amber-700" /> Coordinación, factura y contrato.
+                    <ShieldCheck className="h-4 w-4 mt-0.5 text-amber-700" />{" "}
+                    Coordinación, factura y contrato.
                   </li>
                   <li className="flex gap-2">
-                    <Globe2 className="h-4 w-4 mt-0.5 text-amber-700" /> Cobertura Chile/Latam.
+                    <Globe2 className="h-4 w-4 mt-0.5 text-amber-700" />{" "}
+                    Cobertura Chile/Latam.
                   </li>
                 </ul>
               </div>
@@ -596,23 +750,33 @@ export default function MagiaImaginacionLanding() {
           <div className="mx-auto max-w-6xl px-4 py-14">
             <h2 className="text-3xl font-bold">Estructura (3 actos)</h2>
             <p className="mt-3 text-neutral-700 max-w-3xl">
-              Historias + humor + ejercicios simples. El foco es que el grupo salga con una herramienta práctica y un
-              lenguaje común para el día a día.
+              Historias + humor + ejercicios simples. El foco es que el grupo
+              salga con una herramienta práctica y un lenguaje común para el día
+              a día.
             </p>
 
             <div className="mt-8 grid md:grid-cols-3 gap-4">
               {[
                 {
                   title: "Acto I — Atención y presión",
-                  points: ["Cómo recuperar foco con carga real", "Marco simple para ordenar energía"],
+                  points: [
+                    "Cómo recuperar foco con carga real",
+                    "Marco simple para ordenar energía",
+                  ],
                 },
                 {
                   title: "Acto II — Obstáculo y gestión",
-                  points: ["Qué bloquea el rendimiento", "Qué hacer en el momento (sin teoría)"],
+                  points: [
+                    "Qué bloquea el rendimiento",
+                    "Qué hacer en el momento (sin teoría)",
+                  ],
                 },
                 {
                   title: "Acto III — Técnica aplicable",
-                  points: ["Ejercicio guiado", "Plan simple de 7 días (sostener hábito)"],
+                  points: [
+                    "Ejercicio guiado",
+                    "Plan simple de 7 días (sostener hábito)",
+                  ],
                 },
               ].map((col) => (
                 <Card key={col.title} className="rounded-2xl">
@@ -623,7 +787,11 @@ export default function MagiaImaginacionLanding() {
                     <ul className="space-y-2">
                       {col.points.map((p) => (
                         <li key={p} className="flex items-start gap-2">
-                          <Check className="h-4 w-4 mt-0.5 text-amber-700" aria-hidden /> {p}
+                          <Check
+                            className="h-4 w-4 mt-0.5 text-amber-700"
+                            aria-hidden
+                          />{" "}
+                          {p}
                         </li>
                       ))}
                     </ul>
@@ -636,9 +804,21 @@ export default function MagiaImaginacionLanding() {
               <Card className="rounded-3xl">
                 <CardContent className="p-6 md:p-8 grid md:grid-cols-3 gap-6">
                   {[
-                    { title: "Modalidad", desc: "Presencial u online (Zoom/Teams).", icon: Building2 },
-                    { title: "Duración", desc: "60–75 min + Q&A opcional.", icon: Timer },
-                    { title: "Audiencia", desc: "20 a 600 personas (consultar).", icon: Users },
+                    {
+                      title: "Modalidad",
+                      desc: "Presencial u online (Zoom/Teams).",
+                      icon: Building2,
+                    },
+                    {
+                      title: "Duración",
+                      desc: "60–75 min + Q&A opcional.",
+                      icon: Timer,
+                    },
+                    {
+                      title: "Audiencia",
+                      desc: "20 a 600 personas (consultar).",
+                      icon: Users,
+                    },
                   ].map((c) => {
                     const Icon = c.icon;
                     return (
@@ -677,9 +857,18 @@ export default function MagiaImaginacionLanding() {
               </CardHeader>
               <CardContent className="text-sm text-neutral-700 space-y-3">
                 {[
-                  { title: "1) Brief de 10 minutos", desc: "Objetivo, audiencia, modalidad, ciudad y fecha." },
-                  { title: "2) Propuesta por escrito", desc: "Alcance, requerimientos y condiciones claras." },
-                  { title: "3) Confirmación y coordinación", desc: "Contrato + factura + prueba técnica (si aplica)." },
+                  {
+                    title: "1) Brief de 10 minutos",
+                    desc: "Objetivo, audiencia, modalidad, ciudad y fecha.",
+                  },
+                  {
+                    title: "2) Propuesta por escrito",
+                    desc: "Alcance, requerimientos y condiciones claras.",
+                  },
+                  {
+                    title: "3) Confirmación y coordinación",
+                    desc: "Contrato + factura + prueba técnica (si aplica).",
+                  },
                 ].map((s) => (
                   <div key={s.title} className="flex items-start gap-3">
                     <div className="mt-0.5 flex h-8 w-8 items-center justify-center rounded-xl bg-neutral-100">
@@ -695,7 +884,11 @@ export default function MagiaImaginacionLanding() {
                 <div className="pt-3 border-t">
                   <p className="font-semibold">Incluye</p>
                   <ul className="mt-2 space-y-1 text-neutral-700">
-                    {["Factura electrónica", "Contrato de servicios", "Prueba técnica previa (online / coordinación)"].map((x) => (
+                    {[
+                      "Factura electrónica",
+                      "Contrato de servicios",
+                      "Prueba técnica previa (online / coordinación)",
+                    ].map((x) => (
                       <li key={x} className="flex items-start gap-2">
                         <Check className="h-4 w-4 mt-0.5 text-amber-700" /> {x}
                       </li>
@@ -724,8 +917,10 @@ export default function MagiaImaginacionLanding() {
                 </ul>
 
                 <div className="mt-5 rounded-xl border border-amber-200 bg-amber-50 px-4 py-3 text-sm text-amber-900">
-                  💡 Cuéntanos: <strong>tipo de organización</strong>, <strong>fecha</strong>, <strong>modalidad</strong>,{" "}
-                  <strong>audiencia</strong> y <strong>objetivo</strong>. Te respondemos con propuesta ajustada.
+                  💡 Cuéntanos: <strong>tipo de organización</strong>,{" "}
+                  <strong>fecha</strong>, <strong>modalidad</strong>,{" "}
+                  <strong>audiencia</strong> y <strong>objetivo</strong>. Te
+                  respondemos con propuesta ajustada.
                 </div>
 
                 <div className="mt-5 flex flex-wrap gap-3">
@@ -753,21 +948,41 @@ export default function MagiaImaginacionLanding() {
               <div>
                 <h2 className="text-3xl font-bold">Feedback de asistentes</h2>
                 <p className="mt-2 text-neutral-700">
-                  Señales típicas: participación alta, energía arriba y técnica aplicada al día siguiente.
+                  Señales típicas: participación alta, energía arriba y técnica
+                  aplicada al día siguiente.
                 </p>
               </div>
-              <div className="flex items-center gap-1 text-amber-600" aria-label="Valoraciones">
+              <div
+                className="flex items-center gap-1 text-amber-600"
+                aria-label="Valoraciones"
+              >
                 {[...Array(5)].map((_, i) => (
-                  <Star key={i} className="h-5 w-5 fill-amber-500 stroke-amber-500" aria-hidden />
+                  <Star
+                    key={i}
+                    className="h-5 w-5 fill-amber-500 stroke-amber-500"
+                    aria-hidden
+                  />
                 ))}
               </div>
             </div>
 
             <div className="mt-8 grid md:grid-cols-3 gap-4">
               {[
-                { who: "People & Culture — Servicios", quote: "Interactividad, claridad y herramienta concreta. Al día siguiente la aplicamos." },
-                { who: "Gerencia — Retail", quote: "Dinámica y directa. Muy útil para kickoffs y ciclos exigentes." },
-                { who: "Equipo educativo — Convivencia", quote: "Lenguaje claro, participación y enfoque práctico. Buena recepción del grupo." },
+                {
+                  who: "People & Culture — Servicios",
+                  quote:
+                    "Interactividad, claridad y herramienta concreta. Al día siguiente la aplicamos.",
+                },
+                {
+                  who: "Gerencia — Retail",
+                  quote:
+                    "Dinámica y directa. Muy útil para kickoffs y ciclos exigentes.",
+                },
+                {
+                  who: "Equipo educativo — Convivencia",
+                  quote:
+                    "Lenguaje claro, participación y enfoque práctico. Buena recepción del grupo.",
+                },
               ].map((t) => (
                 <Card key={t.who} className="rounded-2xl">
                   <CardContent className="pt-6">
@@ -786,23 +1001,44 @@ export default function MagiaImaginacionLanding() {
           <Card className="rounded-3xl overflow-hidden">
             <CardContent className="p-8 md:p-10 grid md:grid-cols-2 gap-8 items-center">
               <div>
-                <h3 className="text-2xl font-bold">¿Necesitas una propuesta hoy?</h3>
+                <h3 className="text-2xl font-bold">
+                  ¿Necesitas una propuesta hoy?
+                </h3>
                 <p className="mt-2 text-neutral-700">
-                  Envíanos tipo de organización, fecha tentativa, modalidad, ciudad y asistentes. Respondemos con propuesta y siguiente paso.
+                  Envíanos tipo de organización, fecha tentativa, modalidad,
+                  ciudad y asistentes. Respondemos con propuesta y siguiente
+                  paso.
                 </p>
                 <div className="mt-4 flex flex-wrap gap-2 text-xs text-neutral-600">
-                  {["Alcance por escrito", "Factura + contrato", "Prueba técnica previa", "Presencial u Online"].map((x) => (
-                    <span key={x} className="inline-flex items-center rounded-full border px-3 py-1 bg-white">
+                  {[
+                    "Alcance por escrito",
+                    "Factura + contrato",
+                    "Prueba técnica previa",
+                    "Presencial u Online",
+                  ].map((x) => (
+                    <span
+                      key={x}
+                      className="inline-flex items-center rounded-full border px-3 py-1 bg-white"
+                    >
                       {x}
                     </span>
                   ))}
                 </div>
               </div>
               <div className="flex flex-col sm:flex-row gap-3">
-                <Button asChild size="lg" className="rounded-2xl w-full sm:w-auto">
+                <Button
+                  asChild
+                  size="lg"
+                  className="rounded-2xl w-full sm:w-auto"
+                >
                   <a href="#contacto">Solicitar propuesta</a>
                 </Button>
-                <Button asChild size="lg" variant="outline" className="rounded-2xl w-full sm:w-auto">
+                <Button
+                  asChild
+                  size="lg"
+                  variant="outline"
+                  className="rounded-2xl w-full sm:w-auto"
+                >
                   <a href="mailto:info@echevensko.com?subject=Cotizaci%C3%B3n%20charla%20La%20Magia%20de%20la%20Imaginaci%C3%B3n">
                     Enviar email
                   </a>
@@ -826,16 +1062,30 @@ export default function MagiaImaginacionLanding() {
                   q: "¿Qué requerimientos técnicos hay?",
                   a: "Se coordina con tu equipo. En online hacemos prueba previa. En presencial se valida infraestructura con checklist (audio/proyección).",
                 },
-                { q: "¿Incluye factura y contrato?", a: "Sí. Factura electrónica y acuerdo de servicios." },
-                { q: "¿En qué ciudades trabajan?", a: "Base Santiago; cobertura nacional y Latam. Traslados/viáticos según ciudad/país." },
-                { q: "¿Qué duración y tamaño de audiencia?", a: "60–75 min. Desde 20 a 600 personas (consultar para más)." },
-                { q: "¿Se puede medir impacto?", a: "Opcional: encuesta post-evento y breve resumen de insights (según alcance)." },
+                {
+                  q: "¿Incluye factura y contrato?",
+                  a: "Sí. Factura electrónica y acuerdo de servicios.",
+                },
+                {
+                  q: "¿En qué ciudades trabajan?",
+                  a: "Base Santiago; cobertura nacional y Latam. Traslados/viáticos según ciudad/país.",
+                },
+                {
+                  q: "¿Qué duración y tamaño de audiencia?",
+                  a: "60–75 min. Desde 20 a 600 personas (consultar para más).",
+                },
+                {
+                  q: "¿Se puede medir impacto?",
+                  a: "Opcional: encuesta post-evento y breve resumen de insights (según alcance).",
+                },
               ].map((item) => (
                 <Card key={item.q} className="rounded-2xl">
                   <CardHeader className="pb-2">
                     <CardTitle className="text-base">{item.q}</CardTitle>
                   </CardHeader>
-                  <CardContent className="pt-0 text-sm text-neutral-700">{item.a}</CardContent>
+                  <CardContent className="pt-0 text-sm text-neutral-700">
+                    {item.a}
+                  </CardContent>
                 </Card>
               ))}
             </div>
@@ -847,18 +1097,22 @@ export default function MagiaImaginacionLanding() {
           <div className="grid md:grid-cols-5 gap-8">
             <div className="md:col-span-3">
               <h2 className="text-3xl font-bold">Cotizar (1 minuto)</h2>
-              <p className="mt-2 text-neutral-700">Completa lo mínimo y te respondemos con una propuesta ajustada al alcance.</p>
+              <p className="mt-2 text-neutral-700">
+                Completa lo mínimo y te respondemos con una propuesta ajustada
+                al alcance.
+              </p>
               <p className="mt-1 text-sm text-neutral-600">
                 Respuesta habitual: <strong>24h hábiles</strong>.
               </p>
 
               <form onSubmit={handleSubmit} className="mt-6 grid grid-cols-1 gap-3">
-                {/* Honeypot */}
                 <input
                   tabIndex={-1}
                   autoComplete="off"
                   value={form.hp || ""}
-                  onChange={(e) => setForm((p) => ({ ...p, hp: e.target.value }))}
+                  onChange={(e) =>
+                    setForm((p) => ({ ...p, hp: e.target.value }))
+                  }
                   className="hidden"
                   aria-hidden
                 />
@@ -867,14 +1121,18 @@ export default function MagiaImaginacionLanding() {
                   <Input
                     placeholder="Nombre y apellido"
                     value={form.name}
-                    onChange={(e) => setForm((p) => ({ ...p, name: e.target.value }))}
+                    onChange={(e) =>
+                      setForm((p) => ({ ...p, name: e.target.value }))
+                    }
                     required
                   />
                   <Input
                     placeholder="Email (ideal corporativo)"
                     type="email"
                     value={form.email}
-                    onChange={(e) => setForm((p) => ({ ...p, email: e.target.value }))}
+                    onChange={(e) =>
+                      setForm((p) => ({ ...p, email: e.target.value }))
+                    }
                     required
                   />
                 </div>
@@ -883,13 +1141,20 @@ export default function MagiaImaginacionLanding() {
                   <Input
                     placeholder="Organización (empresa/colegio/fundación)"
                     value={form.company}
-                    onChange={(e) => setForm((p) => ({ ...p, company: e.target.value }))}
+                    onChange={(e) =>
+                      setForm((p) => ({ ...p, company: e.target.value }))
+                    }
                     required
                   />
                   <select
                     className="h-10 rounded-md border border-input bg-background px-3 py-2 text-sm"
                     value={form.orgType || ""}
-                    onChange={(e) => setForm((p) => ({ ...p, orgType: e.target.value as OrgType }))}
+                    onChange={(e) =>
+                      setForm((p) => ({
+                        ...p,
+                        orgType: e.target.value as OrgType,
+                      }))
+                    }
                     aria-label="Tipo de organización (opcional)"
                   >
                     <option value="">Tipo (opcional)</option>
@@ -900,17 +1165,20 @@ export default function MagiaImaginacionLanding() {
                   </select>
                 </div>
 
-                {/* Opcionales */}
                 <div className="grid sm:grid-cols-2 gap-3">
                   <Input
                     placeholder="Teléfono (opcional)"
                     value={form.phone || ""}
-                    onChange={(e) => setForm((p) => ({ ...p, phone: e.target.value }))}
+                    onChange={(e) =>
+                      setForm((p) => ({ ...p, phone: e.target.value }))
+                    }
                   />
                   <Input
                     placeholder="Ciudad / País (opcional)"
                     value={form.city || ""}
-                    onChange={(e) => setForm((p) => ({ ...p, city: e.target.value }))}
+                    onChange={(e) =>
+                      setForm((p) => ({ ...p, city: e.target.value }))
+                    }
                   />
                 </div>
 
@@ -918,7 +1186,12 @@ export default function MagiaImaginacionLanding() {
                   <select
                     className="h-10 rounded-md border border-input bg-background px-3 py-2 text-sm"
                     value={form.modality || ""}
-                    onChange={(e) => setForm((p) => ({ ...p, modality: e.target.value as Modality }))}
+                    onChange={(e) =>
+                      setForm((p) => ({
+                        ...p,
+                        modality: e.target.value as Modality,
+                      }))
+                    }
                     aria-label="Modalidad (opcional)"
                   >
                     <option value="">Modalidad (opcional)</option>
@@ -929,7 +1202,9 @@ export default function MagiaImaginacionLanding() {
                   <Input
                     placeholder="Asistentes (opcional)"
                     value={form.attendees || ""}
-                    onChange={(e) => setForm((p) => ({ ...p, attendees: e.target.value }))}
+                    onChange={(e) =>
+                      setForm((p) => ({ ...p, attendees: e.target.value }))
+                    }
                   />
                 </div>
 
@@ -939,7 +1214,9 @@ export default function MagiaImaginacionLanding() {
                     "Mensaje (obligatorio)\nObjetivo: __\nFecha tentativa: __\nAudiencia (ej: equipo / estudiantes / docentes): __\nContexto/tema: __"
                   }
                   value={form.message}
-                  onChange={(e) => setForm((p) => ({ ...p, message: e.target.value }))}
+                  onChange={(e) =>
+                    setForm((p) => ({ ...p, message: e.target.value }))
+                  }
                   required
                 />
 
@@ -947,7 +1224,9 @@ export default function MagiaImaginacionLanding() {
                   <input
                     type="checkbox"
                     checked={!!form.consent}
-                    onChange={(e) => setForm((p) => ({ ...p, consent: e.target.checked }))}
+                    onChange={(e) =>
+                      setForm((p) => ({ ...p, consent: e.target.checked }))
+                    }
                     required
                   />
                   <span>
@@ -961,7 +1240,8 @@ export default function MagiaImaginacionLanding() {
 
                 {done === "ok" && (
                   <div className="rounded-xl border border-emerald-200 bg-emerald-50 px-4 py-3 text-sm text-emerald-900">
-                    ¡Listo! Recibimos tu solicitud. Te responderemos dentro de 24h hábiles.
+                    ¡Listo! Recibimos tu solicitud. Te responderemos dentro de
+                    24h hábiles.
                   </div>
                 )}
 
@@ -972,7 +1252,11 @@ export default function MagiaImaginacionLanding() {
                 )}
 
                 <div className="flex flex-wrap gap-3 mt-2">
-                  <Button className="rounded-2xl" type="submit" disabled={loading}>
+                  <Button
+                    className="rounded-2xl"
+                    type="submit"
+                    disabled={loading}
+                  >
                     {loading ? "Enviando..." : "Enviar solicitud"}
                   </Button>
 
@@ -992,7 +1276,9 @@ export default function MagiaImaginacionLanding() {
                   </Button>
                 </div>
 
-                <p className="text-xs text-neutral-500 mt-1">Al enviar, aceptas ser contactado(a) con fines comerciales.</p>
+                <p className="text-xs text-neutral-500 mt-1">
+                  Al enviar, aceptas ser contactado(a) con fines comerciales.
+                </p>
               </form>
             </div>
 
@@ -1012,15 +1298,21 @@ export default function MagiaImaginacionLanding() {
                     <MapPin className="h-4 w-4" aria-hidden /> Santiago, Chile
                   </p>
                   <p className="flex items-center gap-2">
-                    <CalendarDays className="h-4 w-4" aria-hidden /> Respuesta en 24h hábiles
+                    <CalendarDays className="h-4 w-4" aria-hidden /> Respuesta
+                    en 24h hábiles
                   </p>
 
                   <div className="pt-3 border-t">
                     <p className="font-medium">Incluye</p>
                     <ul className="mt-2 space-y-1">
-                      {["Factura electrónica", "Contrato de servicios", "Prueba técnica previa (si aplica)"].map((x) => (
+                      {[
+                        "Factura electrónica",
+                        "Contrato de servicios",
+                        "Prueba técnica previa (si aplica)",
+                      ].map((x) => (
                         <li key={x} className="flex gap-2">
-                          <Check className="h-4 w-4 mt-0.5 text-amber-700" /> {x}
+                          <Check className="h-4 w-4 mt-0.5 text-amber-700" />{" "}
+                          {x}
                         </li>
                       ))}
                     </ul>
@@ -1055,7 +1347,11 @@ export default function MagiaImaginacionLanding() {
           <Button asChild className="w-full rounded-2xl shadow-lg">
             <a href="#contacto">Cotizar</a>
           </Button>
-          <Button asChild variant="outline" className="w-full rounded-2xl shadow-lg bg-white">
+          <Button
+            asChild
+            variant="outline"
+            className="w-full rounded-2xl shadow-lg bg-white"
+          >
             <a
               href="https://wa.me/56920080031?text=Hola%20quiero%20cotizar%20la%20charla%20La%20Magia%20de%20la%20Imaginaci%C3%B3n.%0ATipo%20de%20organizaci%C3%B3n:%20Empresa/Colegio/Fundaci%C3%B3n%0AObjetivo:%20__%0AFecha:%20__%0AModalidad:%20__%0ACiudad:%20__%0AAsistentes:%20__"
               rel="noopener"
@@ -1067,54 +1363,60 @@ export default function MagiaImaginacionLanding() {
       </div>
 
       {/* FOOTER */}
-<footer className="border-t">
-  <div className="mx-auto max-w-6xl px-4 py-10 text-sm text-neutral-600 flex flex-col md:flex-row items-center justify-between gap-4">
+      <footer className="border-t">
+        <div className="mx-auto max-w-6xl px-4 py-10 text-sm text-neutral-600 flex flex-col md:flex-row items-center justify-between gap-4">
+          <div className="text-center md:text-left">
+            <p>
+              © {new Date().getFullYear()} Echevensko. Todos los derechos
+              reservados.
+            </p>
+            <p className="text-xs text-neutral-500 mt-1">
+              MagiaImaginacion.cl promueve charlas para empresas, fundaciones y
+              educación. El sitio oficial de Echevensko es{" "}
+              <a
+                href="https://www.echevensko.com/"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="underline hover:text-neutral-800"
+              >
+                echevensko.com
+              </a>
+              , donde comparte reflexiones y fechas de presentaciones abiertas
+              al público.
+            </p>
+          </div>
 
-    <div className="text-center md:text-left">
-      <p>© {new Date().getFullYear()} Echevensko. Todos los derechos reservados.</p>
-      <p className="text-xs text-neutral-500 mt-1">
-        MagiaImaginacion.cl promueve charlas para empresas, fundaciones y educación.
-        El sitio oficial de Echevensko es{" "}
-        <a
-          href="https://www.echevensko.com/"
-          target="_blank"
-          rel="noopener noreferrer"
-          className="underline hover:text-neutral-800"
-        >
-          echevensko.com
-        </a>
-        , donde comparte reflexiones y fechas de presentaciones abiertas al público.
-      </p>
-    </div>
+          <div className="flex items-center gap-4">
+            <a
+              href="/privacidad-condiciones"
+              className="hover:text-neutral-800"
+            >
+              Privacidad y Condiciones
+            </a>
 
-    <div className="flex items-center gap-4">
-      <a href="/privacidad-condiciones" className="hover:text-neutral-800">
-        Privacidad y Condiciones
-      </a>
+            <a
+              href="https://instagram.com/cristobalechevensko"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="hover:text-neutral-800 inline-flex items-center gap-2"
+            >
+              <Instagram className="h-4 w-4" aria-hidden />
+              @cristobalechevensko
+            </a>
+          </div>
+        </div>
 
-      <a
-        href="https://instagram.com/cristobalechevensko"
-        target="_blank"
-        rel="noopener noreferrer"
-        className="hover:text-neutral-800 inline-flex items-center gap-2"
-      >
-        <Instagram className="h-4 w-4" aria-hidden />
-        @cristobalechevensko
-      </a>
-    </div>
-  </div>
-
-  <div className="pb-6 text-center">
-    <a
-      href="https://www.tronxstrategy.com/"
-      target="_blank"
-      rel="noopener noreferrer"
-      className="text-[11px] text-neutral-400 hover:text-neutral-600 transition"
-    >
-      Desarrollado por <span className="font-medium">Tronx Strategy</span>
-    </a>
-  </div>
-</footer>
+        <div className="pb-6 text-center">
+          <a
+            href="https://www.tronxstrategy.com/"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="text-[11px] text-neutral-400 hover:text-neutral-600 transition"
+          >
+            Desarrollado por <span className="font-medium">Tronx Strategy</span>
+          </a>
+        </div>
+      </footer>
     </div>
   );
 }
