@@ -55,11 +55,11 @@ function safeTrim(v: any) {
 }
 
 const trustedOrganizations = [
-  { name: "The Grange School", src: "/logos/the-grange-school.png" },
+  { name: "The Grange School", src: "/logos/the-grange-school-horizontal.png" },
   { name: "Farmacias Knop", src: "/logos/farmacias-knop.png" },
   { name: "Colegio Árabe", src: "/logos/colegio-arabe.png" },
   { name: "Registro Civil", src: "/logos/registro-civil.png" },
-  { name: "Copesa", src: "/logos/copesa.png" },
+  { name: "Copesa", src: "/logos/grupo-copesa.png" },
   { name: "Municipalidad de Providencia", src: "/logos/providencia.png" },
   { name: "Nestlé", src: "/logos/nestle.png" },
   { name: "Codelco", src: "/logos/codelco.png" },
