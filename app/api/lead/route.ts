@@ -1,10 +1,8 @@
-// app/api/lead/route.ts — envía el lead por email a info@echevensko.com
 
 import { NextResponse } from "next/server";
 import { Resend } from "resend";
 
 export const runtime = "nodejs";
-
 const resend = new Resend(process.env.RESEND_API_KEY);
 
 function safe(s: any) {
@@ -16,9 +14,7 @@ export async function POST(req: Request) {
     const body = await req.json();
 
     // honeypot
-    if (safe(body.hp).length > 0) {
-      return NextResponse.json({ ok: true }, { status: 200 });
-    }
+    if (safe(body.hp).length > 0) return NextResponse.json({ ok: true }, { status: 200 });
 
     const name = safe(body.name);
     const email = safe(body.email);
@@ -32,6 +28,7 @@ export async function POST(req: Request) {
     const to = process.env.LEADS_TO || "info@echevensko.com";
     const from = process.env.LEADS_FROM || "Leads <no-reply@magiaimaginacion.cl>";
 
+    const orgType = safe(body.orgType);
     const phone = safe(body.phone);
     const city = safe(body.city);
     const modality = safe(body.modality);
@@ -47,7 +44,8 @@ export async function POST(req: Request) {
       "--------------------------------",
       `Nombre: ${name}`,
       `Email: ${email}`,
-      `Empresa: ${company}`,
+      `Organización: ${company}`,
+      orgType ? `Tipo: ${orgType}` : "",
       phone ? `Teléfono: ${phone}` : "",
       city ? `Ciudad/País: ${city}` : "",
       modality ? `Modalidad: ${modality}` : "",
@@ -61,12 +59,12 @@ export async function POST(req: Request) {
       .filter(Boolean)
       .join("\n");
 
-    const subject = `Lead charla corporativa — ${company} (${name})`;
+    const subject = `Lead charla — ${company} (${name})`;
 
     const { error } = await resend.emails.send({
       from,
       to,
-      replyTo: email, // responder al lead directo
+      replyTo: email,
       subject,
       text,
     });
