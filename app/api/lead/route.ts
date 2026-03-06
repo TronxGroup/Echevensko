@@ -1,3 +1,4 @@
+// app/api/lead/route.ts
 
 import { NextResponse } from "next/server";
 import { Resend } from "resend";
@@ -26,7 +27,9 @@ export async function POST(req: Request) {
     }
 
     const to = process.env.LEADS_TO || "info@echevensko.com";
-    const from = process.env.LEADS_FROM || "Leads <no-reply@magiaimaginacion.cl>";
+
+    // IMPORTANT: fallback seguro sin dominio verificado
+    const from = process.env.LEADS_FROM || "Resend <onboarding@resend.dev>";
 
     const orgType = safe(body.orgType);
     const phone = safe(body.phone);
@@ -61,20 +64,25 @@ export async function POST(req: Request) {
 
     const subject = `Lead charla — ${company} (${name})`;
 
-    const { error } = await resend.emails.send({
+    const result = await resend.emails.send({
       from,
       to,
-      replyTo: email,
+      replyTo: email, // para que respondas directo al lead
       subject,
       text,
     });
 
-    if (error) {
-      return NextResponse.json({ error: "No se pudo enviar el correo." }, { status: 500 });
+    if (result.error) {
+      console.error("RESEND_ERROR:", result.error);
+      return NextResponse.json(
+        { error: result.error.message || "No se pudo enviar el correo." },
+        { status: 500 }
+      );
     }
 
     return NextResponse.json({ ok: true }, { status: 200 });
   } catch (e) {
+    console.error("LEAD_API_ERROR:", e);
     return NextResponse.json({ error: "Error inesperado." }, { status: 500 });
   }
 }
