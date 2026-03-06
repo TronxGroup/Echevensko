@@ -5,16 +5,27 @@ import Script from "next/script";
 
 export const metadata: Metadata = {
   metadataBase: new URL("https://magiaimaginacion.cl"),
-  title: "La Magia de la Imaginación – Charla Corporativa",
+  title: "La Magia de la Imaginación – Charlas para Empresas, Colegios y Fundaciones",
   description:
-    "Charla-espectáculo motivacional para empresas, colegios y fundaciones. Bienestar, foco y creatividad con Cristóbal Echevensko.",
+    "Charlas entretenidas y aplicables para empresas, colegios y fundaciones: foco, bienestar, clima y creatividad con Cristóbal Echevensko. Presencial u online.",
   keywords: [
-    "charlas motivacionales",
+    // Corporativo
+    "charla corporativa",
     "charlas corporativas",
+    "charla para empresas",
     "bienestar laboral",
+    "clima laboral",
+    "kickoff empresas",
     "liderazgo",
-    "creatividad",
-    "Echevensko",
+    "creatividad aplicada",
+    // Educación / social
+    "charlas para colegios",
+    "charlas para estudiantes",
+    "convivencia escolar",
+    "bienestar escolar",
+    "charlas para fundaciones",
+    // Marca
+    "Cristóbal Echevensko",
     "La Magia de la Imaginación",
   ],
   alternates: {
@@ -26,23 +37,23 @@ export const metadata: Metadata = {
     locale: "es_CL",
     url: "/",
     siteName: "La Magia de la Imaginación",
-    title: "La Magia de la Imaginación – Charla Corporativa",
+    title: "La Magia de la Imaginación – Charlas para Empresas, Colegios y Fundaciones",
     description:
-      "Bienestar, foco y creatividad con Cristóbal Echevensko. Presencial u online para equipos y organizaciones.",
+      "Presencial u online. Formato profesional, participativo y con herramientas aplicables para equipos y organizaciones.",
     images: [
       {
         url: "/images/og-cover.jpg",
         width: 1200,
         height: 630,
-        alt: "La Magia de la Imaginación – Charla Corporativa",
+        alt: "La Magia de la Imaginación – Charlas",
       },
     ],
   },
   twitter: {
     card: "summary_large_image",
-    title: "La Magia de la Imaginación – Charla Corporativa",
+    title: "La Magia de la Imaginación – Charlas",
     description:
-      "Charla motivacional con Cristóbal Echevensko. Bienestar, foco y creatividad para equipos.",
+      "Charlas para empresas, colegios y fundaciones. Bienestar, foco y creatividad con Cristóbal Echevensko.",
     images: ["/images/og-cover.jpg"],
   },
   icons: {
@@ -56,18 +67,13 @@ export const viewport: Viewport = {
   themeColor: "#f59e0b",
   width: "device-width",
   initialScale: 1,
-  maximumScale: 1,
 };
 
 export default function RootLayout({ children }: { children: ReactNode }) {
   return (
     <html lang="es">
-      <head>
-        <meta name="author" content="Cristóbal Echevensko" />
-        <meta name="robots" content="index,follow" />
-        <meta httpEquiv="content-language" content="es-cl" />
-
-        {/* Google tag (gtag.js) */}
+      <body className="antialiased bg-white text-neutral-900">
+        {/* Google tag (GA4) */}
         <Script
           async
           src="https://www.googletagmanager.com/gtag/js?id=G-BQ0940XD1E"
@@ -78,38 +84,60 @@ export default function RootLayout({ children }: { children: ReactNode }) {
             window.dataLayer = window.dataLayer || [];
             function gtag(){dataLayer.push(arguments);}
             gtag('js', new Date());
-
-            gtag('config', 'G-BQ0940XD1E');
+            gtag('config', 'G-BQ0940XD1E', { anonymize_ip: true });
           `}
         </Script>
 
-        {/* JSON-LD Organization */}
-        <Script
-          id="ld-json-org"
-          type="application/ld+json"
-          strategy="afterInteractive"
-        >
+        {/* JSON-LD: Organization + Service */}
+        <Script id="ld-json" type="application/ld+json" strategy="afterInteractive">
           {`
-            {
-              "@context": "https://schema.org",
-              "@type": "Organization",
-              "name": "La Magia de la Imaginación",
-              "url": "https://magiaimaginacion.cl",
-              "logo": "https://magiaimaginacion.cl/images/og-cover.jpg",
-              "founder": {
-                "@type": "Person",
-                "name": "Cristóbal Echevensko"
+            [
+              {
+                "@context": "https://schema.org",
+                "@type": "Organization",
+                "name": "La Magia de la Imaginación",
+                "url": "https://magiaimaginacion.cl",
+                "logo": "https://magiaimaginacion.cl/images/og-cover.jpg",
+                "founder": { "@type": "Person", "name": "Cristóbal Echevensko" },
+                "contactPoint": [{
+                  "@type": "ContactPoint",
+                  "contactType": "sales",
+                  "email": "info@echevensko.com",
+                  "telephone": "+56 9 2008 0031",
+                  "areaServed": "CL",
+                  "availableLanguage": ["es"]
+                }],
+                "sameAs": [
+                  "https://www.linkedin.com/company/la-magia-de-la-imaginacion/",
+                  "https://instagram.com/cristobalechevensko"
+                ]
               },
-              "sameAs": [
-                "https://www.linkedin.com/company/la-magia-de-la-imaginacion/",
-                "https://instagram.com/cristobalechevensko"
-              ]
-            }
+              {
+                "@context": "https://schema.org",
+                "@type": "Service",
+                "name": "Charlas: La Magia de la Imaginación",
+                "serviceType": "Charla / conferencia / taller",
+                "provider": {
+                  "@type": "Organization",
+                  "name": "La Magia de la Imaginación",
+                  "url": "https://magiaimaginacion.cl"
+                },
+                "areaServed": ["CL", "LATAM"],
+                "availableChannel": [{
+                  "@type": "ServiceChannel",
+                  "serviceUrl": "https://magiaimaginacion.cl/#contacto",
+                  "availableLanguage": ["es"]
+                }],
+                "audience": [
+                  { "@type": "Audience", "audienceType": "Empresas" },
+                  { "@type": "Audience", "audienceType": "Colegios" },
+                  { "@type": "Audience", "audienceType": "Fundaciones" }
+                ]
+              }
+            ]
           `}
         </Script>
-      </head>
 
-      <body className="antialiased bg-white text-neutral-900">
         {children}
       </body>
     </html>
