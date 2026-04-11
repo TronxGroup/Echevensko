@@ -208,7 +208,7 @@ export default function PrivacidadCondicionesPage() {
           <p className="mt-2">
             Para ejercer estos derechos puedes escribir a:
             <a href="mailto:info@echevensko.com" className="underline ml-1">
-              info@echevensko.com
+              info@magiaimaginacion.cl
             </a>
           </p>
         </section>
@@ -268,7 +268,7 @@ export default function PrivacidadCondicionesPage() {
           </a>
 
           <a
-            href="https://wa.me/56920080031"
+            href="https://wa.me/56985012300"
             className="inline-flex items-center gap-2 rounded-xl border border-amber-600 text-amber-700 px-6 py-3 font-medium hover:bg-amber-50 transition"
             target="_blank"
             rel="noopener noreferrer"
