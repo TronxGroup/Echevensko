@@ -26,7 +26,7 @@ export async function POST(req: Request) {
       return NextResponse.json({ error: "Faltan campos obligatorios." }, { status: 400 });
     }
 
-    const to = process.env.LEADS_TO || "info@echevensko.com";
+    const to = process.env.LEADS_TO || "info@magiaimaginacion.cl";
 
     // IMPORTANT: fallback seguro sin dominio verificado
     const from = process.env.LEADS_FROM || "Resend <onboarding@resend.dev>";
