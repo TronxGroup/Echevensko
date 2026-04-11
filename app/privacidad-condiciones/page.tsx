@@ -83,8 +83,8 @@ export default function PrivacidadCondicionesPage() {
 
           <p className="mt-2">
             Contacto:
-            <a href="mailto:info@echevensko.com" className="underline ml-1">
-              info@echevensko.com
+            <a href="mailto:info@magiaimaginacion.cl" className="underline ml-1">
+              info@magiaimaginacion.cl
             </a>
           </p>
 
