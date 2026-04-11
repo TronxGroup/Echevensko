@@ -929,7 +929,7 @@ export default function MagiaImaginacionLanding() {
                   </Button>
                   <Button asChild variant="outline" className="rounded-2xl">
                     <a
-                      href="https://wa.me/56920080031?text=Hola%20quiero%20cotizar%20la%20charla%20La%20Magia%20de%20la%20Imaginaci%C3%B3n.%0ATipo%20de%20organizaci%C3%B3n:%20Empresa/Colegio/Fundaci%C3%B3n%0AObjetivo:%20__%0AFecha:%20__%0AModalidad:%20__%0ACiudad:%20__%0AAsistentes:%20__"
+                      href="https://wa.me/56985012300?text=Hola%20quiero%20cotizar%20la%20charla%20La%20Magia%20de%20la%20Imaginaci%C3%B3n.%0ATipo%20de%20organizaci%C3%B3n:%20Empresa/Colegio/Fundaci%C3%B3n%0AObjetivo:%20__%0AFecha:%20__%0AModalidad:%20__%0ACiudad:%20__%0AAsistentes:%20__"
                       rel="noopener"
                     >
                       WhatsApp
@@ -1039,7 +1039,7 @@ export default function MagiaImaginacionLanding() {
                   variant="outline"
                   className="rounded-2xl w-full sm:w-auto"
                 >
-                  <a href="mailto:info@echevensko.com?subject=Cotizaci%C3%B3n%20charla%20La%20Magia%20de%20la%20Imaginaci%C3%B3n">
+                  <a href="mailto:info@magiaimaginacion.cl?subject=Cotizaci%C3%B3n%20charla%20La%20Magia%20de%20la%20Imaginaci%C3%B3n">
                     Enviar email
                   </a>
                 </Button>
@@ -1127,7 +1127,7 @@ export default function MagiaImaginacionLanding() {
                     required
                   />
                   <Input
-                    placeholder="Email (ideal corporativo)"
+                    placeholder="Email"
                     type="email"
                     value={form.email}
                     onChange={(e) =>
@@ -1261,14 +1261,14 @@ export default function MagiaImaginacionLanding() {
                   </Button>
 
                   <Button asChild variant="outline" className="rounded-2xl">
-                    <a href="mailto:info@echevensko.com?subject=Cotizaci%C3%B3n%20charla%20La%20Magia%20de%20la%20Imaginaci%C3%B3n">
+                    <a href="mailto:info@magiaimaginacion.cl?subject=Cotizaci%C3%B3n%20charla%20La%20Magia%20de%20la%20Imaginaci%C3%B3n">
                       Email
                     </a>
                   </Button>
 
                   <Button asChild variant="outline" className="rounded-2xl">
                     <a
-                      href="https://wa.me/56920080031?text=Hola%20quiero%20cotizar%20la%20charla%20La%20Magia%20de%20la%20Imaginaci%C3%B3n.%0ATipo%20de%20organizaci%C3%B3n:%20Empresa/Colegio/Fundaci%C3%B3n%0AObjetivo:%20__%0AFecha:%20__%0AModalidad:%20__%0ACiudad:%20__%0AAsistentes:%20__"
+                      href="https://wa.me/56985012300?text=Hola%20quiero%20cotizar%20la%20charla%20La%20Magia%20de%20la%20Imaginaci%C3%B3n.%0ATipo%20de%20organizaci%C3%B3n:%20Empresa/Colegio/Fundaci%C3%B3n%0AObjetivo:%20__%0AFecha:%20__%0AModalidad:%20__%0ACiudad:%20__%0AAsistentes:%20__"
                       rel="noopener"
                     >
                       WhatsApp
@@ -1289,10 +1289,10 @@ export default function MagiaImaginacionLanding() {
                 </CardHeader>
                 <CardContent className="text-sm text-neutral-700 space-y-3">
                   <p className="flex items-center gap-2">
-                    <Mail className="h-4 w-4" aria-hidden /> info@echevensko.com
+                    <Mail className="h-4 w-4" aria-hidden /> info@magiaimaginacion.cl
                   </p>
                   <p className="flex items-center gap-2">
-                    <Phone className="h-4 w-4" aria-hidden /> +56 9 2008 0031
+                    <Phone className="h-4 w-4" aria-hidden /> +56 9 8501 2300
                   </p>
                   <p className="flex items-center gap-2">
                     <MapPin className="h-4 w-4" aria-hidden /> Santiago, Chile
@@ -1326,7 +1326,7 @@ export default function MagiaImaginacionLanding() {
                       </Button>
                       <Button asChild variant="outline" className="rounded-2xl">
                         <a
-                          href="https://wa.me/56920080031?text=Hola%20quiero%20cotizar%20la%20charla%20La%20Magia%20de%20la%20Imaginaci%C3%B3n.%0ATipo%20de%20organizaci%C3%B3n:%20Empresa/Colegio/Fundaci%C3%B3n%0AObjetivo:%20__%0AFecha:%20__%0AModalidad:%20__%0ACiudad:%20__%0AAsistentes:%20__"
+                          href="https://wa.me/56985012300?text=Hola%20quiero%20cotizar%20la%20charla%20La%20Magia%20de%20la%20Imaginaci%C3%B3n.%0ATipo%20de%20organizaci%C3%B3n:%20Empresa/Colegio/Fundaci%C3%B3n%0AObjetivo:%20__%0AFecha:%20__%0AModalidad:%20__%0ACiudad:%20__%0AAsistentes:%20__"
                           rel="noopener"
                         >
                           WhatsApp con brief
@@ -1353,7 +1353,7 @@ export default function MagiaImaginacionLanding() {
             className="w-full rounded-2xl shadow-lg bg-white"
           >
             <a
-              href="https://wa.me/56920080031?text=Hola%20quiero%20cotizar%20la%20charla%20La%20Magia%20de%20la%20Imaginaci%C3%B3n.%0ATipo%20de%20organizaci%C3%B3n:%20Empresa/Colegio/Fundaci%C3%B3n%0AObjetivo:%20__%0AFecha:%20__%0AModalidad:%20__%0ACiudad:%20__%0AAsistentes:%20__"
+              href="https://wa.me/56985012300?text=Hola%20quiero%20cotizar%20la%20charla%20La%20Magia%20de%20la%20Imaginaci%C3%B3n.%0ATipo%20de%20organizaci%C3%B3n:%20Empresa/Colegio/Fundaci%C3%B3n%0AObjetivo:%20__%0AFecha:%20__%0AModalidad:%20__%0ACiudad:%20__%0AAsistentes:%20__"
               rel="noopener"
             >
               WhatsApp
@@ -1408,12 +1408,12 @@ export default function MagiaImaginacionLanding() {
 
         <div className="pb-6 text-center">
           <a
-            href="https://www.tronxstrategy.com/"
+            href="https://www.tronxweb.com/"
             target="_blank"
             rel="noopener noreferrer"
             className="text-[11px] text-neutral-400 hover:text-neutral-600 transition"
           >
-            Desarrollado por <span className="font-medium">Tronx Strategy</span>
+            Desarrollado por <span className="font-medium">Tronx Web</span>
           </a>
         </div>
       </footer>
