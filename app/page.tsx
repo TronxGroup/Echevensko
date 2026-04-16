@@ -286,7 +286,7 @@ export default function MagiaImaginacionLanding() {
 
                 <ul className="space-y-2.5 text-sm text-stone-700">
                   {[
-                    "Formato profesional: historias + participación + herramienta concreta (sin "humo").",
+                    "Formato profesional: historias + participación + herramienta concreta (sin 'humo').",
                     "Operación clara: coordinación, factura, contrato y prueba técnica previa.",
                     "Se adapta al objetivo y audiencia (corporativo o educativo/social).",
                   ].map((x) => (
