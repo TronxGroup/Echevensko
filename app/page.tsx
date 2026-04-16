@@ -84,7 +84,7 @@ const faqs = [
   },
   {
     q: "¿Qué duración y tamaño de audiencia?",
-    a: "60–75 minutos. Desde 20 a 600 personas (consultar para grupos más grandes).",
+    a: "60-75 minutos. Desde 20 a 600 personas (consultar para grupos más grandes).",
   },
   {
     q: "¿Se puede medir el impacto?",
@@ -210,7 +210,7 @@ export default function MagiaImaginacionLanding() {
   return (
     <div className="min-h-screen bg-[#FAFAF7] text-stone-900 font-sans">
 
-      {/* ─── HEADER ─── */}
+      {/* == HEADER== */}
       <header
         className={`sticky top-0 z-50 transition-all duration-300 ${
           scrolled
@@ -242,14 +242,14 @@ export default function MagiaImaginacionLanding() {
           </nav>
 
           <Button asChild size="sm" className="rounded-full bg-amber-600 hover:bg-amber-700 text-white border-0 shadow-none text-sm px-4">
-            <a href="#contacto">Recibir propuesta →</a>
+            <a href="#contacto">Recibir propuesta &rarr;</a>
           </Button>
         </div>
       </header>
 
       <main id="main" role="main">
 
-        {/* ─── HERO ─── */}
+        {/* == HERO== */}
         <section ref={heroRef} className="relative overflow-hidden bg-[#FAFAF7]">
           {/* Decorative background */}
           <div aria-hidden className="pointer-events-none absolute inset-0 overflow-hidden">
@@ -342,7 +342,7 @@ export default function MagiaImaginacionLanding() {
                   {/* Overlay pill */}
                   <div className="absolute bottom-4 left-4 right-4">
                     <div className="bg-white/90 backdrop-blur rounded-2xl px-4 py-3 flex items-center justify-between text-xs text-stone-700 shadow-sm">
-                      <span className="flex items-center gap-1.5"><Timer className="h-3.5 w-3.5 text-amber-600" /> 60–75 min</span>
+                      <span className="flex items-center gap-1.5"><Timer className="h-3.5 w-3.5 text-amber-600" /> 60-75 min</span>
                       <span className="w-px h-4 bg-stone-200" />
                       <span className="flex items-center gap-1.5"><Building2 className="h-3.5 w-3.5 text-amber-600" /> Presencial / Online</span>
                       <span className="w-px h-4 bg-stone-200" />
@@ -380,7 +380,7 @@ export default function MagiaImaginacionLanding() {
           </div>
         </section>
 
-        {/* ─── LOGOS ─── */}
+        {/* == LOGOS== */}
         <section className="bg-white border-y border-stone-200">
           <div className="mx-auto max-w-6xl px-4 py-12">
             <p className="text-center text-xs font-semibold uppercase tracking-[0.18em] text-stone-400 mb-8">
@@ -407,7 +407,7 @@ export default function MagiaImaginacionLanding() {
           </div>
         </section>
 
-        {/* ─── PARA QUIÉN ─── */}
+        {/* == PARA QUIÉN== */}
         <section id="paraquien" className="mx-auto max-w-6xl px-4 py-16">
           <div className="max-w-xl mb-10">
             <p className="text-xs font-semibold uppercase tracking-widest text-amber-600 mb-2">Público objetivo</p>
@@ -457,7 +457,7 @@ export default function MagiaImaginacionLanding() {
           </div>
         </section>
 
-        {/* ─── IMPACTO ─── */}
+        {/* == IMPACTO== */}
         <section id="impacto" className="bg-stone-900 text-white">
           <div className="mx-auto max-w-6xl px-4 py-16">
             <div className="grid md:grid-cols-2 gap-12 items-center">
@@ -510,7 +510,7 @@ export default function MagiaImaginacionLanding() {
           </div>
         </section>
 
-        {/* ─── VIDEO ─── */}
+        {/* == VIDEO== */}
         <section id="video" className="bg-white border-y border-stone-200">
           <div className="mx-auto max-w-6xl px-4 py-16">
             <div className="grid lg:grid-cols-2 gap-12 items-start">
@@ -596,7 +596,7 @@ export default function MagiaImaginacionLanding() {
           </div>
         </section>
 
-        {/* ─── CONTENIDO ─── */}
+        {/* == CONTENIDO== */}
         <section id="contenido" className="mx-auto max-w-6xl px-4 py-16">
           <div className="max-w-xl mb-10">
             <p className="text-xs font-semibold uppercase tracking-widest text-amber-600 mb-2">Estructura</p>
@@ -645,7 +645,7 @@ export default function MagiaImaginacionLanding() {
             <div className="grid md:grid-cols-3 gap-6">
               {[
                 { icon: Building2, title: "Modalidad", desc: "Presencial u online (Zoom / Teams)." },
-                { icon: Timer, title: "Duración", desc: "60–75 min + Q&A opcional." },
+                { icon: Timer, title: "Duración", desc: "60-75 min + Q&A opcional." },
                 { icon: Users, title: "Audiencia", desc: "20 a 600 personas (consultar)." },
               ].map((c) => {
                 const Icon = c.icon;
@@ -674,7 +674,7 @@ export default function MagiaImaginacionLanding() {
           </div>
         </section>
 
-        {/* ─── LOGÍSTICA ─── */}
+        {/* == LOGÍSTICA== */}
         <section className="bg-stone-50 border-y border-stone-200">
           <div className="mx-auto max-w-6xl px-4 py-16">
             <div className="grid md:grid-cols-2 gap-6">
@@ -745,7 +745,7 @@ export default function MagiaImaginacionLanding() {
           </div>
         </section>
 
-        {/* ─── TESTIMONIOS ─── */}
+        {/* == TESTIMONIOS== */}
         <section className="bg-white border-b border-stone-200">
           <div className="mx-auto max-w-6xl px-4 py-16">
             <div className="flex items-end justify-between flex-wrap gap-4 mb-10">
@@ -763,9 +763,9 @@ export default function MagiaImaginacionLanding() {
 
             <div className="grid md:grid-cols-3 gap-4">
               {[
-                { who: "People & Culture — Servicios", quote: "Interactividad, claridad y herramienta concreta. Al día siguiente la aplicamos." },
-                { who: "Gerencia — Retail", quote: "Dinámica y directa. Muy útil para kickoffs y ciclos exigentes." },
-                { who: "Equipo educativo — Convivencia", quote: "Lenguaje claro, participación y enfoque práctico. Buena recepción del grupo." },
+                { who: "People & Culture - Servicios", quote: "Interactividad, claridad y herramienta concreta. Al día siguiente la aplicamos." },
+                { who: "Gerencia - Retail", quote: "Dinámica y directa. Muy útil para kickoffs y ciclos exigentes." },
+                { who: "Equipo educativo - Convivencia", quote: "Lenguaje claro, participación y enfoque práctico. Buena recepción del grupo." },
               ].map((t) => (
                 <div key={t.who} className="bg-stone-50 rounded-2xl border border-stone-200 p-6">
                   <Quote className="h-5 w-5 text-amber-400 mb-4" aria-hidden />
@@ -777,7 +777,7 @@ export default function MagiaImaginacionLanding() {
           </div>
         </section>
 
-        {/* ─── CTA INTERMEDIA ─── */}
+        {/* == CTA INTERMEDIA== */}
         <section className="mx-auto max-w-6xl px-4 py-16">
           <div className="bg-stone-900 rounded-3xl overflow-hidden p-8 md:p-12 grid md:grid-cols-2 gap-8 items-center">
             <div>
@@ -804,7 +804,7 @@ export default function MagiaImaginacionLanding() {
           </div>
         </section>
 
-        {/* ─── FAQ ─── */}
+        {/* == FAQ== */}
         <section id="faq" className="bg-white border-y border-stone-200">
           <div className="mx-auto max-w-3xl px-4 py-16">
             <p className="text-xs font-semibold uppercase tracking-widest text-amber-600 mb-2">Preguntas frecuentes</p>
@@ -817,7 +817,7 @@ export default function MagiaImaginacionLanding() {
           </div>
         </section>
 
-        {/* ─── CONTACTO ─── */}
+        {/* == CONTACTO== */}
         <section id="contacto" className="mx-auto max-w-6xl px-4 py-16">
           <div className="grid md:grid-cols-5 gap-10">
 
@@ -996,7 +996,7 @@ export default function MagiaImaginacionLanding() {
                   <p className="text-xs text-amber-700 mb-4">Escríbenos por WhatsApp con el brief y respondemos en el día.</p>
                   <Button asChild className="w-full rounded-full bg-amber-600 hover:bg-amber-700 text-white border-0 text-sm">
                     <a href="https://wa.me/56985012300?text=Hola%20quiero%20cotizar%20la%20charla%20La%20Magia%20de%20la%20Imaginaci%C3%B3n.%0ATipo%20de%20organizaci%C3%B3n:%20Empresa/Colegio/Fundaci%C3%B3n%0AObjetivo:%20__%0AFecha:%20__%0AModalidad:%20__%0ACiudad:%20__%0AAsistentes:%20__" rel="noopener">
-                      Abrir WhatsApp →
+                      Abrir WhatsApp &rarr;
                     </a>
                   </Button>
                 </div>
@@ -1006,7 +1006,7 @@ export default function MagiaImaginacionLanding() {
         </section>
       </main>
 
-      {/* ─── CTA STICKY MOBILE ─── */}
+      {/* == CTA STICKY MOBILE== */}
       <div className="fixed bottom-0 inset-x-0 z-40 md:hidden border-t border-stone-200 bg-white/95 backdrop-blur px-4 py-3">
         <div className="grid grid-cols-2 gap-2 max-w-sm mx-auto">
           <Button asChild className="w-full rounded-full bg-amber-600 hover:bg-amber-700 text-white border-0">
@@ -1020,7 +1020,7 @@ export default function MagiaImaginacionLanding() {
         </div>
       </div>
 
-      {/* ─── FOOTER ─── */}
+      {/* == FOOTER== */}
       <footer className="border-t border-stone-200 bg-white">
         <div className="mx-auto max-w-6xl px-4 py-10 flex flex-col md:flex-row items-center justify-between gap-4 text-sm text-stone-500">
           <div className="text-center md:text-left">
