@@ -714,7 +714,7 @@ export default function MagiaImaginacionLanding() {
                 <h3 className="text-xl font-semibold mb-3">Resultados que buscamos</h3>
                 <ul className="space-y-3 mb-6">
                   {[
-                    "Subir energía y foco (sin "humo").",
+                    "Subir energía y foco (sin 'humo').",
                     "Mejorar convivencia con un lenguaje común.",
                     "Dejar una técnica simple con adopción inmediata.",
                     "Que la organización tenga un recurso defendible y replicable.",
