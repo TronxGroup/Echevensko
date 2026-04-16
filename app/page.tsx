@@ -1025,10 +1025,6 @@ export default function MagiaImaginacionLanding() {
         <div className="mx-auto max-w-6xl px-4 py-10 flex flex-col md:flex-row items-center justify-between gap-4 text-sm text-stone-500">
           <div className="text-center md:text-left">
             <p>© {new Date().getFullYear()} Echevensko. Todos los derechos reservados.</p>
-            <p className="text-xs text-stone-400 mt-1">
-              El sitio oficial de Echevensko es{" "}
-              <a href="https://www.echevensko.com/" target="_blank" rel="noopener noreferrer" className="underline hover:text-stone-700">
-                echevensko.com
               </a>
             </p>
           </div>
