@@ -1025,7 +1025,6 @@ export default function MagiaImaginacionLanding() {
         <div className="mx-auto max-w-6xl px-4 py-10 flex flex-col md:flex-row items-center justify-between gap-4 text-sm text-stone-500">
           <div className="text-center md:text-left">
             <p>© {new Date().getFullYear()} Echevensko. Todos los derechos reservados.</p>
-              </a>
             </p>
           </div>
           <div className="flex items-center gap-5">
