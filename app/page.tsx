@@ -731,10 +731,10 @@ export default function MagiaImaginacionLanding() {
                   <strong className="text-white">objetivo</strong>. Te respondemos con propuesta ajustada.
                 </div>
                 <div className="flex flex-wrap gap-3">
-                  <Button asChild className="rounded-full bg-white text-amber-700 hover:bg-amber-50 border-0 font-semibold">
+                  <Button asChild className="rounded-full !bg-white !text-amber-700 hover:!bg-amber-50 border-0 font-semibold">
                     <a href="#contacto">Cotizar</a>
                   </Button>
-                  <Button asChild variant="outline" className="rounded-full border-white/40 text-white hover:bg-white/10">
+                  <Button asChild className="rounded-full !bg-transparent !text-white border border-white/50 hover:!bg-white/10 font-normal">
                     <a href="https://wa.me/56985012300?text=Hola%20quiero%20cotizar%20la%20charla%20La%20Magia%20de%20la%20Imaginaci%C3%B3n.%0ATipo%20de%20organizaci%C3%B3n:%20Empresa/Colegio/Fundaci%C3%B3n%0AObjetivo:%20__%0AFecha:%20__%0AModalidad:%20__%0ACiudad:%20__%0AAsistentes:%20__" rel="noopener">
                       WhatsApp
                     </a>
@@ -795,7 +795,7 @@ export default function MagiaImaginacionLanding() {
               <Button asChild size="lg" className="rounded-full bg-amber-500 hover:bg-amber-400 text-white border-0 font-semibold">
                 <a href="#contacto">Solicitar propuesta <ArrowRight className="ml-2 h-4 w-4" /></a>
               </Button>
-              <Button asChild size="lg" variant="outline" className="rounded-full border-stone-600 text-stone-300 hover:bg-stone-800 hover:text-white">
+              <Button asChild size="lg" className="rounded-full !bg-transparent !text-stone-300 border border-stone-600 hover:!bg-stone-800 hover:!text-white">
                 <a href="mailto:info@magiaimaginacion.cl?subject=Cotizaci%C3%B3n%20charla%20La%20Magia%20de%20la%20Imaginaci%C3%B3n">
                   Enviar email
                 </a>
